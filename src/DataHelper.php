@@ -69,7 +69,7 @@ class Pronamic_WP_Pay_IDealBasic_DataHelper {
  	 *
  	 * @param string $string
  	 * @param string $max
- 	 * @return Ambigous <string, mixed>
+ 	 * @return string
  	 */
 	public static function an( $string, $max = null ) {
 		return self::filter( self::$characters_an, $string, $max );
@@ -83,7 +83,7 @@ class Pronamic_WP_Pay_IDealBasic_DataHelper {
 	 *
 	 * @param string $string
 	 * @param string $max
-	 * @return Ambigous <string, mixed>
+	 * @return string
 	 */
 	public static function ans( $string, $max = null ) {
 		return self::filter( self::$characters_ans, $string, $max );
@@ -97,7 +97,7 @@ class Pronamic_WP_Pay_IDealBasic_DataHelper {
 	 *
 	 * @param string $string
 	 * @param string $max
-	 * @return Ambigous <string, mixed>
+	 * @return string
 	 */
 	public static function n( $string, $max = null ) {
 		return self::filter( self::$characters_n, $string, $max );
