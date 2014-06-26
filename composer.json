@@ -1,0 +1,21 @@
+{
+	"name": "wp-pay-gateways/ideal-basic",
+	"description": "iDEAL Basic driver for the WordPress payment processing library.",
+	"keywords": ["wordpress", "wp", "pay", "ideal", "basic", "gateway", "pronamic"],
+	"homepage": "https://github.com/wp-pay-gateways/ideal-basic",
+	"autoload": {
+		"classmap": ["src/"]
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/wp-pay/core"
+		}
+	],
+	"require": {
+		"wp-pay/core": "dev-develop"
+	},
+	"require-dev": {
+		"satooshi/php-coveralls": "dev-master"
+	}
+}
