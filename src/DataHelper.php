@@ -9,7 +9,7 @@
  * @version 1.0.0
  * @see http://pronamic.nl/wp-content/uploads/2011/12/iDEAL_Basic_EN_v2.3.pdf
  */
-class Pronamic_WP_Pay_IDealBasic_DataHelper {
+class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
 	/**
 	 * Alphanumerical, free text
 	 *
