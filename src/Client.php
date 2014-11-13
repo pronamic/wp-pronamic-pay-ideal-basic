@@ -97,13 +97,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	private $description;
 
 	/**
-	 * The mode the iDEAL integration is running in (test or production)
-	 *
-	 * @var int
-	 */
-	private $mode = Pronamic_IDeal_IDeal::MODE_TEST;
-
-	/**
 	 * The currency
 	 *
 	 * @var string
