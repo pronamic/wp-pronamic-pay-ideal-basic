@@ -180,14 +180,14 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 * Constructs and initialize a iDEAL basic object
 	 */
 	public function __construct() {
-		$this->items = new Pronamic_IDeal_Items();
+		$this->items = new Pronamic_WP_Pay_Gateways_IDealBasic_Items();
 
 		$this->forbidden_characters = array();
 
 		$this->set_payment_type( self::PAYMENT_TYPE_IDEAL );
 		$this->set_expire_date_format( self::DATE_EXPIRE_FORMAT );
 		$this->set_expire_date_modifier( self::EXPIRE_DATE_MODIFIER );
-		$this->set_forbidden_charachters( self::FORBIDDEN_CHARACHTERS );
+		$this->set_forbidden_characters( self::FORBIDDEN_CHARACHTERS );
 	}
 
 	//////////////////////////////////////////////////
@@ -370,7 +370,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 *
 	 * @param string $payment_type an payment type
 	 */
-	public function set_payment_ype( $payment_type ) {
+	public function set_payment_type( $payment_type ) {
 		$this->payment_type = $payment_type;
 	}
 
@@ -388,7 +388,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 			$this->expire_date->modify( $this->expire_date_modifier );
 		}
 
-		return $this->expireDate;
+		return $this->expire_date;
 	}
 
 	//////////////////////////////////////////////////
@@ -399,7 +399,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 * @return string the expire date format
 	 */
 	public function get_expire_date_format() {
-		return $this->get_expire_date;
+		return $this->expire_date_format;
 	}
 
 	/**
@@ -542,9 +542,9 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	/**
 	 * Set the items
 	 *
-	 * @param Pronamic_IDeal_Items $items
+	 * @param Pronamic_WP_Pay_Gateways_IDealBasic_Items $items
 	 */
-	public function set_items( Pronamic_IDeal_Items $items ) {
+	public function set_items( Pronamic_WP_Pay_Gateways_IDealBasic_Items $items ) {
 		$this->items = $items;
 	}
 
@@ -575,7 +575,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 		$string[] = $this->get_sub_id();
 
 		// Total amount of transaction
-		$string[] = Pronamic_WP_Util::amount_to_cents( $this->get_amount() );
+		$string[] = Pronamic_WP_Pay_Util::amount_to_cents( $this->get_amount() );
 
 		// The online shop's unique order number, also known as purchase id
 		$string[] = $this->get_purchase_id();
@@ -592,16 +592,16 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 			// Article number. <n> is 1 for the first product, 2 for the second, etc.
 			// N.B. Note that for every product type the parameters
 			// itemNumber<n>, itemDescription<n>, itemQuantity<n> and itemPrice<n> are mandatory.
-			$string[] = $item->getNumber();
+			$string[] = $item->get_number();
 
 			// Description of article <n>
 			$string[] = $item->get_description();
 
 			// Number of items of article <n> that the consumer wants to buy
-			$string[] = $item->getQuantity();
+			$string[] = $item->get_quantity();
 
 			// Price of article <n> in whole eurocents
-			$string[] = Pronamic_WP_Util::amount_to_cents( $item->getPrice() ); // Price of article in whole cents
+			$string[] = Pronamic_WP_Pay_Util::amount_to_cents( $item->get_price() ); // Price of article in whole cents
 		}
 
 		$concat_string = implode( '', $string );
@@ -636,7 +636,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 		$fields['merchantID']  = $this->get_merchant_id();
 		$fields['subID']       = $this->get_sub_id();
 
-		$fields['amount']      = Pronamic_WP_Util::amount_to_cents( $this->get_amount() );
+		$fields['amount']      = Pronamic_WP_Pay_Util::amount_to_cents( $this->get_amount() );
 		$fields['purchaseID']  = $this->get_purchase_id();
 		$fields['language']    = $this->get_language();
 		$fields['currency']    = $this->get_currency();

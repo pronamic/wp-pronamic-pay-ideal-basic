@@ -3,7 +3,7 @@
 class Pronamic_Pay_Gateways_IDealBasic_TestHashCoding extends WP_UnitTestCase {
 	function test_hashcoding() {
 		// http://pronamic.nl/wp-content/uploads/2011/12/iDEAL_Basic_EN_v2.3.pdf #page 23
-		$ideal_basic = new Pronamic_Gateways_IDealBasic_IDealBasic();
+		$ideal_basic = new Pronamic_WP_Pay_Gateways_IDealBasic_Client();
 
 		$ideal_basic->set_hash_key( '41e3hHbYhmxxxxxx' );
 		$ideal_basic->set_merchant_id( '0050xxxxx' );
@@ -12,14 +12,10 @@ class Pronamic_Pay_Gateways_IDealBasic_TestHashCoding extends WP_UnitTestCase {
 		$ideal_basic->set_payment_type( 'ideal' );
 		$ideal_basic->set_expire_date( new DateTime( '2009-01-01 12:34:56' ) );
 
-		$item = new Pronamic_IDeal_Item();
-		$item->setNumber( '1' );
-		$item->setDescription( 'omschrijving' );
-		$item->setQuantity( 1 );
-		$item->setPrice( 1 );
+		$item = new Pronamic_WP_Pay_Gateways_IDealBasic_Item( '1', 'omschrijving', 1, 1 );
 
 		$items = $ideal_basic->get_items();
-		$items->addItem( $item );
+		$items->add_item( $item );
 
 		// Other variables (not in hash)
 		$ideal_basic->set_language( 'nl' );

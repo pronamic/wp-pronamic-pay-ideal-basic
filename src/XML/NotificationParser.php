@@ -22,19 +22,19 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_XML_NotificationParser {
 		}
 
 		if ( $xml->createDateTimeStamp ) {
-			$notification->set_date( new DateTime( Pronamic_XML_Util::filter( $xml->createDateTimeStamp ) ) );
+			$notification->set_date( new DateTime( Pronamic_WP_Pay_XML_Security::filter( $xml->createDateTimeStamp ) ) );
 		}
 
 		if ( $xml->transactionID ) {
-			$notification->set_transaction_id( Pronamic_XML_Util::filter( $xml->transactionID ) );
+			$notification->set_transaction_id( Pronamic_WP_Pay_XML_Security::filter( $xml->transactionID ) );
 		}
 
 		if ( $xml->purchaseID ) {
-			$notification->set_purchase_id( Pronamic_XML_Util::filter( $xml->purchaseID ) );
+			$notification->set_purchase_id( Pronamic_WP_Pay_XML_Security::filter( $xml->purchaseID ) );
 		}
 
 		if ( $xml->status ) {
-			$notification->set_status( Pronamic_XML_Util::filter( $xml->status ) );
+			$notification->set_status( Pronamic_WP_Pay_XML_Security::filter( $xml->status ) );
 		}
 
 		return $notification;

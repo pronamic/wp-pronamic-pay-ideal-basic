@@ -52,12 +52,26 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 		$payment->set_transaction_id( md5( time() . $data->get_order_id() ) );
 		$payment->set_action_url( $this->client->get_payment_server_url() );
 
+		// General
 		$this->client->set_language( $data->get_language() );
 		$this->client->set_currency( $data->get_currency() );
 		$this->client->set_purchase_id( $data->get_order_id() );
 		$this->client->set_description( $data->get_description() );
-		$this->client->set_items( $data->get_items() );
 
+		// Items
+		$items = Pronamic_WP_Pay_Gateways_IDealBasic_Items();
+		foreach ( $data->get_items() as $item ) {
+			$items->add_item( new Pronamic_WP_Pay_Gateways_IDealBasic_Item(
+				$item->getNumber(),
+				$item->get_description(),
+				$item->getQuantity(),
+				$item->getPrice()
+			) );
+		}
+
+		$this->client->set_items( $items );
+
+		// URLs
 		$url = add_query_arg( 'payment', $payment->get_id(), home_url( '/' ) );
 
 		$this->client->set_cancel_url( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::CANCELLED, $url ) );
