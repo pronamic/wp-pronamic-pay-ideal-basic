@@ -14,9 +14,9 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Listener implements Pronamic_Pay_Gatew
 		$condition &= filter_has_var( INPUT_GET, 'xml_notifaction' );
 
 		if ( $condition ) {
-			$http_raw_post_data = file_get_contents( 'php://input' );
+			$data = file_get_contents( 'php://input' );
 
-			$xml = Pronamic_WP_Util::simplexml_load_string( $result );
+			$xml = Pronamic_WP_Util::simplexml_load_string( $data );
 
 			if ( is_wp_error( $xml ) ) {
 				// @todo what todo?
