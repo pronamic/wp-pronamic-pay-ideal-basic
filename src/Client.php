@@ -158,21 +158,21 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 *
 	 * @var string
 	 */
-	private $successUrl;
+	private $success_url;
 
 	/**
 	 * The consumer is automatically directed to this URL after the transaction has been cancelled.
 	 *
 	 * @var string
 	 */
-	private $cancelUrl;
+	private $cancel_url;
 
 	/**
 	 * The consumer is directed to this URL if an error has occurred.
 	 *
 	 * @var string
 	 */
-	private $errorUrl;
+	private $error_url;
 
 	//////////////////////////////////////////////////
 
@@ -182,7 +182,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	public function __construct() {
 		$this->items = new Pronamic_IDeal_Items();
 
-		$this->forbiddenCharacters = array();
+		$this->forbidden_characters = array();
 
 		$this->set_payment_type( self::PAYMENT_TYPE_IDEAL );
 		$this->set_expire_date_format( self::DATE_EXPIRE_FORMAT );
