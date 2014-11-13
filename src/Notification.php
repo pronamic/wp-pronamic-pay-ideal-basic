@@ -114,7 +114,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Notification {
 	 * @return string
 	 */
 	public function get_status() {
-		return $this->purchase_id;
+		return $this->status;
 	}
 
 	/**
