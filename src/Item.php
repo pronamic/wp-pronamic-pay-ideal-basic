@@ -60,15 +60,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Item {
 		return $this->number;
 	}
 
-	/**
-	 * Set the number / identifier of this item
-	 *
-	 * @param string $number
-	 */
-	public function set_number( $number ) {
-		$this->number = $number;
-	}
-
 	//////////////////////////////////////////////////
 
 	/**
@@ -78,16 +69,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Item {
 	 */
 	public function get_description() {
 		return $this->description;
-	}
-
-	/**
-	 * Set the description of this item
-	 * AN..max32 (AN = Alphanumeric, free text)
-	 *
-	 * @param string $description
-	 */
-	public function set_description( $description ) {
-		$this->description = substr( $description, 0, 32 );
 	}
 
 	//////////////////////////////////////////////////
@@ -101,15 +82,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Item {
 		return $this->quantity;
 	}
 
-	/**
-	 * Set the quantity of this item
-	 *
-	 * @param int $quantity
-	 */
-	public function set_quantity( $quantity ) {
-		$this->quantity = $quantity;
-	}
-
 	//////////////////////////////////////////////////
 
 	/**
@@ -119,15 +91,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Item {
 	 */
 	public function get_price() {
 		return $this->price;
-	}
-
-	/**
-	 * Set the price of this item
-	 *
-	 * @param float $price
-	 */
-	public function set_price( $price ) {
-		$this->price = $price;
 	}
 
 	//////////////////////////////////////////////////
