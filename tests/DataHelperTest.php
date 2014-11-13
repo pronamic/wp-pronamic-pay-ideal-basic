@@ -9,7 +9,7 @@
  * @version 1.0.0
  */
 class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framework_TestCase {
-	public function testAn() {
+	public function test_an() {
 		$test = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 
 		$expected = ' 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -19,7 +19,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framewo
 		$this->assertEquals( $expected, $text );
 	}
 
-	public function testAn16() {
+	public function test_an16() {
 		$test = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 
 		$expected = ' 0123456789ABCDE';
@@ -29,7 +29,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framewo
 		$this->assertEquals( $expected, $text );
 	}
 
-	public function testAn32() {
+	public function test_an32() {
 		$test = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 
 		$expected = ' 0123456789ABCDEFGHIJKLMNOPQRSTU';
@@ -39,7 +39,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framewo
 		$this->assertEquals( $expected, $text );
 	}
 
-	public function testAns() {
+	public function test_ans() {
 		$test = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 
 		$expected = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -49,7 +49,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framewo
 		$this->assertEquals( $expected, $text );
 	}
 
-	public function testAns16() {
+	public function test_ans16() {
 		$test = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 
 		$expected = '0123456789ABCDEF';
@@ -59,7 +59,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framewo
 		$this->assertEquals( $expected, $text );
 	}
 
-	public function testAns32() {
+	public function test_ans32() {
 		$test = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 
 		$expected = '0123456789ABCDEFGHIJKLMNOPQRSTUV';
@@ -69,7 +69,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framewo
 		$this->assertEquals( $expected, $text );
 	}
 
-	public function testN() {
+	public function test_n() {
 		$test = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 
 		$expected = '0123456789';

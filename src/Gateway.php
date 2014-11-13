@@ -23,10 +23,10 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 
 		$this->client = new Pronamic_WP_Pay_Gateways_IDealBasic_Client();
 
-		$this->client->setPaymentServerUrl( $config->url );
-		$this->client->setMerchantId( $config->merchant_id );
-		$this->client->setSubId( $config->sub_id );
-		$this->client->setHashKey( $config->hash_key );
+		$this->client->set_payment_server_url( $config->url );
+		$this->client->set_merchant_id( $config->merchant_id );
+		$this->client->set_sub_id( $config->sub_id );
+		$this->client->set_hash_key( $config->hash_key );
 	}
 
 	/////////////////////////////////////////////////
@@ -38,7 +38,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 	 * @return string
 	 */
 	public function get_output_html() {
-		return $this->client->getHtmlFields();
+		return $this->client->get_html_fields();
 	}
 
 	/////////////////////////////////////////////////
@@ -50,19 +50,19 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 	 */
 	public function start( Pronamic_Pay_PaymentDataInterface $data, Pronamic_Pay_Payment $payment, $payment_method = null ) {
 		$payment->set_transaction_id( md5( time() . $data->get_order_id() ) );
-		$payment->set_action_url( $this->client->getPaymentServerUrl() );
+		$payment->set_action_url( $this->client->get_payment_server_url() );
 
-		$this->client->setLanguage( $data->get_language() );
-		$this->client->setCurrency( $data->get_currency() );
-		$this->client->setPurchaseId( $data->get_order_id() );
-		$this->client->setDescription( $data->get_description() );
-		$this->client->setItems( $data->get_items() );
+		$this->client->set_language( $data->get_language() );
+		$this->client->set_currency( $data->get_currency() );
+		$this->client->set_purchase_id( $data->get_order_id() );
+		$this->client->set_description( $data->get_description() );
+		$this->client->set_items( $data->get_items() );
 
 		$url = add_query_arg( 'payment', $payment->get_id(), home_url( '/' ) );
 
-		$this->client->setCancelUrl( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::CANCELLED, $url ) );
-		$this->client->setSuccessUrl( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::SUCCESS, $url ) );
-		$this->client->setErrorUrl( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::FAILURE, $url ) );
+		$this->client->set_cancel_url( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::CANCELLED, $url ) );
+		$this->client->set_success_url( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::SUCCESS, $url ) );
+		$this->client->set_error_url( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::FAILURE, $url ) );
 	}
 
 	/////////////////////////////////////////////////
