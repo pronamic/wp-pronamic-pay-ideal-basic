@@ -476,7 +476,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 * @return an URL
 	 */
 	public function get_success_url() {
-		return $this->successUrl;
+		return $this->success_url;
 	}
 
 	/**
@@ -484,8 +484,8 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 *
 	 * @param string $successUrl
 	 */
-	public function set_success_url( $successUrl ) {
-		$this->successUrl = $successUrl;
+	public function set_success_url( $url ) {
+		$this->success_url = $url;
 	}
 
 	//////////////////////////////////////////////////
@@ -504,8 +504,8 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 *
 	 * @param string $cancelUrl
 	 */
-	public function set_cancel_url( $cancel_url ) {
-		$this->cancel_url = $cancel_url;
+	public function set_cancel_url( $url ) {
+		$this->cancel_url = $url;
 	}
 
 	//////////////////////////////////////////////////
@@ -524,8 +524,8 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 *
 	 * @param string $errorUrl
 	 */
-	public function set_error_url( $error_url ) {
-		$this->error_url = $error_url;
+	public function set_error_url( $url ) {
+		$this->error_url = $url;
 	}
 
 	//////////////////////////////////////////////////
