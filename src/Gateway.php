@@ -59,7 +59,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 		$this->client->set_description( $data->get_description() );
 
 		// Items
-		$items = Pronamic_WP_Pay_Gateways_IDealBasic_Items();
+		$items = new Pronamic_WP_Pay_Gateways_IDealBasic_Items();
 		foreach ( $data->get_items() as $item ) {
 			$items->add_item( new Pronamic_WP_Pay_Gateways_IDealBasic_Item(
 				$item->getNumber(),
