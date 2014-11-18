@@ -647,10 +647,10 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 
 		$serial_number = 1;
 		foreach ( $this->get_items() as $item ) {
-			$fields[ 'itemNumber' . $serial_number ]      = $item->getNumber();
+			$fields[ 'itemNumber' . $serial_number ]      = $item->get_number();
 			$fields[ 'itemDescription' . $serial_number ] = $item->get_description();
-			$fields[ 'itemQuantity' . $serial_number ]    = $item->getQuantity();
-			$fields[ 'itemPrice' . $serial_number ]       = Pronamic_WP_Util::amount_to_cents( $item->getPrice() );
+			$fields[ 'itemQuantity' . $serial_number ]    = $item->get_quantity();
+			$fields[ 'itemPrice' . $serial_number ]       = Pronamic_WP_Util::amount_to_cents( $item->get_price() );
 
 			$serial_number++;
 		}
