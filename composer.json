@@ -2,18 +2,34 @@
 	"name": "wp-pay-gateways/ideal-basic",
 	"description": "iDEAL Basic driver for the WordPress payment processing library.",
 	"keywords": ["wordpress", "wp", "pay", "ideal", "basic", "gateway", "pronamic"],
-	"homepage": "https://github.com/wp-pay-gateways/ideal-basic",
+	"homepage": "http://www.wp-pay.org/gateways/ideal-basic/",
+	"license": "GPL-3.0+",
+	"authors": [
+		{
+			"name": "Pronamic",
+			"email": "info@pronamic.eu",
+			"homepage": "http://www.pronamic.eu/",
+			"role": "Company"
+		},
+		{
+			"name": "Remco Tolsma",
+			"email": "info@remcotolsma.nl",
+			"homepage": "http://www.remcotolsma.nl/",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"email": "support@wp-pay.org",
+		"issues": "https://github.com/wp-pay-gateways/ideal-basic/issues",
+		"source": "https://github.com/wp-pay-gateways/ideal-basic"
+	},
 	"autoload": {
 		"classmap": ["src/"]
 	},
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/wp-pay/core"
-		}
-	],
 	"require": {
-		"wp-pay/core": "dev-develop"
+		"php": ">=5.2.4",
+		"wp-pay/core": "~1.0.0",
+		"wp-pay-gateways/ideal": "~1.0.0"
 	},
 	"require-dev": {
 		"satooshi/php-coveralls": "dev-master"

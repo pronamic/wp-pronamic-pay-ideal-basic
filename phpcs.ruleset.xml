@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Pay iDEAL Basic rules">
+	<rule ref="WordPress">	
+		<exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
+		
+		<exclude name="WordPress.VIP.RestrictedFunctions.file_get_contents" />
+	</rule>
+</ruleset>
