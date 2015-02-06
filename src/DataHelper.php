@@ -3,10 +3,10 @@
 /**
  * Title: iDEAL Basic data helper class
  * Description:
- * Copyright: Copyright (c) 2005 - 2014
+ * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
  * @author Remco Tolsma
- * @version 1.0.0
+ * @version 1.0.1
  * @see http://pronamic.nl/wp-content/uploads/2011/12/iDEAL_Basic_EN_v2.3.pdf
  */
 class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
@@ -65,12 +65,12 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
 	//////////////////////////////////////////////////
 
 	/**
- 	 * Alphanumerical, free text
- 	 *
- 	 * @param string $string
- 	 * @param string $max
- 	 * @return string
- 	 */
+	 * Alphanumerical, free text
+	 *
+	 * @param string $string
+	 * @param string $max
+	 * @return string
+	 */
 	public static function an( $string, $max = null ) {
 		return self::filter( self::$characters_an, $string, $max );
 	}

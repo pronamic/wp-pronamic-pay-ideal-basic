@@ -3,10 +3,10 @@
 /**
  * Title: Basic
  * Description:
- * Copyright: Copyright (c) 2005 - 2014
+ * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
  * @author Remco Tolsma
- * @version 1.0
+ * @version 1.0.1
  */
 class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gateway {
 	/**
@@ -49,13 +49,12 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 	 * @see Pronamic_WP_Pay_Gateway::start()
 	 */
 	public function start( Pronamic_Pay_PaymentDataInterface $data, Pronamic_Pay_Payment $payment, $payment_method = null ) {
-		$payment->set_transaction_id( md5( time() . $data->get_order_id() ) );
 		$payment->set_action_url( $this->client->get_payment_server_url() );
 
 		// General
 		$this->client->set_language( $data->get_language() );
 		$this->client->set_currency( $data->get_currency() );
-		$this->client->set_purchase_id( $data->get_order_id() );
+		$this->client->set_purchase_id( $payment->get_id() );
 		$this->client->set_description( $data->get_description() );
 
 		// Items
