@@ -23,11 +23,12 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Listener implements Pronamic_Pay_Gatew
 			} else {
 				$notification = Pronamic_WP_Pay_Gateways_IDealBasic_XML_NotificationParser::parse( $xml );
 
-				$transaction_id = $notification->get_transaction_id();
+				$purchase_id = $notification->get_purchase_id();
 
-				$payment = get_pronamic_payment_by_transaction_id( $transaction_id );
+				$payment = get_pronamic_payment( $purchase_id );
 
 				if ( $payment ) {
+					$payment->set_transaction_id( $notification->get_transaction_id() );
 					$payment->set_status( $notification->get_status() );
 
 					Pronamic_WP_Pay_Plugin::update_payment( $payment );
