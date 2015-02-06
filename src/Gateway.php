@@ -54,7 +54,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 		// General
 		$this->client->set_language( $data->get_language() );
 		$this->client->set_currency( $data->get_currency() );
-		$this->client->set_purchase_id( $data->get_order_id() );
+		$this->client->set_purchase_id( $payment->get_id() );
 		$this->client->set_description( $data->get_description() );
 
 		// Items
