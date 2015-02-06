@@ -65,12 +65,12 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
 	//////////////////////////////////////////////////
 
 	/**
- 	 * Alphanumerical, free text
- 	 *
- 	 * @param string $string
- 	 * @param string $max
- 	 * @return string
- 	 */
+	 * Alphanumerical, free text
+	 *
+	 * @param string $string
+	 * @param string $max
+	 * @return string
+	 */
 	public static function an( $string, $max = null ) {
 		return self::filter( self::$characters_an, $string, $max );
 	}
