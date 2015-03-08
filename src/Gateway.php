@@ -51,10 +51,15 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 	public function start( Pronamic_Pay_PaymentDataInterface $data, Pronamic_Pay_Payment $payment, $payment_method = null ) {
 		$payment->set_action_url( $this->client->get_payment_server_url() );
 
+		// Purchase ID
+		$purchase_id = Pronamic_WP_Pay_Gateways_IDealBasic_Util::get_purchase_id( $this->config->purchase_id, $data, $payment );
+
+		$payment->set_meta( 'ideal_purchase_id', $purchase_id );
+
 		// General
 		$this->client->set_language( $data->get_language() );
 		$this->client->set_currency( $data->get_currency() );
-		$this->client->set_purchase_id( $payment->get_id() );
+		$this->client->set_purchase_id( $purchase_id );
 		$this->client->set_description( $data->get_description() );
 
 		// Items
