@@ -22,7 +22,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Listener implements Pronamic_Pay_Gatew
 
 				$purchase_id = $notification->get_purchase_id();
 
-				$payment = get_pronamic_payment_by_meta( '_pronamic_payment_ideal_purchase_id', $purchase_id );
+				$payment = get_pronamic_payment_by_meta( '_pronamic_payment_purchase_id', $purchase_id );
 
 				if ( $payment ) {
 					$payment->set_transaction_id( $notification->get_transaction_id() );
