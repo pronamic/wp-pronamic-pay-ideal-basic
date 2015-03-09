@@ -16,4 +16,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Config extends Pronamic_WP_Pay_Gateway
 	public $sub_id;
 
 	public $hash_key;
+
+	public $purchase_id;
 }

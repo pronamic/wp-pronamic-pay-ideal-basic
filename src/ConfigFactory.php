@@ -15,6 +15,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_ConfigFactory extends Pronamic_WP_Pay_
 		$config->merchant_id = get_post_meta( $post_id, '_pronamic_gateway_ideal_merchant_id', true );
 		$config->sub_id      = get_post_meta( $post_id, '_pronamic_gateway_ideal_sub_id', true );
 		$config->hash_key    = get_post_meta( $post_id, '_pronamic_gateway_ideal_hash_key', true );
+		$config->purchase_id = get_post_meta( $post_id, '_pronamic_gateway_ideal_purchase_id', true );
 
 		$gateway_id = get_post_meta( $post_id, '_pronamic_gateway_id', true );
 		$mode       = get_post_meta( $post_id, '_pronamic_gateway_mode', true );
