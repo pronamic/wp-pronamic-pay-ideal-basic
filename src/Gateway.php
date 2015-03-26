@@ -6,7 +6,8 @@
  * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
  * @author Remco Tolsma
- * @version 1.0.1
+ * @since 1.0.0
+ * @version 1.1.1
  */
 class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gateway {
 	/**
@@ -34,11 +35,12 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 	/**
 	 * Get output HTML
 	 *
+	 * @since 1.1.1
 	 * @see Pronamic_WP_Pay_Gateway::get_output_html()
 	 * @return string
 	 */
-	public function get_output_html() {
-		return $this->client->get_html_fields();
+	public function get_output_fields() {
+		return $this->client->get_fields();
 	}
 
 	/////////////////////////////////////////////////

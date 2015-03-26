@@ -629,8 +629,11 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 
 	/**
 	 * Get the iDEAL HTML
+	 *
+	 * @since 1.1.1
+	 * @return array
 	 */
-	public function get_html_fields() {
+	public function get_fields() {
 		$fields = array();
 
 		$fields['merchantID']  = $this->get_merchant_id();
@@ -659,6 +662,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 		$fields['urlSuccess']  = $this->get_success_url();
 		$fields['urlError']    = $this->get_error_url();
 
-		return Pronamic_IDeal_IDeal::htmlHiddenFields( $fields );
+		return $fields;
 	}
 }

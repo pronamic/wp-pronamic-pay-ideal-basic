@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.1
+*	Return array with output fields instead of HTML.
+
 ## 1.1.0
 *	Improved support for user defined purchase ID's.
 
