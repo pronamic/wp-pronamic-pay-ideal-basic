@@ -28,6 +28,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_GatewaySettings extends Pronamic_WP_Pa
 	public function fields( array $fields ) {
 		// Hash Key
 		$fields[] = array(
+			'filter'      => FILTER_SANITIZE_STRING,
 			'section'     => 'ideal_basic',
 			'meta_key'    => '_pronamic_gateway_ideal_hash_key',
 			'title'       => __( 'Hash Key', 'pronamic_ideal' ),
