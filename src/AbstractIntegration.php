@@ -2,8 +2,6 @@
 
 abstract class Pronamic_WP_Pay_Gateways_IDealBasic_AbstractIntegration extends Pronamic_WP_Pay_Gateways_AbstractIntegration {
 	public function __construct() {
-		parent::__construct();
-
 		// Actions
 		$function = array( 'Pronamic_WP_Pay_Gateways_IDealBasic_Listener', 'listen' );
 
