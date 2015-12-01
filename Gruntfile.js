@@ -19,7 +19,8 @@ module.exports = function( grunt ) {
 				]
 			},
 			options: {
-				standard: 'phpcs.ruleset.xml'
+				standard: 'phpcs.ruleset.xml',
+				showSniffCodes: true
 			}
 		},
 

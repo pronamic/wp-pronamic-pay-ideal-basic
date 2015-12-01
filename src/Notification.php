@@ -42,7 +42,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Notification {
 	/**
 	 * Constructs and intializes an notification object
 	 */
-	public function __construct( ) {
+	public function __construct() {
 
 	}
 

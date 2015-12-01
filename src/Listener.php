@@ -15,9 +15,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Listener implements Pronamic_Pay_Gatew
 
 			$xml = Pronamic_WP_Util::simplexml_load_string( $data );
 
-			if ( is_wp_error( $xml ) ) {
-				// @todo what todo?
-			} else {
+			if ( ! is_wp_error( $xml ) ) {
 				$notification = Pronamic_WP_Pay_Gateways_IDealBasic_XML_NotificationParser::parse( $xml );
 
 				$purchase_id = $notification->get_purchase_id();

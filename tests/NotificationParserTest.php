@@ -12,6 +12,8 @@ class Pronamic_Pay_Gateways_IDealBasic_TestNotificationParser extends WP_UnitTes
 	}
 
 	/**
+	 * Test parser
+	 *
 	 * @depends test_init
 	 */
 	function test_parser( $simplexml ) {
@@ -23,6 +25,8 @@ class Pronamic_Pay_Gateways_IDealBasic_TestNotificationParser extends WP_UnitTes
 	}
 
 	/**
+	 * Test values
+	 *
 	 * @depends test_parser
 	 */
 	function test_values( $notification ) {

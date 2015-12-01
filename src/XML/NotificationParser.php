@@ -17,7 +17,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_XML_NotificationParser {
 	 * @return Pronamic_WP_Pay_Gateways_IDealBasic_Notification
 	 */
 	public static function parse( SimpleXMLElement $xml, $notification = null ) {
-		if ( $notification == null ) {
+		if ( null === $notification ) {
 			$notification = new Pronamic_WP_Pay_Gateways_IDealBasic_Notification();
 		}
 

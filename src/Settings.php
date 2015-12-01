@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Title: iDEAL Basic gateway settings
+ * Title: iDEAL Basic settings
  * Description:
  * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
@@ -21,7 +22,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Settings extends Pronamic_WP_Pay_Gatew
 			'methods' => array( 'ideal_basic' ),
 		);
 
-		// Return
+		// Return sections
 		return $sections;
 	}
 
@@ -52,7 +53,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Settings extends Pronamic_WP_Pay_Gatew
 			'readonly'    => true,
 		);
 
-		// Return
+		// Return fields
 		return $fields;
 	}
 }

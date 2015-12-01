@@ -75,8 +75,13 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
 		return self::filter( self::$characters_an, $string, $max );
 	}
 
-	public static function an16( $string ) { return self::an( $string, 16 ); }
-	public static function an32( $string ) { return self::an( $string, 32 ); }
+	public static function an16( $string ) {
+		return self::an( $string, 16 );
+	}
+
+	public static function an32( $string ) {
+		return self::an( $string, 32 );
+	}
 
 	/**
 	 * Strictly alphanumerical (letters and numbers only)
@@ -89,8 +94,13 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
 		return self::filter( self::$characters_ans, $string, $max );
 	}
 
-	public static function ans16( $string ) { return self::ans( $string, 16 ); }
-	public static function ans32( $string ) { return self::ans( $string, 32 ); }
+	public static function ans16( $string ) {
+		return self::ans( $string, 16 );
+	}
+
+	public static function ans32( $string ) {
+		return self::ans( $string, 32 );
+	}
 
 	/**
 	 * Strictly alphanumerical (numbers only)
