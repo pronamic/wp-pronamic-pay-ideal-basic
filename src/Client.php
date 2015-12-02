@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Title: Basic
+ * Title: iDEAL Basic client
  * Description:
  * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
