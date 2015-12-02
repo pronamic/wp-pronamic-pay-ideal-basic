@@ -24,7 +24,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 
 		$this->client = new Pronamic_WP_Pay_Gateways_IDealBasic_Client();
 
-		$this->client->set_payment_server_url( $config->url );
+		$this->client->set_payment_server_url( $config->get_payment_server_url() );
 		$this->client->set_merchant_id( $config->merchant_id );
 		$this->client->set_sub_id( $config->sub_id );
 		$this->client->set_hash_key( $config->hash_key );

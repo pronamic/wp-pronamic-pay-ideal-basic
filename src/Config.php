@@ -18,4 +18,8 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Config extends Pronamic_WP_Pay_Gateway
 	public $hash_key;
 
 	public $purchase_id;
+
+	public function get_payment_server_url() {
+		return $this->url;
+	}
 }
