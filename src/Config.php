@@ -3,8 +3,9 @@
 /**
  * Title: iDEAL Basic config
  * Description:
- * Copyright: Copyright (c) 2005 - 2015
+ * Copyright: Copyright (c) 2005 - 2016
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @version 1.0.0
  */
@@ -18,4 +19,8 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Config extends Pronamic_WP_Pay_Gateway
 	public $hash_key;
 
 	public $purchase_id;
+
+	public function get_payment_server_url() {
+		return $this->url;
+	}
 }

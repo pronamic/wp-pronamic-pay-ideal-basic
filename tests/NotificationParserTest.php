@@ -2,7 +2,7 @@
 
 class Pronamic_Pay_Gateways_IDealBasic_TestNotificationParser extends WP_UnitTestCase {
 	function test_init() {
-		$filename = __DIR__ . '/Mock/notification.xml';
+		$filename = dirname( __FILE__ ) . '/Mock/notification.xml';
 
 		$simplexml = simplexml_load_file( $filename );
 
@@ -12,6 +12,8 @@ class Pronamic_Pay_Gateways_IDealBasic_TestNotificationParser extends WP_UnitTes
 	}
 
 	/**
+	 * Test parser
+	 *
 	 * @depends test_init
 	 */
 	function test_parser( $simplexml ) {
@@ -23,6 +25,8 @@ class Pronamic_Pay_Gateways_IDealBasic_TestNotificationParser extends WP_UnitTes
 	}
 
 	/**
+	 * Test values
+	 *
 	 * @depends test_parser
 	 */
 	function test_values( $notification ) {

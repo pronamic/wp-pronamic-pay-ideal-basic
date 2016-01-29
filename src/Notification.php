@@ -3,8 +3,9 @@
 /**
  * Title: Notification
  * Description:
- * Copyright: Copyright (c) 2005 - 2015
+ * Copyright: Copyright (c) 2005 - 2016
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @version 1.0.0
  */
@@ -42,7 +43,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Notification {
 	/**
 	 * Constructs and intializes an notification object
 	 */
-	public function __construct( ) {
+	public function __construct() {
 
 	}
 

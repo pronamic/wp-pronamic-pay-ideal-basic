@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Title: Basic
+ * Title: iDEAL Basic gateway
  * Description:
- * Copyright: Copyright (c) 2005 - 2015
+ * Copyright: Copyright (c) 2005 - 2016
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @since 1.0.0
  * @version 1.1.1
@@ -24,7 +25,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 
 		$this->client = new Pronamic_WP_Pay_Gateways_IDealBasic_Client();
 
-		$this->client->set_payment_server_url( $config->url );
+		$this->client->set_payment_server_url( $config->get_payment_server_url() );
 		$this->client->set_merchant_id( $config->merchant_id );
 		$this->client->set_sub_id( $config->sub_id );
 		$this->client->set_hash_key( $config->hash_key );
@@ -41,6 +42,30 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 	 */
 	public function get_output_fields() {
 		return $this->client->get_fields();
+	}
+
+	/////////////////////////////////////////////////
+
+	/**
+	 * Get payment methods
+	 *
+	 * @return mixed an array or null
+	 */
+	public function get_payment_methods() {
+		return Pronamic_WP_Pay_PaymentMethods::IDEAL;
+	}
+
+	/////////////////////////////////////////////////
+
+	/**
+	 * Get supported payment methods
+	 *
+	 * @see Pronamic_WP_Pay_Gateway::get_supported_payment_methods()
+	 */
+	public function get_supported_payment_methods() {
+		return array(
+			Pronamic_WP_Pay_PaymentMethods::IDEAL => Pronamic_WP_Pay_PaymentMethods::IDEAL,
+		);
 	}
 
 	/////////////////////////////////////////////////
@@ -78,11 +103,9 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 		$this->client->set_items( $items );
 
 		// URLs
-		$url = add_query_arg( 'payment', $payment->get_id(), home_url( '/' ) );
-
-		$this->client->set_cancel_url( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::CANCELLED, $url ) );
-		$this->client->set_success_url( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::SUCCESS, $url ) );
-		$this->client->set_error_url( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::FAILURE, $url ) );
+		$this->client->set_cancel_url( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::CANCELLED, $payment->get_return_url() ) );
+		$this->client->set_success_url( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::SUCCESS, $payment->get_return_url() ) );
+		$this->client->set_error_url( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::FAILURE, $payment->get_return_url() ) );
 	}
 
 	/////////////////////////////////////////////////

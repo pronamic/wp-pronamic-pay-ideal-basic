@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Title: Basic
+ * Title: iDEAL Basic client
  * Description:
- * Copyright: Copyright (c) 2005 - 2015
+ * Copyright: Copyright (c) 2005 - 2016
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @version 1.0.0
  */
@@ -383,7 +384,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 * @return
 	 */
 	public function get_expire_date( $create_new = false ) {
-		if ( $this->expire_date == null || $create_new ) {
+		if ( null === $this->expire_date || $create_new ) {
 			$this->expire_date = new DateTime( null, new DateTimeZone( Pronamic_IDeal_IDeal::TIMEZONE ) );
 			$this->expire_date->modify( $this->expire_date_modifier );
 		}

@@ -3,8 +3,9 @@
 /**
  * Title: Issuer XML parser
  * Description:
- * Copyright: Copyright (c) 2005 - 2015
+ * Copyright: Copyright (c) 2005 - 2016
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @version 1.0.0
  */
@@ -17,7 +18,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_XML_NotificationParser {
 	 * @return Pronamic_WP_Pay_Gateways_IDealBasic_Notification
 	 */
 	public static function parse( SimpleXMLElement $xml, $notification = null ) {
-		if ( $notification == null ) {
+		if ( null === $notification ) {
 			$notification = new Pronamic_WP_Pay_Gateways_IDealBasic_Notification();
 		}
 

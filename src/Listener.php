@@ -3,8 +3,9 @@
 /**
  * Title: iDEAL Basic listener
  * Description:
- * Copyright: Copyright (c) 2005 - 2015
+ * Copyright: Copyright (c) 2005 - 2016
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @version 1.0.1
  */
@@ -15,9 +16,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Listener implements Pronamic_Pay_Gatew
 
 			$xml = Pronamic_WP_Util::simplexml_load_string( $data );
 
-			if ( is_wp_error( $xml ) ) {
-				// @todo what todo?
-			} else {
+			if ( ! is_wp_error( $xml ) ) {
 				$notification = Pronamic_WP_Pay_Gateways_IDealBasic_XML_NotificationParser::parse( $xml );
 
 				$purchase_id = $notification->get_purchase_id();
