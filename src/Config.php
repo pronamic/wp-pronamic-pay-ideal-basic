@@ -23,4 +23,8 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Config extends Pronamic_WP_Pay_Gateway
 	public function get_payment_server_url() {
 		return $this->url;
 	}
+
+	public function get_gateway_class() {
+		return 'Pronamic_WP_Pay_Gateways_IDealBasic_Gateway';
+	}
 }

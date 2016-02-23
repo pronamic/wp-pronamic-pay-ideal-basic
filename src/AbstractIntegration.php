@@ -35,10 +35,6 @@ abstract class Pronamic_WP_Pay_Gateways_IDealBasic_AbstractIntegration extends P
 		);
 	}
 
-	public function get_gateway_class() {
-		return 'Pronamic_WP_Pay_Gateways_IDealBasic_Gateway';
-	}
-
 	/**
 	 * Get required settings for this integration.
 	 *
