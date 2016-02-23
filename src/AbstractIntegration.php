@@ -24,10 +24,6 @@ abstract class Pronamic_WP_Pay_Gateways_IDealBasic_AbstractIntegration extends P
 		return 'Pronamic_WP_Pay_Gateways_IDealBasic_ConfigFactory';
 	}
 
-	public function get_config_class() {
-		return 'Pronamic_WP_Pay_Gateways_IDealBasic_Config';
-	}
-
 	public function get_settings_class() {
 		return array(
 			'Pronamic_WP_Pay_Gateways_IDeal_Settings',
