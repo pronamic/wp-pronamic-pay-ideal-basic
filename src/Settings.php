@@ -7,8 +7,8 @@
  * Company: Pronamic
  *
  * @author Remco Tolsma
- * @version 1.2.0
- * @since 1.2.0
+ * @version 1.1.3
+ * @since 1.1.0
  */
 class Pronamic_WP_Pay_Gateways_IDealBasic_Settings extends Pronamic_WP_Pay_GatewaySettings {
 	public function __construct() {
@@ -20,7 +20,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Settings extends Pronamic_WP_Pay_Gatew
 		// iDEAL
 		$sections['ideal_basic'] = array(
 			'title'   => __( 'iDEAL Basic', 'pronamic_ideal' ),
-			'methods' => array( 'ideal_basic' ),
+			'methods' => array( 'ideal-basic' ),
 		);
 
 		// Return sections
@@ -37,7 +37,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Settings extends Pronamic_WP_Pay_Gatew
 			'type'        => 'text',
 			'classes'     => array( 'regular-text', 'code' ),
 			'description' => __( 'You configure the hash key (also known as: key or secret key) in the iDEAL dashboard of your iDEAL provider.', 'pronamic_ideal' ),
-			'methods'     => array( 'ideal_basic' ),
+			'methods'     => array( 'ideal-basic' ),
 		);
 
 		// XML Notification URL
@@ -50,7 +50,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Settings extends Pronamic_WP_Pay_Gatew
 				'gateway'         => 'ideal_basic',
 				'xml_notifaction' => 'true',
 			), site_url( '/' ) ),
-			'methods'     => array( 'ideal_basic' ),
+			'methods'     => array( 'ideal-basic' ),
 			'readonly'    => true,
 		);
 
