@@ -11,7 +11,8 @@
  */
 class Pronamic_WP_Pay_Gateways_IDealBasic_Listener implements Pronamic_Pay_Gateways_ListenerInterface {
 	public static function listen() {
-		if ( filter_has_var( INPUT_GET, 'xml_notifaction' ) ) {
+		// Also check for typo 'xml_notifaction', as this has been used in the past.
+		if ( filter_has_var( INPUT_GET, 'xml_notification' ) || filter_has_var( INPUT_GET, 'xml_notifaction' ) ) {
 			$data = file_get_contents( 'php://input' );
 
 			$xml = Pronamic_WP_Util::simplexml_load_string( $data );
