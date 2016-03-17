@@ -48,7 +48,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Settings extends Pronamic_WP_Pay_Gatew
 			'title'       => __( 'Transaction feedback', 'pronamic_ideal' ),
 			'type'        => 'description',
 			'html'          => sprintf(
-				'<span class="dashicons dashicons-warning pronamic-pay-maybe"></span> %s',
+				'<span class="dashicons dashicons-warning"></span> %s',
 				__( 'Receiving payment status updates needs additional configuration, if not yet completed.', 'pronamic_ideal' )
 			),
 		);
