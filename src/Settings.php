@@ -7,7 +7,7 @@
  * Company: Pronamic
  *
  * @author Remco Tolsma
- * @version 1.1.3
+ * @version 1.1.4
  * @since 1.1.0
  */
 class Pronamic_WP_Pay_Gateways_IDealBasic_Settings extends Pronamic_WP_Pay_GatewaySettings {
@@ -17,10 +17,11 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Settings extends Pronamic_WP_Pay_Gatew
 	}
 
 	public function sections( array $sections ) {
-		// iDEAL
-		$sections['ideal_basic'] = array(
-			'title'   => __( 'iDEAL Basic', 'pronamic_ideal' ),
-			'methods' => array( 'ideal-basic' ),
+		// Transaction feedback
+		$sections['ideal_basic_feedback'] = array(
+			'title'       => __( 'Transaction feedback', 'pronamic_ideal' ),
+			'methods'     => array( 'ideal-basic' ),
+			'description' => __( 'The URL below needs to be copied to the payment provider dashboard to receive automatic transaction status updates.', 'pronamic_ideal' ),
 		);
 
 		// Return sections
@@ -31,27 +32,41 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Settings extends Pronamic_WP_Pay_Gatew
 		// Hash Key
 		$fields[] = array(
 			'filter'      => FILTER_SANITIZE_STRING,
-			'section'     => 'ideal_basic',
+			'section'     => 'ideal',
 			'meta_key'    => '_pronamic_gateway_ideal_hash_key',
 			'title'       => __( 'Hash Key', 'pronamic_ideal' ),
 			'type'        => 'text',
 			'classes'     => array( 'regular-text', 'code' ),
-			'description' => __( 'You configure the hash key (also known as: key or secret key) in the iDEAL dashboard of your iDEAL provider.', 'pronamic_ideal' ),
+			'tooltip'     => __( 'Hash key (also known as: key or secret key) as mentioned in the payment provider dashboard.', 'pronamic_ideal' ),
 			'methods'     => array( 'ideal-basic' ),
+		);
+
+		// Transaction feedback
+		$fields[] = array(
+			'section'     => 'ideal',
+			'methods'     => array( 'ideal-basic' ),
+			'title'       => __( 'Transaction feedback', 'pronamic_ideal' ),
+			'type'        => 'description',
+			'html'        => sprintf(
+				'<span class="dashicons dashicons-warning"></span> %s',
+				__( 'Receiving payment status updates needs additional configuration, if not yet completed.', 'pronamic_ideal' )
+			),
 		);
 
 		// XML Notification URL
 		$fields[] = array(
-			'section'     => 'ideal_basic',
+			'section'     => 'ideal_basic_feedback',
 			'title'       => __( 'XML Notification URL', 'pronamic_ideal' ),
 			'type'        => 'text',
 			'classes'     => array( 'regular-text', 'code' ),
 			'value'       => add_query_arg( array(
 				'gateway'         => 'ideal_basic',
-				'xml_notifaction' => 'true',
+				'xml_notification' => 'true',
 			), site_url( '/' ) ),
 			'methods'     => array( 'ideal-basic' ),
 			'readonly'    => true,
+			'size'        => 200,
+			'tooltip'     => __( 'Copy the XML notification URL to the payment provider dashboard to receive automatic transaction status updates.', 'pronamic_ideal' ),
 		);
 
 		// Return fields
