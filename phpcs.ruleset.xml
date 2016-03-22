@@ -6,6 +6,8 @@
 
 		<exclude name="Squiz.Commenting" />
 
+		<exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar" />
+
 		<exclude name="WordPress.VIP.RestrictedFunctions.file_get_contents" />
 	</rule>
 

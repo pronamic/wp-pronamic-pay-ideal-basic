@@ -7,7 +7,7 @@
  * Company: Pronamic
  *
  * @author Remco Tolsma
- * @version 1.1.3
+ * @version 1.1.4
  * @since 1.1.0
  */
 class Pronamic_WP_Pay_Gateways_IDealBasic_Settings extends Pronamic_WP_Pay_GatewaySettings {
