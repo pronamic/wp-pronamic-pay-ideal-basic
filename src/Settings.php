@@ -19,8 +19,8 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Settings extends Pronamic_WP_Pay_Gatew
 	public function sections( array $sections ) {
 		// Transaction feedback
 		$sections['ideal_basic_feedback'] = array(
-			'title'   => __( 'Transaction feedback', 'pronamic_ideal' ),
-			'methods' => array( 'ideal-basic' ),
+			'title'       => __( 'Transaction feedback', 'pronamic_ideal' ),
+			'methods'     => array( 'ideal-basic' ),
 			'description' => __( 'The URL below needs to be copied to the payment provider dashboard to receive automatic transaction status updates.', 'pronamic_ideal' ),
 		);
 
@@ -47,7 +47,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Settings extends Pronamic_WP_Pay_Gatew
 			'methods'     => array( 'ideal-basic' ),
 			'title'       => __( 'Transaction feedback', 'pronamic_ideal' ),
 			'type'        => 'description',
-			'html'          => sprintf(
+			'html'        => sprintf(
 				'<span class="dashicons dashicons-warning"></span> %s',
 				__( 'Receiving payment status updates needs additional configuration, if not yet completed.', 'pronamic_ideal' )
 			),
