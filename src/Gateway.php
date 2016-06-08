@@ -7,8 +7,8 @@
  * Company: Pronamic
  *
  * @author Remco Tolsma
+ * @version 1.1.5
  * @since 1.0.0
- * @version 1.1.1
  */
 class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gateway {
 	/**
@@ -75,30 +75,29 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 	 *
 	 * @see Pronamic_WP_Pay_Gateway::start()
 	 */
-	public function start( Pronamic_Pay_PaymentDataInterface $data, Pronamic_Pay_Payment $payment, $payment_method = null ) {
+	public function start( Pronamic_Pay_Payment $payment ) {
 		$payment->set_action_url( $this->client->get_payment_server_url() );
 
 		// Purchase ID
-		$purchase_id = Pronamic_WP_Pay_Gateways_IDeal_Util::get_purchase_id( $this->config->purchase_id, $data, $payment );
+		$purchase_id = Pronamic_WP_Pay_Gateways_IDeal_Util::get_purchase_id( $this->config->purchase_id, $payment );
 
 		$payment->set_meta( 'purchase_id', $purchase_id );
 
 		// General
-		$this->client->set_language( $data->get_language() );
-		$this->client->set_currency( $data->get_currency() );
+		$this->client->set_language( $payment->get_language() );
+		$this->client->set_currency( $payment->get_currency() );
 		$this->client->set_purchase_id( $purchase_id );
-		$this->client->set_description( $data->get_description() );
+		$this->client->set_description( $payment->get_description() );
 
 		// Items
 		$items = new Pronamic_WP_Pay_Gateways_IDealBasic_Items();
-		foreach ( $data->get_items() as $item ) {
-			$items->add_item( new Pronamic_WP_Pay_Gateways_IDealBasic_Item(
-				$item->getNumber(),
-				$item->get_description(),
-				$item->getQuantity(),
-				$item->getPrice()
-			) );
-		}
+
+		$items->add_item( new Pronamic_WP_Pay_Gateways_IDealBasic_Item(
+			1,
+			$payment->get_description(),
+			1,
+			$payment->get_amount()
+		) );
 
 		$this->client->set_items( $items );
 
