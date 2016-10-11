@@ -462,7 +462,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	public function set_forbidden_characters( $forbidden_characters ) {
 		if ( is_string( $forbidden_characters ) ) {
 			$this->forbidden_characters = str_split( $forbidden_characters );
-		} else if ( is_array( $forbidden_characters ) ) {
+		} elseif ( is_array( $forbidden_characters ) ) {
 			$this->forbidden_characters = $forbidden_characters;
 		} else {
 			throw new Exception( 'Wrong arguments' );
