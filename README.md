@@ -8,7 +8,7 @@
 [![Total Downloads](https://poser.pugx.org/wp-pay-gateways/ideal-basic/downloads.svg)](https://packagist.org/packages/wp-pay-gateways/ideal-basic)
 [![Latest Unstable Version](https://poser.pugx.org/wp-pay-gateways/ideal-basic/v/unstable.svg)](https://packagist.org/packages/wp-pay-gateways/ideal-basic)
 [![License](https://poser.pugx.org/wp-pay-gateways/ideal-basic/license.svg)](https://packagist.org/packages/wp-pay-gateways/ideal-basic)
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.svg)](http://gruntjs.com/)
 
 ## Documentation
 
