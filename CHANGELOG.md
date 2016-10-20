@@ -7,7 +7,7 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 - 
 
-## [1.1.6] - 2016-10-19
+## [1.1.6] - 2016-10-20
 - Use the new $payment->format_string() function.
 
 ## [1.1.5] - 2016-06-08
