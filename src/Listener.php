@@ -13,25 +13,20 @@
 class Pronamic_WP_Pay_Gateways_IDealBasic_Listener implements Pronamic_Pay_Gateways_ListenerInterface {
 	public static function listen() {
 		// Also check for typo 'xml_notifaction', as this has been used in the past.
-		if ( filter_has_var( INPUT_GET, 'xml_notification' ) || filter_has_var( INPUT_GET, 'xml_notifaction' ) ) {
-			$data = file_get_contents( 'php://input' );
+		if ( ! filter_has_var( INPUT_GET, 'xml_notification' ) && ! filter_has_var( INPUT_GET, 'xml_notifaction' ) ) {
+			return;
+		}
 
-			$xml = Pronamic_WP_Util::simplexml_load_string( $data );
+		$notification = Pronamic_WP_Pay_Gateways_IDealBasic_Util::get_notification();
 
-			if ( ! is_wp_error( $xml ) ) {
-				$notification = Pronamic_WP_Pay_Gateways_IDealBasic_XML_NotificationParser::parse( $xml );
+		if ( ! $notification ) {
+			return;
+		}
 
-				$purchase_id = $notification->get_purchase_id();
+		$payment = get_pronamic_payment_by_meta( '_pronamic_payment_purchase_id', $notification->get_purchase_id() );
 
-				$payment = get_pronamic_payment_by_meta( '_pronamic_payment_purchase_id', $purchase_id );
-
-				if ( $payment ) {
-					$payment->set_transaction_id( $notification->get_transaction_id() );
-					$payment->set_status( $notification->get_status() );
-
-					Pronamic_WP_Pay_Plugin::update_payment( $payment );
-				}
-			}
+		if ( $payment ) {
+			Pronamic_WP_Pay_Plugin::update_payment( $payment );
 		}
 	}
 }
