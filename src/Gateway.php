@@ -117,19 +117,15 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 	public function update_status( Pronamic_Pay_Payment $payment ) {
 		$status = null;
 
-		if ( filter_has_var( INPUT_GET, 'status' ) ) {
+		// Handle XML notification
+		$notification = Pronamic_WP_Pay_Gateways_IDealBasic_Util::get_notification();
+
+		if ( $notification ) {
+			$payment->set_transaction_id( $notification->get_transaction_id() );
+
+			$status = $notification->get_status();
+		} elseif ( filter_has_var( INPUT_GET, 'status' ) ) {
 			$status = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_STRING );
-		}
-
-		if ( ! $status ) {
-			// Handle XML notification
-			$notification = Pronamic_WP_Pay_Gateways_IDealBasic_Util::get_notification();
-
-			if ( $notification ) {
-				$payment->set_transaction_id( $notification->get_transaction_id() );
-
-				$status = $notification->get_status();
-			}
 		}
 
 		// Set payment status
