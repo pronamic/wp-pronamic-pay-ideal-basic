@@ -7,8 +7,8 @@
  * Company: Pronamic
  *
  * @author Remco Tolsma
- * @version 1.1.3
- * @since 1.0.0
+ * @version unreleased
+ * @since unreleased
  */
 class Pronamic_WP_Pay_Gateways_IDealBasic_Integration extends Pronamic_WP_Pay_Gateways_IDealBasic_AbstractIntegration {
 	
