@@ -1,4 +1,5 @@
 <?php
+use Pronamic\WordPress\Pay\Util;
 
 /**
  * Title: iDEAL Basic utility class
@@ -21,7 +22,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Util {
 
 		$data = file_get_contents( 'php://input' );
 
-		$xml = Pronamic_WP_Util::simplexml_load_string( $data );
+		$xml = Util::simplexml_load_string( $data );
 
 		if ( is_wp_error( $xml ) ) {
 			return;

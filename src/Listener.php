@@ -1,4 +1,5 @@
 <?php
+use Pronamic\WordPress\Pay\Plugin;
 
 /**
  * Title: iDEAL Basic listener
@@ -26,7 +27,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Listener implements Pronamic_Pay_Gatew
 		$payment = get_pronamic_payment_by_meta( '_pronamic_payment_purchase_id', $notification->get_purchase_id() );
 
 		if ( $payment ) {
-			Pronamic_WP_Pay_Plugin::update_payment( $payment );
+			Plugin::update_payment( $payment );
 		}
 	}
 }
