@@ -1,5 +1,7 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+
 /**
  * Title: iDEAL Basic item
  * Description:
@@ -9,7 +11,7 @@
  * @author Remco Tolsma
  * @version 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_Item {
+class Item {
 	/**
 	 * The number
 	 *

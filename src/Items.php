@@ -1,5 +1,10 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+
+use ArrayIterator;
+use IteratorAggregate;
+
 /**
  * Title: iDEAL Basic items
  * Description:
@@ -9,7 +14,7 @@
  * @author Remco Tolsma
  * @version 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_Items implements IteratorAggregate {
+class Items implements IteratorAggregate {
 	/**
 	 * The items
 	 *
@@ -36,7 +41,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Items implements IteratorAggregate {
 	// @codingStandardsIgnoreStart
 	// Function name "getIterator" is in camel caps format, try 'get_iterator'
 	public function getIterator() {
-	// @codingStandardsIgnoreEnd
+		// @codingStandardsIgnoreEnd
 		return new ArrayIterator( $this->items );
 	}
 
@@ -45,7 +50,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Items implements IteratorAggregate {
 	/**
 	 * Add item
 	 */
-	public function add_item( Pronamic_WP_Pay_Gateways_IDealBasic_Item $item ) {
+	public function add_item( Item $item ) {
 		$this->items[] = $item;
 	}
 

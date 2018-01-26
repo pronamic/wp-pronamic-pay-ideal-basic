@@ -1,5 +1,7 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+
 /**
  * Title: Integration
  * Description:
@@ -10,6 +12,5 @@
  * @version unreleased
  * @since unreleased
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_Integration extends Pronamic_WP_Pay_Gateways_IDealBasic_AbstractIntegration {
-	
+class Integration extends AbstractIntegration {
 }

@@ -1,5 +1,9 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+
+use DateTime;
+
 /**
  * Title: Notification
  * Description:
@@ -9,7 +13,7 @@
  * @author Remco Tolsma
  * @version 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_Notification {
+class Notification {
 	/**
 	 * The date of this notification
 	 *

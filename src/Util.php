@@ -1,5 +1,9 @@
 <?php
-use Pronamic\WordPress\Pay\Util;
+
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+
+use Pronamic\WordPress\Pay\Core\Util as Core_Util;
+use Pronamic\WordPress\Pay\Gateways\IDeal_Basic\XML\NotificationParser;
 
 /**
  * Title: iDEAL Basic utility class
@@ -10,7 +14,7 @@ use Pronamic\WordPress\Pay\Util;
  * @author Reüel van der Steege
  * @version unreleased
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_Util {
+class Util {
 	/**
 	 * Get parsed notification.
 	 */
@@ -22,12 +26,12 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Util {
 
 		$data = file_get_contents( 'php://input' );
 
-		$xml = Util::simplexml_load_string( $data );
+		$xml = Core_Util::simplexml_load_string( $data );
 
 		if ( is_wp_error( $xml ) ) {
 			return;
 		}
 
-		return Pronamic_WP_Pay_Gateways_IDealBasic_XML_NotificationParser::parse( $xml );
+		return NotificationParser::parse( $xml );
 	}
 }

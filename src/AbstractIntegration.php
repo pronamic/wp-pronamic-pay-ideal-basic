@@ -1,5 +1,9 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+
+use Pronamic\WordPress\Pay\Gateways\IDeal\AbstractIntegration as IDeal_AbstractIntegration;
+
 /**
  * Title: Abstract integration
  * Description:
@@ -10,10 +14,10 @@
  * @version 1.1.3
  * @since 1.0.0
  */
-abstract class Pronamic_WP_Pay_Gateways_IDealBasic_AbstractIntegration extends Pronamic_WP_Pay_Gateways_IDeal_AbstractIntegration {
+abstract class AbstractIntegration extends IDeal_AbstractIntegration {
 	public function __construct() {
 		// Actions
-		$function = array( 'Pronamic_WP_Pay_Gateways_IDealBasic_Listener', 'listen' );
+		$function = array( __NAMESPACE__ . '\Listener', 'listen' );
 
 		if ( ! has_action( 'wp_loaded', $function ) ) {
 			add_action( 'wp_loaded', $function );
@@ -21,13 +25,13 @@ abstract class Pronamic_WP_Pay_Gateways_IDealBasic_AbstractIntegration extends P
 	}
 
 	public function get_config_factory_class() {
-		return 'Pronamic_WP_Pay_Gateways_IDealBasic_ConfigFactory';
+		return __NAMESPACE__ . '\ConfigFactory';
 	}
 
 	public function get_settings_class() {
 		return array(
-			'Pronamic_WP_Pay_Gateways_IDeal_Settings',
-			'Pronamic_WP_Pay_Gateways_IDealBasic_Settings',
+			'Pronamic\WordPress\Pay\Gateways\IDeal\Settings',
+			__NAMESPACE__ . '\Settings',
 		);
 	}
 

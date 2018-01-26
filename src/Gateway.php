@@ -1,5 +1,12 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+
+use Pronamic\WordPress\Pay\Core\Gateway as Core_Gateway;
+use Pronamic\WordPress\Pay\Core\PaymentMethods;
+use Pronamic\WordPress\Pay\Gateways\IDeal\Statuses;
+use Pronamic\WordPress\Pay\Payments\Payment;
+
 /**
  * Title: iDEAL Basic gateway
  * Description:
@@ -10,20 +17,20 @@
  * @version 1.1.6
  * @since 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gateway {
+class Gateway extends Core_Gateway {
 	/**
 	 * Construct and intialize an gateway
 	 *
-	 * @param Pronamic_WP_Pay_Gateways_IDealBasic_Config $config
+	 * @param Config $config
 	 */
-	public function __construct( Pronamic_WP_Pay_Gateways_IDealBasic_Config $config ) {
+	public function __construct( Config $config ) {
 		parent::__construct( $config );
 
-		$this->set_method( Pronamic_WP_Pay_Gateway::METHOD_HTML_FORM );
+		$this->set_method( Gateway::METHOD_HTML_FORM );
 		$this->set_has_feedback( false );
 		$this->set_amount_minimum( 0.01 );
 
-		$this->client = new Pronamic_WP_Pay_Gateways_IDealBasic_Client();
+		$this->client = new Client();
 
 		$this->client->set_payment_server_url( $config->get_payment_server_url() );
 		$this->client->set_merchant_id( $config->merchant_id );
@@ -52,7 +59,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 	 * @return mixed an array or null
 	 */
 	public function get_payment_methods() {
-		return Pronamic_WP_Pay_PaymentMethods::IDEAL;
+		return PaymentMethods::IDEAL;
 	}
 
 	/////////////////////////////////////////////////
@@ -64,7 +71,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 	 */
 	public function get_supported_payment_methods() {
 		return array(
-			Pronamic_WP_Pay_PaymentMethods::IDEAL,
+			PaymentMethods::IDEAL,
 		);
 	}
 
@@ -75,7 +82,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 	 *
 	 * @see Pronamic_WP_Pay_Gateway::start()
 	 */
-	public function start( Pronamic_Pay_Payment $payment ) {
+	public function start( Payment $payment ) {
 		$payment->set_action_url( $this->client->get_payment_server_url() );
 
 		// Purchase ID
@@ -90,21 +97,16 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 		$this->client->set_description( $payment->get_description() );
 
 		// Items
-		$items = new Pronamic_WP_Pay_Gateways_IDealBasic_Items();
+		$items = new Items();
 
-		$items->add_item( new Pronamic_WP_Pay_Gateways_IDealBasic_Item(
-			1,
-			$payment->get_description(),
-			1,
-			$payment->get_amount()
-		) );
+		$items->add_item( new Item( 1, $payment->get_description(), 1, $payment->get_amount() ) );
 
 		$this->client->set_items( $items );
 
 		// URLs
-		$this->client->set_cancel_url( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::CANCELLED, $payment->get_return_url() ) );
-		$this->client->set_success_url( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::SUCCESS, $payment->get_return_url() ) );
-		$this->client->set_error_url( add_query_arg( 'status', Pronamic_WP_Pay_Gateways_IDeal_Statuses::FAILURE, $payment->get_return_url() ) );
+		$this->client->set_cancel_url( add_query_arg( 'status', Statuses::CANCELLED, $payment->get_return_url() ) );
+		$this->client->set_success_url( add_query_arg( 'status', Statuses::SUCCESS, $payment->get_return_url() ) );
+		$this->client->set_error_url( add_query_arg( 'status', Statuses::FAILURE, $payment->get_return_url() ) );
 	}
 
 	/////////////////////////////////////////////////
@@ -112,13 +114,13 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Gateway extends Pronamic_WP_Pay_Gatewa
 	/**
 	 * Update status of the specified payment
 	 *
-	 * @param Pronamic_Pay_Payment $payment
+	 * @param Payment $payment
 	 */
-	public function update_status( Pronamic_Pay_Payment $payment ) {
+	public function update_status( Payment $payment ) {
 		$status = null;
 
 		// Handle XML notification
-		$notification = Pronamic_WP_Pay_Gateways_IDealBasic_Util::get_notification();
+		$notification = Util::get_notification();
 
 		if ( $notification ) {
 			$payment->set_transaction_id( $notification->get_transaction_id() );

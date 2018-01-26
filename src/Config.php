@@ -1,5 +1,9 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+
+use Pronamic\WordPress\Pay\Core\GatewayConfig;
+
 /**
  * Title: iDEAL Basic config
  * Description:
@@ -9,7 +13,7 @@
  * @author Remco Tolsma
  * @version 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_Config extends Pronamic_WP_Pay_GatewayConfig {
+class Config extends GatewayConfig {
 	public $url;
 
 	public $merchant_id;
@@ -25,6 +29,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Config extends Pronamic_WP_Pay_Gateway
 	}
 
 	public function get_gateway_class() {
-		return 'Pronamic_WP_Pay_Gateways_IDealBasic_Gateway';
+		return __NAMESPACE__ . '\Gateway';
 	}
 }

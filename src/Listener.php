@@ -1,4 +1,7 @@
 <?php
+
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+
 use Pronamic\WordPress\Pay\Plugin;
 
 /**
@@ -11,14 +14,14 @@ use Pronamic\WordPress\Pay\Plugin;
  * @version 1.1.4
  * @since 1.0.1
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_Listener implements Pronamic_Pay_Gateways_ListenerInterface {
+class Listener {
 	public static function listen() {
 		// Also check for typo 'xml_notifaction', as this has been used in the past.
 		if ( ! filter_has_var( INPUT_GET, 'xml_notification' ) && ! filter_has_var( INPUT_GET, 'xml_notifaction' ) ) {
 			return;
 		}
 
-		$notification = Pronamic_WP_Pay_Gateways_IDealBasic_Util::get_notification();
+		$notification = Util::get_notification();
 
 		if ( ! $notification ) {
 			return;

@@ -1,5 +1,7 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+
 /**
  * Title: iDEAL Basic data helper class
  * Description:
@@ -10,7 +12,7 @@
  * @version 1.0.1
  * @see http://pronamic.nl/wp-content/uploads/2011/12/iDEAL_Basic_EN_v2.3.pdf
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
+class DataHelper {
 	/**
 	 * Alphanumerical, free text
 	 *
@@ -49,6 +51,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
 	 * @param array $characters
 	 * @param string $string
 	 * @param int $max
+	 *
 	 * @return string
 	 */
 	private static function filter( array $characters, $string, $max = null ) {
@@ -70,6 +73,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
 	 *
 	 * @param string $string
 	 * @param string $max
+	 *
 	 * @return string
 	 */
 	public static function an( $string, $max = null ) {
@@ -89,6 +93,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
 	 *
 	 * @param string $string
 	 * @param string $max
+	 *
 	 * @return string
 	 */
 	public static function ans( $string, $max = null ) {
@@ -108,6 +113,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
 	 *
 	 * @param string $string
 	 * @param string $max
+	 *
 	 * @return string
 	 */
 	public static function n( $string, $max = null ) {

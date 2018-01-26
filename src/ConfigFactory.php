@@ -1,5 +1,9 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+
+use Pronamic\WordPress\Pay\Core\GatewayConfigFactory;
+
 /**
  * Title: Config factory
  * Description:
@@ -9,10 +13,10 @@
  * @author Remco Tolsma
  * @version 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_ConfigFactory extends Pronamic_WP_Pay_GatewayConfigFactory {
+class ConfigFactory extends GatewayConfigFactory {
 	private $config_class;
 
-	public function __construct( $config_class = 'Pronamic_WP_Pay_Gateways_IDealBasic_Config', $config_test_class = 'Pronamic_WP_Pay_Gateways_IDealBasic_Config' ) {
+	public function __construct( $config_class = __NAMESPACE__ . '\Config', $config_test_class = __NAMESPACE__ . '\Config' ) {
 		$this->config_class      = $config_class;
 		$this->config_test_class = $config_test_class;
 	}
