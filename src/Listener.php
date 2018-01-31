@@ -27,7 +27,7 @@ class Listener {
 			return;
 		}
 
-		$payment = get_pronamic_payment_by_meta( '_pronamic_payment_purchase_id', $notification->get_purchase_id() );
+		$payment = get_pronamic_payment_by_purchase_id( $notification->get_purchase_id() );
 
 		if ( $payment ) {
 			Plugin::update_payment( $payment );
