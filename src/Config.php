@@ -27,8 +27,4 @@ class Config extends GatewayConfig {
 	public function get_payment_server_url() {
 		return $this->url;
 	}
-
-	public function get_gateway_class() {
-		return __NAMESPACE__ . '\Gateway';
-	}
 }
