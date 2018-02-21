@@ -6,7 +6,6 @@ use DateTime;
 use DateTimeZone;
 use Exception;
 use Pronamic\WordPress\Pay\Core\Util as Core_Util;
-use Pronamic\WordPress\Pay\Payments\Items;
 use Pronamic\WordPress\Pay\Plugin;
 
 /**
