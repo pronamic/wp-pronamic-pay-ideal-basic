@@ -40,8 +40,6 @@ class Item {
 	 */
 	private $price;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Constructs and initialize a iDEAL basic item
 	 */
@@ -52,8 +50,6 @@ class Item {
 		$this->price       = $price;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the number / identifier of this item
 	 *
@@ -62,8 +58,6 @@ class Item {
 	public function get_number() {
 		return $this->number;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the description of this item
@@ -74,8 +68,6 @@ class Item {
 		return $this->description;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the quantity of this item
 	 *
@@ -85,8 +77,6 @@ class Item {
 		return $this->quantity;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the price of this item
 	 *
@@ -95,8 +85,6 @@ class Item {
 	public function get_price() {
 		return $this->price;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the amount
