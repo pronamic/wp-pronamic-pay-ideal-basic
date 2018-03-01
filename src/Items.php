@@ -22,16 +22,12 @@ class Items implements IteratorAggregate {
 	 */
 	private $items;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Constructs and initialize a iDEAL basic object
 	 */
 	public function __construct() {
 		$this->items = array();
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get iterator
@@ -45,16 +41,12 @@ class Items implements IteratorAggregate {
 		return new ArrayIterator( $this->items );
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Add item
 	 */
 	public function add_item( Item $item ) {
 		$this->items[] = $item;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Calculate the total amount of all items

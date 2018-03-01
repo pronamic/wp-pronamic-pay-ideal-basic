@@ -26,8 +26,6 @@ class Client {
 	 */
 	const PAYMENT_TYPE_IDEAL = 'ideal';
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The expire date format (yyyy-MMddTHH:mm:ss.SSSZ)
 	 * The Z stands for the time zone (CET).
@@ -43,8 +41,6 @@ class Client {
 	 */
 	const EXPIRE_DATE_MODIFIER = '+30 minutes';
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Forbidden characters
 	 *
@@ -53,16 +49,12 @@ class Client {
 	 */
 	const FORBIDDEN_CHARACHTERS = "\t\n\r ";
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The URL for testing
 	 *
 	 * @var string
 	 */
 	private $payment_server_url;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * The mercahnt ID
@@ -120,8 +112,6 @@ class Client {
 	 */
 	private $payment_type;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The expire date
 	 *
@@ -143,8 +133,6 @@ class Client {
 	 */
 	private $expire_date_modifier;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The forbidden charachters
 	 *
@@ -152,16 +140,12 @@ class Client {
 	 */
 	private $forbidden_characters;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The items
 	 *
 	 * @var array
 	 */
 	private $items;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * The consumer is automatically directed to this URL after a successful payment.
@@ -184,8 +168,6 @@ class Client {
 	 */
 	private $error_url;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Constructs and initialize a iDEAL basic object
 	 */
@@ -199,8 +181,6 @@ class Client {
 		$this->set_expire_date_modifier( self::EXPIRE_DATE_MODIFIER );
 		$this->set_forbidden_characters( self::FORBIDDEN_CHARACHTERS );
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the payment server URL
@@ -220,8 +200,6 @@ class Client {
 		$this->payment_server_url = $url;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the merchant id
 	 *
@@ -240,8 +218,6 @@ class Client {
 		$this->merchant_id = $merchant_id;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the sub id
 	 *
@@ -259,8 +235,6 @@ class Client {
 	public function set_sub_id( $sub_id ) {
 		$this->sub_id = $sub_id;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the hash key
@@ -281,8 +255,6 @@ class Client {
 		$this->hash_key = $hash_key;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the purchase id
 	 *
@@ -302,8 +274,6 @@ class Client {
 		$this->purchase_id = substr( $purchase_id, 0, 16 );
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the language
 	 *
@@ -321,8 +291,6 @@ class Client {
 	public function set_language( $language ) {
 		$this->language = $language;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the description
@@ -343,8 +311,6 @@ class Client {
 		$this->description = DataHelper::an32( $description );
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the currency
 	 *
@@ -362,8 +328,6 @@ class Client {
 	public function set_currency( $currency ) {
 		$this->currency = $currency;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the payment type
@@ -384,8 +348,6 @@ class Client {
 		$this->payment_type = $payment_type;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the expire date
 	 *
@@ -401,8 +363,6 @@ class Client {
 
 		return $this->expire_date;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the expire date format
@@ -422,8 +382,6 @@ class Client {
 		$this->expire_date_format = $expire_date_format;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the expire date modifier
 	 *
@@ -442,8 +400,6 @@ class Client {
 		$this->expire_date_modifier = $expire_date_modifier;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Set the expire date
 	 *
@@ -452,8 +408,6 @@ class Client {
 	public function set_expire_date( DateTime $date ) {
 		$this->expire_date = $date;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the forbidden characters
@@ -481,8 +435,6 @@ class Client {
 		}
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the success URL
 	 *
@@ -500,8 +452,6 @@ class Client {
 	public function set_success_url( $url ) {
 		$this->success_url = $url;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the cancel URL
@@ -521,8 +471,6 @@ class Client {
 		$this->cancel_url = $url;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the error URL
 	 *
@@ -540,8 +488,6 @@ class Client {
 	public function set_error_url( $url ) {
 		$this->error_url = $url;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the items
@@ -561,16 +507,12 @@ class Client {
 		$this->items = $items;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Calculate the total amount of all items
 	 */
 	public function get_amount() {
 		return $this->items->get_amount();
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Create hash string
@@ -637,8 +579,6 @@ class Client {
 	public function create_hash() {
 		return sha1( $this->create_hash_string() );
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the iDEAL HTML fields

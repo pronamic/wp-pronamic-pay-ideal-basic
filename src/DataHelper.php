@@ -43,8 +43,6 @@ class DataHelper {
 	 */
 	private static $characters_n = array( '0-9' );
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Filter the specified characters from the string
 	 *
@@ -65,8 +63,6 @@ class DataHelper {
 
 		return $string;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Alphanumerical, free text
