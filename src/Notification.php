@@ -42,16 +42,12 @@ class Notification {
 	 */
 	private $status;
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Constructs and intializes an notification object
 	 */
 	public function __construct() {
 
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Get the date of this notification
@@ -71,8 +67,6 @@ class Notification {
 		$this->date = $date;
 	}
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Get the transaction ID
 	 *
@@ -91,8 +85,6 @@ class Notification {
 		$this->transaction_id = $transaction_id;
 	}
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Get the purchase ID
 	 *
@@ -110,8 +102,6 @@ class Notification {
 	public function set_purchase_id( $purchase_id ) {
 		$this->purchase_id = $purchase_id;
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Get the status

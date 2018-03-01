@@ -38,8 +38,6 @@ class Gateway extends Core_Gateway {
 		$this->client->set_hash_key( $config->hash_key );
 	}
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Get output HTML
 	 *
@@ -51,8 +49,6 @@ class Gateway extends Core_Gateway {
 		return $this->client->get_fields();
 	}
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Get payment methods
 	 *
@@ -61,8 +57,6 @@ class Gateway extends Core_Gateway {
 	public function get_payment_methods() {
 		return PaymentMethods::IDEAL;
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Get supported payment methods
@@ -74,8 +68,6 @@ class Gateway extends Core_Gateway {
 			PaymentMethods::IDEAL,
 		);
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Start an transaction with the specified data
@@ -108,8 +100,6 @@ class Gateway extends Core_Gateway {
 		$this->client->set_success_url( add_query_arg( 'status', Statuses::SUCCESS, $payment->get_return_url() ) );
 		$this->client->set_error_url( add_query_arg( 'status', Statuses::FAILURE, $payment->get_return_url() ) );
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Update status of the specified payment
