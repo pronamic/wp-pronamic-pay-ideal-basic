@@ -1,10 +1,11 @@
 <?php
 
-use Pronamic\WordPress\Pay\Gateways\IDeal_Basic\Client;
-use Pronamic\WordPress\Pay\Gateways\IDeal_Basic\Item;
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
 
-class Pronamic_Pay_Gateways_IDealBasic_TestHashCoding extends WP_UnitTestCase {
-	function test_hashcoding() {
+use DateTime;
+
+class HashCodingTest extends \WP_UnitTestCase {
+	public function test_hashcoding() {
 		// http://pronamic.nl/wp-content/uploads/2011/12/iDEAL_Basic_EN_v2.3.pdf #page 23
 		$ideal_basic = new Client();
 

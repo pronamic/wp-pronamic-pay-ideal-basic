@@ -1,13 +1,14 @@
 <?php
 
-use Pronamic\WordPress\Pay\Gateways\IDeal_Basic\Client;
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
 
-class Pronamic_Pay_Gateways_IDealBasic_TestData extends WP_UnitTestCase {
-	function test_description() {
-		// Alphanumerical
+class DataTest extends \WP_UnitTestCase {
+	public function test_description() {
+		// Alphanumerical.
 		$not_alphanumerical = '!@#$%ˆ&*()_+';
 
 		$allowed_description = 'Example hashcode';
+
 		$description = $allowed_description . $not_alphanumerical;
 
 		$ideal_basic = new Client();

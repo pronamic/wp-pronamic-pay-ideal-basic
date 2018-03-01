@@ -1,10 +1,9 @@
 <?php
 
-use Pronamic\WordPress\Pay\Gateways\IDeal_Basic\Item;
-use Pronamic\WordPress\Pay\Gateways\IDeal_Basic\Items;
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
 
-class Pronamic_WP_Pay_Gateways_IDealBasic_ItemsTest extends WP_UnitTestCase {
-	function test_item() {
+class ItemsTest extends \WP_UnitTestCase {
+	public function test_item() {
 		$items = new Items();
 
 		$item1 = new Item( '1', '1 Item of € 1,-', 1, 1 );

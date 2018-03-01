@@ -1,4 +1,6 @@
 module.exports = function( grunt ) {
+	require( 'load-grunt-tasks' )( grunt );
+
 	// Project configuration.
 	grunt.initConfig( {
 		// Package
@@ -27,11 +29,6 @@ module.exports = function( grunt ) {
 
 		// PHPLint
 		phplint: {
-			options: {
-				phpArgs: {
-					'-lf': null
-				}
-			},
 			all: [ 'src/**/*.php' ]
 		},
 
@@ -41,6 +38,7 @@ module.exports = function( grunt ) {
 				dir: 'src'
 			},
 			options: {
+				bin: 'vendor/bin/phpmd',
 				exclude: 'node_modules',
 				reportFormat: 'xml',
 				rulesets: 'phpmd.ruleset.xml'
@@ -49,15 +47,14 @@ module.exports = function( grunt ) {
 		
 		// PHPUnit
 		phpunit: {
-			application: {},
+			options: {
+				bin: 'vendor/bin/phpunit'
+			},
+			classes: {
+				
+			}
 		},
 	} );
-
-	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
-	grunt.loadNpmTasks( 'grunt-phpcs' );
-	grunt.loadNpmTasks( 'grunt-phplint' );
-	grunt.loadNpmTasks( 'grunt-phpmd' );
-	grunt.loadNpmTasks( 'grunt-phpunit' );
 
 	// Default task(s).
 	grunt.registerTask( 'default', [ 'jshint', 'phplint', 'phpmd', 'phpcs', 'phpunit' ] );

@@ -1,5 +1,6 @@
 <?php
-use Pronamic\WordPress\Pay\Gateways\IDeal_Basic\DataHelper;
+
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
 
 /**
  * Title: iDEAL Basic data helper tests
@@ -10,7 +11,7 @@ use Pronamic\WordPress\Pay\Gateways\IDeal_Basic\DataHelper;
  * @author Remco Tolsma
  * @version 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framework_TestCase {
+class DataHelperTest extends \PHPUnit_Framework_TestCase {
 	public function test_an() {
 		$test = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 

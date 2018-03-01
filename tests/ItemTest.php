@@ -1,9 +1,9 @@
 <?php
 
-use Pronamic\WordPress\Pay\Gateways\IDeal_Basic\Item;
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
 
-class Pronamic_WP_Pay_Gateways_IDealBasic_ItemTest extends WP_UnitTestCase {
-	function test_item() {
+class ItemTest extends \WP_UnitTestCase {
+	public function test_item() {
 		$item = new Item( '1', 'Description', 1, 123.50 );
 
 		$this->assertEquals( '1', $item->get_number() );

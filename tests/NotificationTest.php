@@ -1,10 +1,12 @@
 <?php
 
-use Pronamic\WordPress\Pay\Core\Statuses;
-use Pronamic\WordPress\Pay\Gateways\IDeal_Basic\Notification;
+namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
 
-class Pronamic_WP_Pay_Gateways_IDealBasic_NotificationTest extends WP_UnitTestCase {
-	function test_notification() {
+use DateTime;
+use Pronamic\WordPress\Pay\Core\Statuses;
+
+class NotificationTest extends \WP_UnitTestCase {
+	public function test_notification() {
 		$notification = new Notification();
 		$notification->set_date( new DateTime() );
 		$notification->set_transaction_id( '1234567890' );
