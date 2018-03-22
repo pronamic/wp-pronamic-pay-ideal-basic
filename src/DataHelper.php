@@ -1,6 +1,6 @@
 <?php
 
-namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
 /**
  * Title: iDEAL Basic data helper class
@@ -10,7 +10,7 @@ namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
  *
  * @author Remco Tolsma
  * @version 1.0.1
- * @see http://pronamic.nl/wp-content/uploads/2011/12/iDEAL_Basic_EN_v2.3.pdf
+ * @see http://pronamic.nl/wp-content/uploads/2011/12/IDealBasic_EN_v2.3.pdf
  */
 class DataHelper {
 	/**

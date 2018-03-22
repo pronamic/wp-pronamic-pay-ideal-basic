@@ -1,6 +1,6 @@
 <?php
 
-namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
 /**
  * Title: Integration

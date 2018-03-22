@@ -1,6 +1,6 @@
 <?php
 
-namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
 use DateTime;
 use Pronamic\WordPress\Pay\Gateways\IDeal\Statuses;
@@ -24,7 +24,7 @@ class TestNotificationParser extends \WP_UnitTestCase {
 	public function test_parser( $simplexml ) {
 		$notification = XML\NotificationParser::parse( $simplexml );
 
-		$this->assertInstanceOf( 'Pronamic\WordPress\Pay\Gateways\IDeal_Basic\Notification', $notification );
+		$this->assertInstanceOf( 'Pronamic\WordPress\Pay\Gateways\IDealBasic\Notification', $notification );
 
 		return $notification;
 	}

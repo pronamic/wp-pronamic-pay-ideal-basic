@@ -1,6 +1,6 @@
 <?php
 
-namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
 class DataTest extends \WP_UnitTestCase {
 	public function test_description() {
@@ -11,10 +11,10 @@ class DataTest extends \WP_UnitTestCase {
 
 		$description = $allowed_description . $not_alphanumerical;
 
-		$ideal_basic = new Client();
-		$ideal_basic->set_description( $description );
+		$client = new Client();
+		$client->set_description( $description );
 
-		$result   = $ideal_basic->get_description();
+		$result   = $client->get_description();
 		$expected = $allowed_description;
 
 		$this->assertEquals( $expected, $result );

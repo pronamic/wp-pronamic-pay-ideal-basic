@@ -1,9 +1,9 @@
 <?php
 
-namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
 use Pronamic\WordPress\Pay\Core\Util as Core_Util;
-use Pronamic\WordPress\Pay\Gateways\IDeal_Basic\XML\NotificationParser;
+use Pronamic\WordPress\Pay\Gateways\IDealBasic\XML\NotificationParser;
 
 /**
  * Title: iDEAL Basic utility class

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pronamic\WordPress\Pay\Gateways\IDeal_Basic;
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
 use Pronamic\WordPress\Pay\Core\GatewaySettings;
 
@@ -22,7 +22,7 @@ class Settings extends GatewaySettings {
 
 	public function sections( array $sections ) {
 		// Transaction feedback
-		$sections['ideal_basic_feedback'] = array(
+		$sections['IDealBasic_feedback'] = array(
 			'title'       => __( 'Transaction feedback', 'pronamic_ideal' ),
 			'methods'     => array( 'ideal-basic' ),
 			'description' => __( 'The URL below needs to be copied to the payment provider dashboard to receive automatic transaction status updates.', 'pronamic_ideal' ),
@@ -59,12 +59,12 @@ class Settings extends GatewaySettings {
 
 		// XML Notification URL
 		$fields[] = array(
-			'section'  => 'ideal_basic_feedback',
+			'section'  => 'IDealBasic_feedback',
 			'title'    => __( 'XML Notification URL', 'pronamic_ideal' ),
 			'type'     => 'text',
 			'classes'  => array( 'regular-text', 'code' ),
 			'value'    => add_query_arg( array(
-				'gateway'          => 'ideal_basic',
+				'gateway'          => 'IDealBasic',
 				'xml_notification' => 'true',
 			), site_url( '/' ) ),
 			'methods'  => array( 'ideal-basic' ),
