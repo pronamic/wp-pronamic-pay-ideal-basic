@@ -29,7 +29,17 @@ class Listener {
 
 		$payment = get_pronamic_payment_by_purchase_id( $notification->get_purchase_id() );
 
-		if ( $payment ) {
+		if ( null !== $payment ) {
+			// Add note.
+			$note = sprintf(
+				/* translators: %s: iDEAL Basic */
+				__( 'Webhook requested by %s.', 'pronamic_ideal' ),
+				__( 'iDEAL Basic', 'pronamic_ideal' )
+			);
+
+			$payment->add_note( $note );
+
+			// Update payment.
 			Plugin::update_payment( $payment );
 		}
 	}
