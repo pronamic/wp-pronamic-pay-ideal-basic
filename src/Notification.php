@@ -2,7 +2,7 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
-use DateTime;
+use Pronamic\WordPress\Pay\Core\DateTime;
 
 /**
  * Title: Notification

@@ -2,7 +2,7 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\IDealBasic\XML;
 
-use DateTime;
+use Pronamic\WordPress\Pay\Core\DateTime;
 use Pronamic\WordPress\Pay\Core\XML\Security;
 use Pronamic\WordPress\Pay\Gateways\IDealBasic\Notification;
 use SimpleXMLElement;
