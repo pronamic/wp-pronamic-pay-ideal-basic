@@ -119,12 +119,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-pay/core.git",
-                "reference": "408b8a052ec3997c05a1b6a762b9d715f183abec"
+                "reference": "787abceb5c115bb51be048de5ef808d4a92792cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-pay/core/zipball/408b8a052ec3997c05a1b6a762b9d715f183abec",
-                "reference": "408b8a052ec3997c05a1b6a762b9d715f183abec",
+                "url": "https://api.github.com/repos/wp-pay/core/zipball/787abceb5c115bb51be048de5ef808d4a92792cb",
+                "reference": "787abceb5c115bb51be048de5ef808d4a92792cb",
                 "shasum": ""
             },
             "require": {
@@ -172,7 +172,7 @@
                 "wordpress",
                 "wp"
             ],
-            "time": "2018-03-14T13:58:09+00:00"
+            "time": "2018-04-17T14:51:27+00:00"
         },
         {
             "name": "xrstf/composer-php52",
