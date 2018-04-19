@@ -82,7 +82,7 @@ class Gateway extends Core_Gateway {
 		// Items
 		$items = new Items();
 
-		$items->add_item( new Item( 1, $payment->get_description(), 1, $payment->get_amount() ) );
+		$items->add_item( new Item( 1, $payment->get_description(), 1, $payment->get_amount()->get_amount() ) );
 
 		$this->client->set_items( $items );
 

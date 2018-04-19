@@ -511,7 +511,7 @@ class Client {
 	 * Calculate the total amount of all items
 	 */
 	public function get_amount() {
-		return $this->items->get_amount();
+		return $this->items->get_amount()->get_amount();
 	}
 
 	/**

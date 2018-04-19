@@ -16,7 +16,7 @@ class ItemsTest extends \WP_UnitTestCase {
 
 		// 13 = 1 + 2 + ( 2 x 5 )
 		$expected = 13;
-		$amount   = $items->get_amount();
+		$amount   = $items->get_amount()->get_amount();
 
 		$this->assertEquals( $expected, $amount );
 	}

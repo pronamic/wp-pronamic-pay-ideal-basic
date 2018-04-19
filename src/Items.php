@@ -4,6 +4,7 @@ namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
 use ArrayIterator;
 use IteratorAggregate;
+use Pronamic\WordPress\Money\Money;
 
 /**
  * Title: iDEAL Basic items
@@ -58,6 +59,6 @@ class Items implements IteratorAggregate {
 			$amount += $item->get_amount();
 		}
 
-		return $amount;
+		return new Money( $amount );
 	}
 }
