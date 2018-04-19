@@ -2,7 +2,7 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
-use Pronamic\WordPress\Pay\Core\DateTime;
+use Pronamic\WordPress\DateTime\DateTime;
 
 class HashCodingTest extends \WP_UnitTestCase {
 	public function test_hashcoding() {

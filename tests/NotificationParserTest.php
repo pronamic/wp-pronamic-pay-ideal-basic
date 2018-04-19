@@ -2,7 +2,7 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
-use Pronamic\WordPress\Pay\Core\DateTime;
+use Pronamic\WordPress\DateTime\DateTime;
 use Pronamic\WordPress\Pay\Gateways\IDeal\Statuses;
 
 class TestNotificationParser extends \WP_UnitTestCase {
