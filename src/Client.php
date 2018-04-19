@@ -3,8 +3,8 @@
 namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
 use Exception;
-use Pronamic\WordPress\DateTime\DateTime;
-use Pronamic\WordPress\DateTime\DateTimeZone;
+use DateTime;
+use DateTimeZone;
 use Pronamic\WordPress\Pay\Core\Util as Core_Util;
 use Pronamic\WordPress\Pay\Plugin;
 
