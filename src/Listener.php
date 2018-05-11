@@ -1,37 +1,46 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
+
+use Pronamic\WordPress\Pay\Plugin;
+
 /**
  * Title: iDEAL Basic listener
  * Description:
- * Copyright: Copyright (c) 2005 - 2016
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
- * @author Remco Tolsma
- * @version 1.1.4
- * @since 1.0.1
+ * @author  Remco Tolsma
+ * @version 2.0.0
+ * @since   1.0.1
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_Listener implements Pronamic_Pay_Gateways_ListenerInterface {
+class Listener {
 	public static function listen() {
 		// Also check for typo 'xml_notifaction', as this has been used in the past.
-		if ( filter_has_var( INPUT_GET, 'xml_notification' ) || filter_has_var( INPUT_GET, 'xml_notifaction' ) ) {
-			$data = file_get_contents( 'php://input' );
+		if ( ! filter_has_var( INPUT_GET, 'xml_notification' ) && ! filter_has_var( INPUT_GET, 'xml_notifaction' ) ) {
+			return;
+		}
 
-			$xml = Pronamic_WP_Util::simplexml_load_string( $data );
+		$notification = Util::get_notification();
 
-			if ( ! is_wp_error( $xml ) ) {
-				$notification = Pronamic_WP_Pay_Gateways_IDealBasic_XML_NotificationParser::parse( $xml );
+		if ( ! $notification ) {
+			return;
+		}
 
-				$purchase_id = $notification->get_purchase_id();
+		$payment = get_pronamic_payment_by_purchase_id( $notification->get_purchase_id() );
 
-				$payment = get_pronamic_payment_by_meta( '_pronamic_payment_purchase_id', $purchase_id );
+		if ( null !== $payment ) {
+			// Add note.
+			$note = sprintf(
+				/* translators: %s: iDEAL Basic */
+				__( 'Webhook requested by %s.', 'pronamic_ideal' ),
+				__( 'iDEAL Basic', 'pronamic_ideal' )
+			);
 
-				if ( $payment ) {
-					$payment->set_transaction_id( $notification->get_transaction_id() );
-					$payment->set_status( $notification->get_status() );
+			$payment->add_note( $note );
 
-					Pronamic_WP_Pay_Plugin::update_payment( $payment );
-				}
-			}
+			// Update payment.
+			Plugin::update_payment( $payment );
 		}
 	}
 }

@@ -1,24 +1,30 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
+
+use Exception;
+use DateTime;
+use DateTimeZone;
+use Pronamic\WordPress\Pay\Core\Util as Core_Util;
+use Pronamic\WordPress\Pay\Plugin;
+
 /**
  * Title: iDEAL Basic client
  * Description:
- * Copyright: Copyright (c) 2005 - 2016
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
- * @author Remco Tolsma
- * @version 1.1.6
- * @since 1.0.0
+ * @author  Remco Tolsma
+ * @version 2.0.0
+ * @since   1.0.0
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
+class Client {
 	/**
 	 * An payment type indicator for iDEAL
 	 *
 	 * @var string
 	 */
 	const PAYMENT_TYPE_IDEAL = 'ideal';
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * The expire date format (yyyy-MMddTHH:mm:ss.SSSZ)
@@ -35,8 +41,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 */
 	const EXPIRE_DATE_MODIFIER = '+30 minutes';
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Forbidden characters
 	 *
@@ -45,16 +49,12 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 */
 	const FORBIDDEN_CHARACHTERS = "\t\n\r ";
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The URL for testing
 	 *
 	 * @var string
 	 */
 	private $payment_server_url;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * The mercahnt ID
@@ -112,12 +112,10 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 */
 	private $payment_type;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The expire date
 	 *
-	 * @var Date
+	 * @var DateTime
 	 */
 	private $expire_date;
 
@@ -135,8 +133,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 */
 	private $expire_date_modifier;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The forbidden charachters
 	 *
@@ -144,16 +140,12 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 */
 	private $forbidden_characters;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * The items
 	 *
 	 * @var array
 	 */
 	private $items;
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * The consumer is automatically directed to this URL after a successful payment.
@@ -176,13 +168,11 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 */
 	private $error_url;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Constructs and initialize a iDEAL basic object
 	 */
 	public function __construct() {
-		$this->items = new Pronamic_WP_Pay_Gateways_IDealBasic_Items();
+		$this->items = new Items();
 
 		$this->forbidden_characters = array();
 
@@ -191,8 +181,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 		$this->set_expire_date_modifier( self::EXPIRE_DATE_MODIFIER );
 		$this->set_forbidden_characters( self::FORBIDDEN_CHARACHTERS );
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the payment server URL
@@ -212,12 +200,10 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 		$this->payment_server_url = $url;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the merchant id
 	 *
-	 * @return an merchant id
+	 * @return string merchant id
 	 */
 	public function get_merchant_id() {
 		return $this->merchant_id;
@@ -226,18 +212,16 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	/**
 	 * Set the merchant id
 	 *
-	 * @param merchant id
+	 * @param string $merchant_id
 	 */
 	public function set_merchant_id( $merchant_id ) {
 		$this->merchant_id = $merchant_id;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the sub id
 	 *
-	 * @return an sub id
+	 * @return string Sub id
 	 */
 	public function get_sub_id() {
 		return $this->sub_id;
@@ -246,18 +230,16 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	/**
 	 * Set the sub id
 	 *
-	 * @param sub id
+	 * @param string $sub_id
 	 */
 	public function set_sub_id( $sub_id ) {
 		$this->sub_id = $sub_id;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the hash key
 	 *
-	 * @return an sub id
+	 * @return string Hash key
 	 */
 	public function get_hash_key() {
 		return $this->hash_key;
@@ -273,12 +255,10 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 		$this->hash_key = $hash_key;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the purchase id
 	 *
-	 * @return an purchase id
+	 * @return string Purchase id
 	 */
 	public function get_purchase_id() {
 		return $this->purchase_id;
@@ -288,18 +268,16 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 * Set the purchase id
 	 * AN..max16 (AN = Alphanumeric, free text)
 	 *
-	 * @param sub id
+	 * @param string $purchase_id
 	 */
 	public function set_purchase_id( $purchase_id ) {
 		$this->purchase_id = substr( $purchase_id, 0, 16 );
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the language
 	 *
-	 * @return an language
+	 * @return string Language
 	 */
 	public function get_language() {
 		return $this->language;
@@ -314,12 +292,10 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 		$this->language = $language;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the description
 	 *
-	 * @return an description
+	 * @return string Description
 	 */
 	public function get_description() {
 		return $this->description;
@@ -332,15 +308,13 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 * @param string $description
 	 */
 	public function set_description( $description ) {
-		$this->description = Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper::an32( $description );
+		$this->description = DataHelper::an32( $description );
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the currency
 	 *
-	 * @return string
+	 * @return string Currency
 	 */
 	public function get_currency() {
 		return $this->currency;
@@ -349,18 +323,16 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	/**
 	 * Set the currency
 	 *
-	 * @return string
+	 * @param string Currency
 	 */
 	public function set_currency( $currency ) {
 		$this->currency = $currency;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the payment type
 	 *
-	 * @return an payment type
+	 * @return string Payment type
 	 */
 	public function get_payment_type() {
 		return $this->payment_type;
@@ -370,30 +342,27 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	 * Set the payment type
 	 * AN..max10
 	 *
-	 * @param string $payment_type an payment type
+	 * @param string $payment_type Payment type
 	 */
 	public function set_payment_type( $payment_type ) {
 		$this->payment_type = $payment_type;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the expire date
 	 *
-	 * @param boolean $createNew indicator for creating a new expire date
-	 * @return
+	 * @param boolean $create_new Indicator for creating a new expire date
+	 *
+	 * @return DateTime
 	 */
 	public function get_expire_date( $create_new = false ) {
 		if ( null === $this->expire_date || $create_new ) {
-			$this->expire_date = new DateTime( null, new DateTimeZone( Pronamic_IDeal_IDeal::TIMEZONE ) );
+			$this->expire_date = new DateTime( null, new DateTimeZone( Plugin::TIMEZONE ) );
 			$this->expire_date->modify( $this->expire_date_modifier );
 		}
 
 		return $this->expire_date;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the expire date format
@@ -407,18 +376,16 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	/**
 	 * Set the expire date formnat
 	 *
-	 * @var string $expireDateFormat an expire date format
+	 * @param string $expire_date_format Expire date format
 	 */
 	public function set_expire_date_format( $expire_date_format ) {
 		$this->expire_date_format = $expire_date_format;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the expire date modifier
 	 *
-	 * @return the expire date modifier
+	 * @return string Expire date modifier
 	 */
 	public function get_expire_date_modifier() {
 		return $this->expire_date_modifier;
@@ -427,13 +394,11 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	/**
 	 * Set the expire date modifier
 	 *
-	 * @var string $expireDateModifier an expire date modifier
+	 * @param string $expire_date_modifier Expire date modifier
 	 */
 	public function set_expire_date_modifier( $expire_date_modifier ) {
 		$this->expire_date_modifier = $expire_date_modifier;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Set the expire date
@@ -443,8 +408,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	public function set_expire_date( DateTime $date ) {
 		$this->expire_date = $date;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the forbidden characters
@@ -458,7 +421,9 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	/**
 	 * Set the forbidden characters
 	 *
-	 * @var mixed an array or string with forbidden characters
+	 * @param mixed $forbidden_characters Array or string with forbidden characters
+	 *
+	 * @throws Exception
 	 */
 	public function set_forbidden_characters( $forbidden_characters ) {
 		if ( is_string( $forbidden_characters ) ) {
@@ -470,12 +435,10 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 		}
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the success URL
 	 *
-	 * @return an URL
+	 * @return string URL
 	 */
 	public function get_success_url() {
 		return $this->success_url;
@@ -484,18 +447,16 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	/**
 	 * Set the success URL
 	 *
-	 * @param string $successUrl
+	 * @param string $url
 	 */
 	public function set_success_url( $url ) {
 		$this->success_url = $url;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the cancel URL
 	 *
-	 * @return an URL
+	 * @return string Cancel URL
 	 */
 	public function get_cancel_url() {
 		return $this->cancel_url;
@@ -504,18 +465,16 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	/**
 	 * Set the cancel URL
 	 *
-	 * @param string $cancelUrl
+	 * @param string $url
 	 */
 	public function set_cancel_url( $url ) {
 		$this->cancel_url = $url;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the error URL
 	 *
-	 * @return an URL
+	 * @return string Error URL
 	 */
 	public function get_error_url() {
 		return $this->error_url;
@@ -524,18 +483,16 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	/**
 	 * Set the error URL
 	 *
-	 * @param string $errorUrl
+	 * @param string $url
 	 */
 	public function set_error_url( $url ) {
 		$this->error_url = $url;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the items
 	 *
-	 * @return Pronamic_IDeal_Items
+	 * @return Items
 	 */
 	public function get_items() {
 		return $this->items;
@@ -544,28 +501,24 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	/**
 	 * Set the items
 	 *
-	 * @param Pronamic_WP_Pay_Gateways_IDealBasic_Items $items
+	 * @param Items $items
 	 */
-	public function set_items( Pronamic_WP_Pay_Gateways_IDealBasic_Items $items ) {
+	public function set_items( Items $items ) {
 		$this->items = $items;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Calculate the total amount of all items
 	 */
 	public function get_amount() {
-		return $this->items->get_amount();
+		return $this->items->get_amount()->get_amount();
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Create hash string
 	 */
 	public function create_hash_string() {
-		$string  = array();
+		$string = array();
 
 		// SHA1 hashcode, used only with the hashcode approach (Chapter 4).
 		$string[] = $this->get_hash_key();
@@ -577,7 +530,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 		$string[] = $this->get_sub_id();
 
 		// Total amount of transaction
-		$string[] = Pronamic_WP_Pay_Util::amount_to_cents( $this->get_amount() );
+		$string[] = Core_Util::amount_to_cents( $this->get_amount() );
 
 		// The online shop's unique order number, also known as purchase id
 		$string[] = $this->get_purchase_id();
@@ -603,14 +556,14 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 			$string[] = $item->get_quantity();
 
 			// Price of article <n> in whole eurocents
-			$string[] = Pronamic_WP_Pay_Util::amount_to_cents( $item->get_price() ); // Price of article in whole cents
+			$string[] = Core_Util::amount_to_cents( $item->get_price() ); // Price of article in whole cents
 		}
 
 		$concat_string = implode( '', $string );
 
 		// The characters "\t", "\n", "\r", " " (spaces) may not exist in the string
 		$forbidden_characters = $this->get_forbidden_characters();
-		$concat_string = str_replace( $forbidden_characters, '', $concat_string );
+		$concat_string        = str_replace( $forbidden_characters, '', $concat_string );
 
 		// Delete special HTML entities
 		$concat_string = html_entity_decode( $concat_string, ENT_COMPAT, 'UTF-8' );
@@ -621,16 +574,14 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	/**
 	 * Create hash
 	 *
-	 * @param unknown_type $form
+	 * @return string Hash
 	 */
 	public function create_hash() {
 		return sha1( $this->create_hash_string() );
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
-	 * Get the iDEAL HTML
+	 * Get the iDEAL HTML fields
 	 *
 	 * @since 1.1.1
 	 * @return array
@@ -638,10 +589,10 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 	public function get_fields() {
 		$fields = array();
 
-		$fields['merchantID']  = $this->get_merchant_id();
-		$fields['subID']       = $this->get_sub_id();
+		$fields['merchantID'] = $this->get_merchant_id();
+		$fields['subID']      = $this->get_sub_id();
 
-		$fields['amount']      = Pronamic_WP_Pay_Util::amount_to_cents( $this->get_amount() );
+		$fields['amount']      = Core_Util::amount_to_cents( $this->get_amount() );
 		$fields['purchaseID']  = $this->get_purchase_id();
 		$fields['language']    = $this->get_language();
 		$fields['currency']    = $this->get_currency();
@@ -655,14 +606,14 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Client {
 			$fields[ 'itemNumber' . $serial_number ]      = $item->get_number();
 			$fields[ 'itemDescription' . $serial_number ] = $item->get_description();
 			$fields[ 'itemQuantity' . $serial_number ]    = $item->get_quantity();
-			$fields[ 'itemPrice' . $serial_number ]       = Pronamic_WP_Util::amount_to_cents( $item->get_price() );
+			$fields[ 'itemPrice' . $serial_number ]       = Core_Util::amount_to_cents( $item->get_price() );
 
-			$serial_number++;
+			$serial_number ++;
 		}
 
-		$fields['urlCancel']   = $this->get_cancel_url();
-		$fields['urlSuccess']  = $this->get_success_url();
-		$fields['urlError']    = $this->get_error_url();
+		$fields['urlCancel']  = $this->get_cancel_url();
+		$fields['urlSuccess'] = $this->get_success_url();
+		$fields['urlError']   = $this->get_error_url();
 
 		return $fields;
 	}

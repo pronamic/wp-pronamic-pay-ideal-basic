@@ -1,15 +1,20 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
+
+use DateTime;
+
 /**
  * Title: Notification
  * Description:
- * Copyright: Copyright (c) 2005 - 2016
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
- * @author Remco Tolsma
- * @version 1.0.0
+ * @author  Remco Tolsma
+ * @version 2.0.0
+ * @since   1.0.0
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_Notification {
+class Notification {
 	/**
 	 * The date of this notification
 	 *
@@ -38,16 +43,12 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Notification {
 	 */
 	private $status;
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Constructs and intializes an notification object
 	 */
 	public function __construct() {
 
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Get the date of this notification
@@ -67,8 +68,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Notification {
 		$this->date = $date;
 	}
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Get the transaction ID
 	 *
@@ -87,8 +86,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Notification {
 		$this->transaction_id = $transaction_id;
 	}
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Get the purchase ID
 	 *
@@ -106,8 +103,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Notification {
 	public function set_purchase_id( $purchase_id ) {
 		$this->purchase_id = $purchase_id;
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Get the status

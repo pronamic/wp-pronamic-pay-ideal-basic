@@ -1,15 +1,22 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
+
+use ArrayIterator;
+use IteratorAggregate;
+use Pronamic\WordPress\Money\Money;
+
 /**
  * Title: iDEAL Basic items
  * Description:
- * Copyright: Copyright (c) 2005 - 2016
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
- * @author Remco Tolsma
- * @version 1.0.0
+ * @author  Remco Tolsma
+ * @version 2.0.0
+ * @since   1.0.0
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_Items implements IteratorAggregate {
+class Items implements IteratorAggregate {
 	/**
 	 * The items
 	 *
@@ -17,16 +24,12 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Items implements IteratorAggregate {
 	 */
 	private $items;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Constructs and initialize a iDEAL basic object
 	 */
 	public function __construct() {
 		$this->items = array();
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get iterator
@@ -36,20 +39,16 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Items implements IteratorAggregate {
 	// @codingStandardsIgnoreStart
 	// Function name "getIterator" is in camel caps format, try 'get_iterator'
 	public function getIterator() {
-	// @codingStandardsIgnoreEnd
+		// @codingStandardsIgnoreEnd
 		return new ArrayIterator( $this->items );
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Add item
 	 */
-	public function add_item( Pronamic_WP_Pay_Gateways_IDealBasic_Item $item ) {
+	public function add_item( Item $item ) {
 		$this->items[] = $item;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Calculate the total amount of all items
@@ -61,6 +60,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Items implements IteratorAggregate {
 			$amount += $item->get_amount();
 		}
 
-		return $amount;
+		return new Money( $amount );
 	}
 }

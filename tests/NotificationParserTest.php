@@ -1,7 +1,12 @@
 <?php
 
-class Pronamic_Pay_Gateways_IDealBasic_TestNotificationParser extends WP_UnitTestCase {
-	function test_init() {
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
+
+use DateTime;
+use Pronamic\WordPress\Pay\Gateways\IDeal\Statuses;
+
+class TestNotificationParser extends \WP_UnitTestCase {
+	public function test_init() {
 		$filename = dirname( __FILE__ ) . '/Mock/notification.xml';
 
 		$simplexml = simplexml_load_file( $filename );
@@ -16,10 +21,10 @@ class Pronamic_Pay_Gateways_IDealBasic_TestNotificationParser extends WP_UnitTes
 	 *
 	 * @depends test_init
 	 */
-	function test_parser( $simplexml ) {
-		$notification = Pronamic_WP_Pay_Gateways_IDealBasic_XML_NotificationParser::parse( $simplexml );
+	public function test_parser( $simplexml ) {
+		$notification = XML\NotificationParser::parse( $simplexml );
 
-		$this->assertInstanceOf( 'Pronamic_WP_Pay_Gateways_IDealBasic_Notification', $notification );
+		$this->assertInstanceOf( 'Pronamic\WordPress\Pay\Gateways\IDealBasic\Notification', $notification );
 
 		return $notification;
 	}
@@ -29,12 +34,12 @@ class Pronamic_Pay_Gateways_IDealBasic_TestNotificationParser extends WP_UnitTes
 	 *
 	 * @depends test_parser
 	 */
-	function test_values( $notification ) {
-		$expected = new Pronamic_WP_Pay_Gateways_IDealBasic_Notification();
+	public function test_values( $notification ) {
+		$expected = new Notification();
 		$expected->set_date( new DateTime( '20131022120742' ) );
 		$expected->set_transaction_id( '0020000048638175' );
 		$expected->set_purchase_id( '1382436458' );
-		$expected->set_status( Pronamic_WP_Pay_Gateways_IDeal_Statuses::SUCCESS );
+		$expected->set_status( Statuses::SUCCESS );
 
 		$this->assertEquals( $expected, $notification );
 	}

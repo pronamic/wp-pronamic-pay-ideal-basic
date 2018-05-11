@@ -1,21 +1,24 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
+
 /**
  * Title: iDEAL Basic data helper tests
  * Description:
- * Copyright: Copyright (c) 2005 - 2014
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
- * @author Remco Tolsma
- * @version 1.0.0
+ * @author  Remco Tolsma
+ * @version 2.0.0
+ * @since   1.0.0
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framework_TestCase {
+class DataHelperTest extends \PHPUnit_Framework_TestCase {
 	public function test_an() {
 		$test = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 
 		$expected = ' 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
-		$text = Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper::an( $test );
+		$text = DataHelper::an( $test );
 
 		$this->assertEquals( $expected, $text );
 	}
@@ -25,7 +28,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framewo
 
 		$expected = ' 0123456789ABCDE';
 
-		$text = Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper::an16( $test );
+		$text = DataHelper::an16( $test );
 
 		$this->assertEquals( $expected, $text );
 	}
@@ -35,7 +38,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framewo
 
 		$expected = ' 0123456789ABCDEFGHIJKLMNOPQRSTU';
 
-		$text = Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper::an32( $test );
+		$text = DataHelper::an32( $test );
 
 		$this->assertEquals( $expected, $text );
 	}
@@ -45,7 +48,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framewo
 
 		$expected = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
-		$text = Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper::ans( $test );
+		$text = DataHelper::ans( $test );
 
 		$this->assertEquals( $expected, $text );
 	}
@@ -55,7 +58,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framewo
 
 		$expected = '0123456789ABCDEF';
 
-		$text = Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper::ans16( $test );
+		$text = DataHelper::ans16( $test );
 
 		$this->assertEquals( $expected, $text );
 	}
@@ -65,7 +68,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framewo
 
 		$expected = '0123456789ABCDEFGHIJKLMNOPQRSTUV';
 
-		$text = Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper::ans32( $test );
+		$text = DataHelper::ans32( $test );
 
 		$this->assertEquals( $expected, $text );
 	}
@@ -75,7 +78,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelperTest extends PHPUnit_Framewo
 
 		$expected = '0123456789';
 
-		$text = Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper::n( $test );
+		$text = DataHelper::n( $test );
 
 		$this->assertEquals( $expected, $text );
 	}

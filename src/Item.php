@@ -1,15 +1,18 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
+
 /**
  * Title: iDEAL Basic item
  * Description:
- * Copyright: Copyright (c) 2005 - 2016
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
- * @author Remco Tolsma
- * @version 1.0.0
+ * @author  Remco Tolsma
+ * @version 2.0.0
+ * @since   1.0.0
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_Item {
+class Item {
 	/**
 	 * The number
 	 *
@@ -38,8 +41,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Item {
 	 */
 	private $price;
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Constructs and initialize a iDEAL basic item
 	 */
@@ -50,8 +51,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Item {
 		$this->price       = $price;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the number / identifier of this item
 	 *
@@ -60,8 +59,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Item {
 	public function get_number() {
 		return $this->number;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the description of this item
@@ -72,8 +69,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Item {
 		return $this->description;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the quantity of this item
 	 *
@@ -83,8 +78,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Item {
 		return $this->quantity;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Get the price of this item
 	 *
@@ -93,8 +86,6 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_Item {
 	public function get_price() {
 		return $this->price;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the amount

@@ -3,7 +3,7 @@
 	"description": "iDEAL Basic driver for the WordPress payment processing library.",
 	"keywords": ["wordpress", "wp", "pay", "ideal", "basic", "gateway", "pronamic"],
 	"homepage": "http://www.wp-pay.org/gateways/ideal-basic/",
-	"license": "GPL-3.0+",
+	"license": "GPL-3.0-or-later",
 	"authors": [
 		{
 			"name": "Pronamic",
@@ -24,32 +24,29 @@
 		"source": "https://github.com/wp-pay-gateways/ideal-basic"
 	},
 	"autoload": {
-		"classmap": ["src/"]
+		"psr-4": {
+			"Pronamic\\WordPress\\Pay\\Gateways\\IDealBasic\\": "src/"
+		}
+	},
+	"config": {
+		"platform": {
+			"php": "5.3.3"
+		}
 	},
 	"require": {
-		"php": ">=5.2.4",
-		"xrstf/composer-php52": "1.*",
-		"wp-pay/core": "^1.3",
-		"wp-pay-gateways/common": "^1.0.2",
-		"wp-pay-gateways/ideal": "^1.1"
+		"php": "^5.3",
+		"pronamic/wp-datetime": "^1.0",
+		"pronamic/wp-money": "^1.0",
+		"wp-pay/core": "^2.0",
+		"wp-pay-gateways/common": "^2.0",
+		"wp-pay-gateways/ideal": "^2.0"
 	},
 	"require-dev": {
-		"phpmd/phpmd": "^2.2.3",
-		"satooshi/php-coveralls": "^0.7.1",
+		"phpmd/phpmd": "^2.4",
 		"squizlabs/php_codesniffer": "^2.7",
-		"wp-coding-standards/wpcs": "^0.10.0",
-		"wp-cli/wp-cli": "^0.21.1"
-	},
-	"scripts": {
-		"post-install-cmd": [
-			"xrstf\\Composer52\\Generator::onPostInstallCmd"
-		],
-		"post-update-cmd": [
-			"xrstf\\Composer52\\Generator::onPostInstallCmd"
-		],
-		"post-autoload-dump": [
-			"xrstf\\Composer52\\Generator::onPostInstallCmd",
-			"bin/install-wpcs"
-		]
+		"wp-coding-standards/wpcs": "^0.14.1",
+		"wp-cli/wp-cli": "^0.21.1",
+		"phpunit/phpunit": "^4.8",
+		"php-coveralls/php-coveralls": "^1.1"
 	}
 }

@@ -1,35 +1,39 @@
 <?php
 
-class Pronamic_Pay_Gateways_IDealBasic_TestHashCoding extends WP_UnitTestCase {
-	function test_hashcoding() {
-		// http://pronamic.nl/wp-content/uploads/2011/12/iDEAL_Basic_EN_v2.3.pdf #page 23
-		$ideal_basic = new Pronamic_WP_Pay_Gateways_IDealBasic_Client();
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
-		$ideal_basic->set_hash_key( '41e3hHbYhmxxxxxx' );
-		$ideal_basic->set_merchant_id( '0050xxxxx' );
-		$ideal_basic->set_sub_id( '0' );
-		$ideal_basic->set_purchase_id( '10' );
-		$ideal_basic->set_payment_type( 'ideal' );
-		$ideal_basic->set_expire_date( new DateTime( '2009-01-01 12:34:56' ) );
+use DateTime;
 
-		$item = new Pronamic_WP_Pay_Gateways_IDealBasic_Item( '1', 'omschrijving', 1, 1 );
+class HashCodingTest extends \WP_UnitTestCase {
+	public function test_hashcoding() {
+		// http://pronamic.nl/wp-content/uploads/2011/12/IDealBasic_EN_v2.3.pdf #page 23
+		$client = new Client();
 
-		$items = $ideal_basic->get_items();
+		$client->set_hash_key( '41e3hHbYhmxxxxxx' );
+		$client->set_merchant_id( '0050xxxxx' );
+		$client->set_sub_id( '0' );
+		$client->set_purchase_id( '10' );
+		$client->set_payment_type( 'ideal' );
+		$client->set_expire_date( new DateTime( '2009-01-01 12:34:56' ) );
+
+		$item = new Item( '1', 'omschrijving', 1, 1 );
+
+		$items = $client->get_items();
 		$items->add_item( $item );
 
 		// Other variables (not in hash)
-		$ideal_basic->set_language( 'nl' );
-		$ideal_basic->set_currency( 'EUR' );
-		$ideal_basic->set_description( 'Example hashcode' );
+		$client->set_language( 'nl' );
+		$client->set_currency( 'EUR' );
+		$client->set_description( 'Example hashcode' );
 
 		$baseurl = 'http://www.uwwebwinkel.nl';
 
-		$ideal_basic->set_success_url( "$baseurl/Success.html" );
-		$ideal_basic->set_cancel_url( "$baseurl/Cancel.html" );
-		$ideal_basic->set_error_url( "$baseurl/Error.html" );
+		$client->set_success_url( "$baseurl/Success.html" );
+		$client->set_cancel_url( "$baseurl/Cancel.html" );
+		$client->set_error_url( "$baseurl/Error.html" );
 
 		// Create hash
-		$shasign = $ideal_basic->create_hash();
+		$shasign = $client->create_hash();
 
 		// Assert
 		$this->assertEquals( '7615604527e1edd65521e2180e445d3a89abc794', $shasign );

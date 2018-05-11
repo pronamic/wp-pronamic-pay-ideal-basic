@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 - 
 
+## [2.0.0] - 2018-05-11
+- Switched to PHP namespaces.
+
 ## [1.1.6] - 2016-10-20
 - Use the new $payment->format_string() function.
 
@@ -43,7 +46,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0 - 2015-01-19
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/ideal-basic/compare/1.1.6...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/wp-pay-gateways/ideal-basic/compare/1.1.6...2.0.0
 [1.1.6]: https://github.com/wp-pay-gateways/ideal-basic/compare/1.1.5...1.1.6
 [1.1.5]: https://github.com/wp-pay-gateways/ideal-basic/compare/1.1.4...1.1.5
 [1.1.4]: https://github.com/wp-pay-gateways/ideal-basic/compare/1.1.3...1.1.4

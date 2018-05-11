@@ -1,16 +1,19 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
+
 /**
  * Title: iDEAL Basic data helper class
  * Description:
- * Copyright: Copyright (c) 2005 - 2016
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
- * @author Remco Tolsma
- * @version 1.0.1
- * @see http://pronamic.nl/wp-content/uploads/2011/12/iDEAL_Basic_EN_v2.3.pdf
+ * @author  Remco Tolsma
+ * @version 2.0.0
+ * @since   1.0.1
+ * @see     http://pronamic.nl/wp-content/uploads/2011/12/IDealBasic_EN_v2.3.pdf
  */
-class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
+class DataHelper {
 	/**
 	 * Alphanumerical, free text
 	 *
@@ -41,14 +44,13 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
 	 */
 	private static $characters_n = array( '0-9' );
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Filter the specified characters from the string
 	 *
 	 * @param array $characters
 	 * @param string $string
 	 * @param int $max
+	 *
 	 * @return string
 	 */
 	private static function filter( array $characters, $string, $max = null ) {
@@ -63,13 +65,12 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
 		return $string;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Alphanumerical, free text
 	 *
 	 * @param string $string
 	 * @param string $max
+	 *
 	 * @return string
 	 */
 	public static function an( $string, $max = null ) {
@@ -89,6 +90,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
 	 *
 	 * @param string $string
 	 * @param string $max
+	 *
 	 * @return string
 	 */
 	public static function ans( $string, $max = null ) {
@@ -108,6 +110,7 @@ class Pronamic_WP_Pay_Gateways_IDealBasic_DataHelper {
 	 *
 	 * @param string $string
 	 * @param string $max
+	 *
 	 * @return string
 	 */
 	public static function n( $string, $max = null ) {
