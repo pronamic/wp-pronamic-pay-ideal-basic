@@ -101,7 +101,7 @@ class Gateway extends Core_Gateway {
 		if ( ! filter_has_var( INPUT_GET, 'status' ) ) {
 			return;
 		}
-		
+
 		$status = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_STRING );
 
 		$payment->set_status( $status );
