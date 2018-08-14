@@ -98,22 +98,12 @@ class Gateway extends Core_Gateway {
 	 * @param Payment $payment
 	 */
 	public function update_status( Payment $payment ) {
-		$status = null;
-
-		// Handle XML notification
-		$notification = Util::get_notification();
-
-		if ( $notification ) {
-			$payment->set_transaction_id( $notification->get_transaction_id() );
-
-			$status = $notification->get_status();
-		} elseif ( filter_has_var( INPUT_GET, 'status' ) ) {
-			$status = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_STRING );
+		if ( ! filter_has_var( INPUT_GET, 'status' ) ) {
+			return;
 		}
+		
+		$status = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_STRING );
 
-		// Set payment status
-		if ( $status ) {
-			$payment->set_status( $status );
-		}
+		$payment->set_status( $status );
 	}
 }

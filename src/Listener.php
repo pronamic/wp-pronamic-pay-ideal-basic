@@ -39,6 +39,9 @@ class Listener {
 
 			$payment->add_note( $note );
 
+			$payment->set_status( $notification->get_status() );
+			$payment->set_transaction_id( $notification->get_transaction_id() );			
+
 			// Update payment.
 			Plugin::update_payment( $payment );
 		}
