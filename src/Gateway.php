@@ -27,8 +27,6 @@ class Gateway extends Core_Gateway {
 		parent::__construct( $config );
 
 		$this->set_method( Gateway::METHOD_HTML_FORM );
-		$this->set_has_feedback( false );
-		$this->set_amount_minimum( 0.01 );
 
 		$this->client = new Client();
 
