@@ -5,7 +5,7 @@ namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 use Exception;
 use DateTime;
 use DateTimeZone;
-use Pronamic\WordPress\Pay\Core\Util as Core_Util;
+use Pronamic\WordPress\Money\Money;
 use Pronamic\WordPress\Pay\Plugin;
 
 /**
@@ -509,9 +509,11 @@ class Client {
 
 	/**
 	 * Calculate the total amount of all items
+	 *
+	 * @return Money
 	 */
 	public function get_amount() {
-		return $this->items->get_amount()->get_amount();
+		return $this->items->get_amount();
 	}
 
 	/**
@@ -529,8 +531,8 @@ class Client {
 		// Provided in the registration process, value is normally '0' (zero)
 		$string[] = $this->get_sub_id();
 
-		// Total amount of transaction
-		$string[] = Core_Util::amount_to_cents( $this->get_amount() );
+		// Total amount of transaction.
+		$string[] = intval( $this->get_amount()->get_cents() );
 
 		// The online shop's unique order number, also known as purchase id
 		$string[] = $this->get_purchase_id();
@@ -555,8 +557,8 @@ class Client {
 			// Number of items of article <n> that the consumer wants to buy
 			$string[] = $item->get_quantity();
 
-			// Price of article <n> in whole eurocents
-			$string[] = Core_Util::amount_to_cents( $item->get_price() ); // Price of article in whole cents
+			// Price of article <n> in whole eurocents.
+			$string[] = intval( $item->get_price()->get_cents() );
 		}
 
 		$concat_string = implode( '', $string );
@@ -592,7 +594,7 @@ class Client {
 		$fields['merchantID'] = $this->get_merchant_id();
 		$fields['subID']      = $this->get_sub_id();
 
-		$fields['amount']      = Core_Util::amount_to_cents( $this->get_amount() );
+		$fields['amount']      = intval( $this->get_amount()->get_cents() );
 		$fields['purchaseID']  = $this->get_purchase_id();
 		$fields['language']    = $this->get_language();
 		$fields['currency']    = $this->get_currency();
@@ -606,7 +608,7 @@ class Client {
 			$fields[ 'itemNumber' . $serial_number ]      = $item->get_number();
 			$fields[ 'itemDescription' . $serial_number ] = $item->get_description();
 			$fields[ 'itemQuantity' . $serial_number ]    = $item->get_quantity();
-			$fields[ 'itemPrice' . $serial_number ]       = Core_Util::amount_to_cents( $item->get_price() );
+			$fields[ 'itemPrice' . $serial_number ]       = intval( $item->get_price()->get_cents() );
 
 			$serial_number ++;
 		}
