@@ -45,6 +45,8 @@ class Items implements IteratorAggregate {
 
 	/**
 	 * Add item
+	 *
+	 * @param Item $item Item.
 	 */
 	public function add_item( Item $item ) {
 		$this->items[] = $item;
