@@ -80,7 +80,7 @@ class Gateway extends Core_Gateway {
 
 		// General.
 		$this->client->set_language( $payment->get_language() );
-		$this->client->set_currency( $payment->get_currency() );
+		$this->client->set_currency( $payment->get_total_amount()->get_currency()->get_alphabetic_code() );
 		$this->client->set_purchase_id( $purchase_id );
 		$this->client->set_description( $payment->get_description() );
 
