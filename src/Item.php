@@ -95,6 +95,6 @@ class Item {
 	 * @return float
 	 */
 	public function get_amount() {
-		return $this->price->get_amount() * $this->quantity;
+		return $this->price->get_value() * $this->quantity;
 	}
 }
