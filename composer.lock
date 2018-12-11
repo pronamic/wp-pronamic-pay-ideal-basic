@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ea89f5c9f53fa7b373bd64fcce01563c",
+    "content-hash": "701c8cffd6071f5104fb19081bd40ebf",
     "packages": [
         {
             "name": "composer/installers",
@@ -170,16 +170,16 @@
         },
         {
             "name": "pronamic/wp-money",
-            "version": "dev-develop",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pronamic/wp-money.git",
-                "reference": "dc7f10947d64c0b1b3ba5c60a14fcc891dd0647f"
+                "reference": "28b508d7ae573728c3104b183d124e80e549963c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pronamic/wp-money/zipball/dc7f10947d64c0b1b3ba5c60a14fcc891dd0647f",
-                "reference": "dc7f10947d64c0b1b3ba5c60a14fcc891dd0647f",
+                "url": "https://api.github.com/repos/pronamic/wp-money/zipball/28b508d7ae573728c3104b183d124e80e549963c",
+                "reference": "28b508d7ae573728c3104b183d124e80e549963c",
                 "shasum": ""
             },
             "require": {
@@ -187,7 +187,7 @@
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
-                "johnpbloch/wordpress": "^4.9",
+                "johnpbloch/wordpress": "^5.0",
                 "koodimonni-language/de_de": "*",
                 "koodimonni-language/fr_fr": "*",
                 "koodimonni-language/nl_nl": "*",
@@ -197,9 +197,9 @@
                 "phpunit/phpunit": "^4.8",
                 "squizlabs/php_codesniffer": "^2.9",
                 "vlucas/phpdotenv": "^2.0",
-                "wimg/php-compatibility": "^8.1",
+                "wimg/php-compatibility": "^9.0",
                 "wp-coding-standards/wpcs": "^1.2",
-                "wp-phpunit/wp-phpunit": "^4.9"
+                "wp-phpunit/wp-phpunit": "^5.0"
             },
             "type": "library",
             "autoload": {
@@ -211,7 +211,7 @@
             "license": [
                 "GPL-3.0-or-later"
             ],
-            "time": "2018-11-27T19:21:13+00:00"
+            "time": "2018-12-10T18:41:41+00:00"
         },
         {
             "name": "viison/address-splitter",
@@ -364,34 +364,36 @@
         },
         {
             "name": "wp-pay/core",
-            "version": "2.0.8",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-pay/core.git",
-                "reference": "86aa474a6a2d51371225f10c60c2efa3f7f17fb4"
+                "reference": "590b7a55c9e0817d3a28077bce345d6ba9738025"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-pay/core/zipball/86aa474a6a2d51371225f10c60c2efa3f7f17fb4",
-                "reference": "86aa474a6a2d51371225f10c60c2efa3f7f17fb4",
+                "url": "https://api.github.com/repos/wp-pay/core/zipball/590b7a55c9e0817d3a28077bce345d6ba9738025",
+                "reference": "590b7a55c9e0817d3a28077bce345d6ba9738025",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "^1.6",
                 "php": "^5.3",
                 "pronamic/wp-datetime": "^1.0",
-                "pronamic/wp-money": "^1.1",
+                "pronamic/wp-money": "^1.2",
                 "viison/address-splitter": "^0.3.2"
             },
             "require-dev": {
-                "johnpbloch/wordpress": "^4.9",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+                "johnpbloch/wordpress": "^5.0",
                 "php-coveralls/php-coveralls": "^1.0",
+                "phpcompatibility/phpcompatibility-wp": "^2.0",
                 "phpmd/phpmd": "^2.4",
                 "phpunit/phpunit": "^4.5",
-                "squizlabs/php_codesniffer": "^2.7",
-                "wimg/php-compatibility": "^8.0",
-                "wp-coding-standards/wpcs": "^1.1",
-                "wp-phpunit/wp-phpunit": "^4.9"
+                "squizlabs/php_codesniffer": "^2.9",
+                "wimg/php-compatibility": "^9.0",
+                "wp-coding-standards/wpcs": "^1.2",
+                "wp-phpunit/wp-phpunit": "^5.0"
             },
             "type": "library",
             "autoload": {
@@ -431,7 +433,7 @@
                 "wordpress",
                 "wp"
             ],
-            "time": "2018-09-28T06:43:35+00:00"
+            "time": "2018-12-10T19:14:21+00:00"
         }
     ],
     "packages-dev": [
@@ -2556,18 +2558,9 @@
             "time": "2018-02-16T01:57:48+00:00"
         }
     ],
-    "aliases": [
-        {
-            "alias": "1.1",
-            "alias_normalized": "1.1.0.0",
-            "version": "dev-develop",
-            "package": "pronamic/wp-money"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "pronamic/wp-money": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
