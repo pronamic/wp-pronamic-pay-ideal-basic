@@ -45,6 +45,8 @@ class Items implements IteratorAggregate {
 
 	/**
 	 * Add item
+	 *
+	 * @param Item $item Item.
 	 */
 	public function add_item( Item $item ) {
 		$this->items[] = $item;
@@ -56,8 +58,18 @@ class Items implements IteratorAggregate {
 	public function get_amount() {
 		$amount = 0;
 
+		$use_bcmath = extension_loaded( 'bcmath' );
+
 		foreach ( $this->items as $item ) {
-			$amount += $item->get_amount();
+			if ( $use_bcmath ) {
+				// Use non-locale aware float value.
+				// @link http://php.net/sprintf.
+				$item_amount = sprintf( '%F', $item->get_amount() );
+
+				$amount = bcadd( $amount, $item_amount, 8 );
+			} else {
+				$amount += $item->get_amount();
+			}
 		}
 
 		return new Money( $amount );

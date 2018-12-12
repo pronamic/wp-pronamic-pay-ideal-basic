@@ -2,6 +2,8 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
+use Pronamic\WordPress\Money\Money;
+
 /**
  * Title: iDEAL Basic item
  * Description:
@@ -37,7 +39,7 @@ class Item {
 	/**
 	 * The price
 	 *
-	 * @var float
+	 * @var Money
 	 */
 	private $price;
 
@@ -81,7 +83,7 @@ class Item {
 	/**
 	 * Get the price of this item
 	 *
-	 * @return float
+	 * @return Money
 	 */
 	public function get_price() {
 		return $this->price;
@@ -93,6 +95,6 @@ class Item {
 	 * @return float
 	 */
 	public function get_amount() {
-		return $this->price * $this->quantity;
+		return $this->price->get_value() * $this->quantity;
 	}
 }

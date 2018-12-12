@@ -3,10 +3,14 @@
 namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
 use DateTime;
+use Pronamic\WordPress\Money\Money;
 
 class HashCodingTest extends \WP_UnitTestCase {
+	/**
+	 * Test hash coding.
+	 */
 	public function test_hashcoding() {
-		// http://pronamic.nl/wp-content/uploads/2011/12/IDealBasic_EN_v2.3.pdf #page 23
+		/* @link http://pronamic.nl/wp-content/uploads/2011/12/IDealBasic_EN_v2.3.pdf #page 23 */
 		$client = new Client();
 
 		$client->set_hash_key( '41e3hHbYhmxxxxxx' );
@@ -16,12 +20,12 @@ class HashCodingTest extends \WP_UnitTestCase {
 		$client->set_payment_type( 'ideal' );
 		$client->set_expire_date( new DateTime( '2009-01-01 12:34:56' ) );
 
-		$item = new Item( '1', 'omschrijving', 1, 1 );
+		$item = new Item( '1', 'omschrijving', 1, new Money( 1 ) );
 
 		$items = $client->get_items();
 		$items->add_item( $item );
 
-		// Other variables (not in hash)
+		// Other variables (not in hash).
 		$client->set_language( 'nl' );
 		$client->set_currency( 'EUR' );
 		$client->set_description( 'Example hashcode' );
@@ -32,10 +36,10 @@ class HashCodingTest extends \WP_UnitTestCase {
 		$client->set_cancel_url( "$baseurl/Cancel.html" );
 		$client->set_error_url( "$baseurl/Error.html" );
 
-		// Create hash
+		// Create hash.
 		$shasign = $client->create_hash();
 
-		// Assert
+		// Assert.
 		$this->assertEquals( '7615604527e1edd65521e2180e445d3a89abc794', $shasign );
 	}
 }

@@ -14,21 +14,26 @@ use Pronamic\WordPress\Pay\Payments\Payment;
  * Company: Pronamic
  *
  * @author  Remco Tolsma
- * @version 2.0.0
+ * @version 2.0.1
  * @since   1.0.0
  */
 class Gateway extends Core_Gateway {
 	/**
+	 * Client.
+	 *
+	 * @var Client
+	 */
+	protected $client;
+
+	/**
 	 * Construct and intialize an gateway
 	 *
-	 * @param Config $config
+	 * @param Config $config Config.
 	 */
 	public function __construct( Config $config ) {
 		parent::__construct( $config );
 
-		$this->set_method( Gateway::METHOD_HTML_FORM );
-		$this->set_has_feedback( false );
-		$this->set_amount_minimum( 0.01 );
+		$this->set_method( self::METHOD_HTML_FORM );
 
 		$this->client = new Client();
 
@@ -42,8 +47,8 @@ class Gateway extends Core_Gateway {
 	 * Get output HTML
 	 *
 	 * @since 1.1.1
-	 * @see Pronamic_WP_Pay_Gateway::get_output_html()
-	 * @return string
+	 *
+	 * @return array
 	 */
 	public function get_output_fields() {
 		return $this->client->get_fields();
@@ -63,30 +68,33 @@ class Gateway extends Core_Gateway {
 	/**
 	 * Start an transaction with the specified data
 	 *
-	 * @see Pronamic_WP_Pay_Gateway::start()
+	 * @param Payment $payment Payment.
 	 */
 	public function start( Payment $payment ) {
 		$payment->set_action_url( $this->client->get_payment_server_url() );
 
-		// Purchase ID
+		// Purchase ID.
 		$purchase_id = $payment->format_string( $this->config->purchase_id );
 
 		$payment->set_meta( 'purchase_id', $purchase_id );
 
-		// General
-		$this->client->set_language( $payment->get_language() );
-		$this->client->set_currency( $payment->get_currency() );
+		// General.
+		$this->client->set_currency( $payment->get_total_amount()->get_currency()->get_alphabetic_code() );
 		$this->client->set_purchase_id( $purchase_id );
 		$this->client->set_description( $payment->get_description() );
 
-		// Items
+		if ( null !== $payment->get_customer() ) {
+			$this->client->set_language( $payment->get_customer()->get_language() );
+		}
+
+		// Items.
 		$items = new Items();
 
-		$items->add_item( new Item( 1, $payment->get_description(), 1, $payment->get_amount()->get_amount() ) );
+		$items->add_item( new Item( 1, $payment->get_description(), 1, $payment->get_total_amount() ) );
 
 		$this->client->set_items( $items );
 
-		// URLs
+		// URLs.
 		$this->client->set_cancel_url( add_query_arg( 'status', Statuses::CANCELLED, $payment->get_return_url() ) );
 		$this->client->set_success_url( add_query_arg( 'status', Statuses::SUCCESS, $payment->get_return_url() ) );
 		$this->client->set_error_url( add_query_arg( 'status', Statuses::FAILURE, $payment->get_return_url() ) );
@@ -95,25 +103,16 @@ class Gateway extends Core_Gateway {
 	/**
 	 * Update status of the specified payment
 	 *
-	 * @param Payment $payment
+	 * @param Payment $payment Payment.
 	 */
 	public function update_status( Payment $payment ) {
-		$status = null;
-
-		// Handle XML notification
-		$notification = Util::get_notification();
-
-		if ( $notification ) {
-			$payment->set_transaction_id( $notification->get_transaction_id() );
-
-			$status = $notification->get_status();
-		} elseif ( filter_has_var( INPUT_GET, 'status' ) ) {
-			$status = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_STRING );
+		if ( ! filter_has_var( INPUT_GET, 'status' ) ) {
+			return;
 		}
 
-		// Set payment status
-		if ( $status ) {
-			$payment->set_status( $status );
-		}
+		$status = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_STRING );
+
+		// Update payment status.
+		$payment->set_status( $status );
 	}
 }

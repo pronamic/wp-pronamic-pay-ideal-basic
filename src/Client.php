@@ -2,10 +2,10 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
-use Exception;
+use InvalidArgumentException;
 use DateTime;
 use DateTimeZone;
-use Pronamic\WordPress\Pay\Core\Util as Core_Util;
+use Pronamic\WordPress\Money\Money;
 use Pronamic\WordPress\Pay\Plugin;
 
 /**
@@ -143,7 +143,7 @@ class Client {
 	/**
 	 * The items
 	 *
-	 * @var array
+	 * @var Items
 	 */
 	private $items;
 
@@ -185,7 +185,7 @@ class Client {
 	/**
 	 * Get the payment server URL
 	 *
-	 * @return the payment server URL
+	 * @return string
 	 */
 	public function get_payment_server_url() {
 		return $this->payment_server_url;
@@ -194,25 +194,25 @@ class Client {
 	/**
 	 * Set the payment server URL
 	 *
-	 * @param string $url an URL
+	 * @param string $url Payment server URL.
 	 */
 	public function set_payment_server_url( $url ) {
 		$this->payment_server_url = $url;
 	}
 
 	/**
-	 * Get the merchant id
+	 * Get the merchant ID.
 	 *
-	 * @return string merchant id
+	 * @return string
 	 */
 	public function get_merchant_id() {
 		return $this->merchant_id;
 	}
 
 	/**
-	 * Set the merchant id
+	 * Set the merchant ID.
 	 *
-	 * @param string $merchant_id
+	 * @param string $merchant_id Merchant ID.
 	 */
 	public function set_merchant_id( $merchant_id ) {
 		$this->merchant_id = $merchant_id;
@@ -230,7 +230,7 @@ class Client {
 	/**
 	 * Set the sub id
 	 *
-	 * @param string $sub_id
+	 * @param string $sub_id Sub ID.
 	 */
 	public function set_sub_id( $sub_id ) {
 		$this->sub_id = $sub_id;
@@ -249,7 +249,7 @@ class Client {
 	 * Set the hash key
 	 * N..max50
 	 *
-	 * @param string $hash_key
+	 * @param string $hash_key Hash key.
 	 */
 	public function set_hash_key( $hash_key ) {
 		$this->hash_key = $hash_key;
@@ -268,7 +268,7 @@ class Client {
 	 * Set the purchase id
 	 * AN..max16 (AN = Alphanumeric, free text)
 	 *
-	 * @param string $purchase_id
+	 * @param string $purchase_id Purchase ID.
 	 */
 	public function set_purchase_id( $purchase_id ) {
 		$this->purchase_id = substr( $purchase_id, 0, 16 );
@@ -286,7 +286,7 @@ class Client {
 	/**
 	 * Set the language
 	 *
-	 * @param string $language
+	 * @param string $language Language.
 	 */
 	public function set_language( $language ) {
 		$this->language = $language;
@@ -305,7 +305,7 @@ class Client {
 	 * Set the description
 	 * AN..max32 (AN = Alphanumeric, free text)
 	 *
-	 * @param string $description
+	 * @param string $description Description.
 	 */
 	public function set_description( $description ) {
 		$this->description = DataHelper::an32( $description );
@@ -323,7 +323,7 @@ class Client {
 	/**
 	 * Set the currency
 	 *
-	 * @param string Currency
+	 * @param string $currency Currency.
 	 */
 	public function set_currency( $currency ) {
 		$this->currency = $currency;
@@ -342,7 +342,7 @@ class Client {
 	 * Set the payment type
 	 * AN..max10
 	 *
-	 * @param string $payment_type Payment type
+	 * @param string $payment_type Payment type.
 	 */
 	public function set_payment_type( $payment_type ) {
 		$this->payment_type = $payment_type;
@@ -351,7 +351,7 @@ class Client {
 	/**
 	 * Get the expire date
 	 *
-	 * @param boolean $create_new Indicator for creating a new expire date
+	 * @param boolean $create_new Indicator for creating a new expire date.
 	 *
 	 * @return DateTime
 	 */
@@ -376,7 +376,7 @@ class Client {
 	/**
 	 * Set the expire date formnat
 	 *
-	 * @param string $expire_date_format Expire date format
+	 * @param string $expire_date_format Expire date format.
 	 */
 	public function set_expire_date_format( $expire_date_format ) {
 		$this->expire_date_format = $expire_date_format;
@@ -394,7 +394,7 @@ class Client {
 	/**
 	 * Set the expire date modifier
 	 *
-	 * @param string $expire_date_modifier Expire date modifier
+	 * @param string $expire_date_modifier Expire date modifier.
 	 */
 	public function set_expire_date_modifier( $expire_date_modifier ) {
 		$this->expire_date_modifier = $expire_date_modifier;
@@ -403,7 +403,7 @@ class Client {
 	/**
 	 * Set the expire date
 	 *
-	 * @param DateTime $date
+	 * @param DateTime $date Expire date.
 	 */
 	public function set_expire_date( DateTime $date ) {
 		$this->expire_date = $date;
@@ -421,18 +421,20 @@ class Client {
 	/**
 	 * Set the forbidden characters
 	 *
-	 * @param mixed $forbidden_characters Array or string with forbidden characters
+	 * @param mixed $characters Array or string with forbidden characters.
 	 *
-	 * @throws Exception
+	 * @throws InvalidArgumentException Passed characters is not an array or string.
 	 */
-	public function set_forbidden_characters( $forbidden_characters ) {
-		if ( is_string( $forbidden_characters ) ) {
-			$this->forbidden_characters = str_split( $forbidden_characters );
-		} elseif ( is_array( $forbidden_characters ) ) {
-			$this->forbidden_characters = $forbidden_characters;
-		} else {
-			throw new Exception( 'Wrong arguments' );
+	public function set_forbidden_characters( $characters ) {
+		if ( ! is_array( $characters ) && ! is_string( $characters ) ) {
+			throw new InvalidArgumentException( 'Invalid characters argument.' );
 		}
+
+		if ( is_string( $characters ) ) {
+			$characters = str_split( $characters );
+		}
+
+		$this->forbidden_characters = $characters;
 	}
 
 	/**
@@ -447,7 +449,7 @@ class Client {
 	/**
 	 * Set the success URL
 	 *
-	 * @param string $url
+	 * @param string $url Success URL.
 	 */
 	public function set_success_url( $url ) {
 		$this->success_url = $url;
@@ -465,7 +467,7 @@ class Client {
 	/**
 	 * Set the cancel URL
 	 *
-	 * @param string $url
+	 * @param string $url Cancel URL.
 	 */
 	public function set_cancel_url( $url ) {
 		$this->cancel_url = $url;
@@ -483,7 +485,7 @@ class Client {
 	/**
 	 * Set the error URL
 	 *
-	 * @param string $url
+	 * @param string $url Error URL.
 	 */
 	public function set_error_url( $url ) {
 		$this->error_url = $url;
@@ -501,7 +503,7 @@ class Client {
 	/**
 	 * Set the items
 	 *
-	 * @param Items $items
+	 * @param Items $items Items.
 	 */
 	public function set_items( Items $items ) {
 		$this->items = $items;
@@ -509,9 +511,11 @@ class Client {
 
 	/**
 	 * Calculate the total amount of all items
+	 *
+	 * @return Money
 	 */
 	public function get_amount() {
-		return $this->items->get_amount()->get_amount();
+		return $this->items->get_amount();
 	}
 
 	/**
@@ -523,16 +527,16 @@ class Client {
 		// SHA1 hashcode, used only with the hashcode approach (Chapter 4).
 		$string[] = $this->get_hash_key();
 
-		// Your AcceptorID is provided in the registration process, also known as merchant id
+		// Your AcceptorID is provided in the registration process, also known as merchant id.
 		$string[] = $this->get_merchant_id();
 
-		// Provided in the registration process, value is normally '0' (zero)
+		// Provided in the registration process, value is normally '0' (zero).
 		$string[] = $this->get_sub_id();
 
-		// Total amount of transaction
-		$string[] = Core_Util::amount_to_cents( $this->get_amount() );
+		// Total amount of transaction.
+		$string[] = intval( $this->get_amount()->get_cents() );
 
-		// The online shop's unique order number, also known as purchase id
+		// The online shop's unique order number, also known as purchase id.
 		$string[] = $this->get_purchase_id();
 
 		// ?? Fixed value = ideal
@@ -542,30 +546,30 @@ class Client {
 		// The consumer has time until then to pay with iDEAL.
 		$string[] = $this->get_expire_date()->format( $this->get_expire_date_format() );
 
-		// Iterate through the items and concat
+		// Iterate through the items and concat.
 		foreach ( $this->get_items() as $item ) {
 			// Article number. <n> is 1 for the first product, 2 for the second, etc.
 			// N.B. Note that for every product type the parameters
 			// itemNumber<n>, itemDescription<n>, itemQuantity<n> and itemPrice<n> are mandatory.
 			$string[] = $item->get_number();
 
-			// Description of article <n>
+			// Description of article <n>.
 			$string[] = $item->get_description();
 
-			// Number of items of article <n> that the consumer wants to buy
+			// Number of items of article <n> that the consumer wants to buy.
 			$string[] = $item->get_quantity();
 
-			// Price of article <n> in whole eurocents
-			$string[] = Core_Util::amount_to_cents( $item->get_price() ); // Price of article in whole cents
+			// Price of article <n> in whole eurocents.
+			$string[] = intval( $item->get_price()->get_cents() );
 		}
 
 		$concat_string = implode( '', $string );
 
-		// The characters "\t", "\n", "\r", " " (spaces) may not exist in the string
+		// The characters "\t", "\n", "\r", " " (spaces) may not exist in the string.
 		$forbidden_characters = $this->get_forbidden_characters();
 		$concat_string        = str_replace( $forbidden_characters, '', $concat_string );
 
-		// Delete special HTML entities
+		// Delete special HTML entities.
 		$concat_string = html_entity_decode( $concat_string, ENT_COMPAT, 'UTF-8' );
 
 		return $concat_string;
@@ -592,7 +596,7 @@ class Client {
 		$fields['merchantID'] = $this->get_merchant_id();
 		$fields['subID']      = $this->get_sub_id();
 
-		$fields['amount']      = Core_Util::amount_to_cents( $this->get_amount() );
+		$fields['amount']      = intval( $this->get_amount()->get_cents() );
 		$fields['purchaseID']  = $this->get_purchase_id();
 		$fields['language']    = $this->get_language();
 		$fields['currency']    = $this->get_currency();
@@ -606,7 +610,7 @@ class Client {
 			$fields[ 'itemNumber' . $serial_number ]      = $item->get_number();
 			$fields[ 'itemDescription' . $serial_number ] = $item->get_description();
 			$fields[ 'itemQuantity' . $serial_number ]    = $item->get_quantity();
-			$fields[ 'itemPrice' . $serial_number ]       = Core_Util::amount_to_cents( $item->get_price() );
+			$fields[ 'itemPrice' . $serial_number ]       = intval( $item->get_price()->get_cents() );
 
 			$serial_number ++;
 		}
