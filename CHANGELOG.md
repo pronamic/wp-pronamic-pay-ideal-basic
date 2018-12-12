@@ -7,6 +7,10 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 - 
 
+## [2.0.1] - 2018-12-12
+- Simplified XML notifications status updates.
+- Updated deprecated function calls.
+
 ## [2.0.0] - 2018-05-11
 - Switched to PHP namespaces.
 
@@ -46,7 +50,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0 - 2015-01-19
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.0.0...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.0.1...HEAD
+[2.0.1]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/wp-pay-gateways/ideal-basic/compare/1.1.6...2.0.0
 [1.1.6]: https://github.com/wp-pay-gateways/ideal-basic/compare/1.1.5...1.1.6
 [1.1.5]: https://github.com/wp-pay-gateways/ideal-basic/compare/1.1.4...1.1.5
