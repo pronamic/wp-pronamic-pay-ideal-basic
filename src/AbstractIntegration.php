@@ -16,7 +16,7 @@ use Pronamic\WordPress\Pay\Gateways\IDeal\AbstractIntegration as IDeal_AbstractI
  */
 abstract class AbstractIntegration extends IDeal_AbstractIntegration {
 	public function __construct() {
-		// Actions
+		// Actions.
 		$function = array( __NAMESPACE__ . '\Listener', 'listen' );
 
 		if ( ! has_action( 'wp_loaded', $function ) ) {
