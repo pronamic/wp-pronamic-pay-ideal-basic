@@ -8,7 +8,7 @@ use Pronamic\WordPress\Pay\Gateways\IDealBasic\XML\NotificationParser;
 /**
  * Title: iDEAL Basic utility class
  * Description:
- * Copyright: Copyright (c) 2005 - 2018
+ * Copyright: 2005-2019 Pronamic
  * Company: Pronamic
  *
  * @author  Reüel van der Steege
