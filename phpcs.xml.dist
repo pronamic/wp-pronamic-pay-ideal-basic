@@ -36,7 +36,7 @@
 		<exclude name="WordPress.WP.AlternativeFunctions.file_system_read_file_get_contents" />
 	</rule>
 
-	<rule ref="WordPress.VIP.SlowDBQuery.slow_db_query_meta_key">
+	<rule ref="WordPress.DB.SlowDBQuery">
 		<exclude-pattern>/src/Settings.php</exclude-pattern>
 	</rule>
 </ruleset>

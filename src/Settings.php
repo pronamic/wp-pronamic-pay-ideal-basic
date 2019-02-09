@@ -57,23 +57,26 @@ class Settings extends GatewaySettings {
 			),
 		);
 
-		// XML Notification URL
+		// XML Notification URL.
 		$fields[] = array(
 			'section'  => 'IDealBasic_feedback',
 			'title'    => __( 'XML Notification URL', 'pronamic_ideal' ),
 			'type'     => 'text',
 			'classes'  => array( 'regular-text', 'code' ),
-			'value'    => add_query_arg( array(
-				'gateway'          => 'IDealBasic',
-				'xml_notification' => 'true',
-			), site_url( '/' ) ),
+			'value'    => add_query_arg(
+				array(
+					'gateway'          => 'IDealBasic',
+					'xml_notification' => 'true',
+				),
+				site_url( '/' )
+			),
 			'methods'  => array( 'ideal-basic' ),
 			'readonly' => true,
 			'size'     => 200,
 			'tooltip'  => __( 'Copy the XML notification URL to the payment provider dashboard to receive automatic transaction status updates.', 'pronamic_ideal' ),
 		);
 
-		// Return fields
+		// Return fields.
 		return $fields;
 	}
 }
