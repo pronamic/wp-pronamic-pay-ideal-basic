@@ -3,6 +3,7 @@
 namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
 use Pronamic\WordPress\Pay\Core\GatewaySettings;
+use Pronamic\WordPress\Pay\WebhookManager;
 
 /**
  * Title: iDEAL Basic settings
@@ -26,6 +27,7 @@ class Settings extends GatewaySettings {
 			'title'       => __( 'Transaction feedback', 'pronamic_ideal' ),
 			'methods'     => array( 'ideal-basic' ),
 			'description' => __( 'The URL below needs to be copied to the payment provider dashboard to receive automatic transaction status updates.', 'pronamic_ideal' ),
+			'features'    => Gateway::get_supported_features(),
 		);
 
 		// Return sections
@@ -47,14 +49,12 @@ class Settings extends GatewaySettings {
 
 		// Transaction feedback
 		$fields[] = array(
-			'section' => 'ideal',
-			'methods' => array( 'ideal-basic' ),
-			'title'   => __( 'Transaction feedback', 'pronamic_ideal' ),
-			'type'    => 'description',
-			'html'    => sprintf(
-				'<span class="dashicons dashicons-warning"></span> %s',
-				__( 'Receiving payment status updates needs additional configuration, if not yet completed.', 'pronamic_ideal' )
-			),
+			'section'  => 'ideal',
+			'methods'  => array( 'ideal-basic' ),
+			'title'    => __( 'Transaction feedback', 'pronamic_ideal' ),
+			'type'     => 'description',
+			'html'     => __( 'Receiving payment status updates needs additional configuration.', 'pronamic_ideal' ),
+			'features' => Gateway::get_supported_features(),
 		);
 
 		// XML Notification URL.
@@ -76,7 +76,27 @@ class Settings extends GatewaySettings {
 			'tooltip'  => __( 'Copy the XML notification URL to the payment provider dashboard to receive automatic transaction status updates.', 'pronamic_ideal' ),
 		);
 
+		// Webhook status.
+		$fields[] = array(
+			'section'  => 'IDealBasic_feedback',
+			'methods'  => array( 'ideal-basic' ),
+			'title'    => __( 'Status', 'pronamic_ideal' ),
+			'type'     => 'description',
+			'callback' => array( $this, 'feedback_status' ),
+		);
+
 		// Return fields.
 		return $fields;
+	}
+
+	/**
+	 * Transaction feedback status.
+	 *
+	 * @param array $field Settings field.
+	 */
+	public function feedback_status( $field ) {
+		$features = Gateway::get_supported_features();
+
+		WebhookManager::settings_status( $field, $features );
 	}
 }
