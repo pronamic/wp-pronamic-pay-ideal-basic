@@ -3,6 +3,7 @@
 namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
 use Pronamic\WordPress\Pay\Plugin;
+use Pronamic\WordPress\Pay\WebhookManager;
 
 /**
  * Title: iDEAL Basic listener
@@ -41,6 +42,9 @@ class Listener {
 
 			$payment->set_status( $notification->get_status() );
 			$payment->set_transaction_id( $notification->get_transaction_id() );
+
+			// Log webhook request.
+			WebhookManager::log_payment( $payment );
 
 			// Update payment.
 			Plugin::update_payment( $payment );
