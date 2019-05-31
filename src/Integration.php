@@ -2,6 +2,8 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
+use Pronamic\WordPress\Pay\Gateways\IDeal\AbstractIntegration;
+
 /**
  * Title: Integration
  * Description:
@@ -20,10 +22,21 @@ class Integration extends AbstractIntegration {
 		$this->supports = array(
 			'webhook',
 		);
+
+		// Actions.
+		$function = array( __NAMESPACE__ . '\Listener', 'listen' );
+
+		if ( ! has_action( 'wp_loaded', $function ) ) {
+			add_action( 'wp_loaded', $function );
+		}
+	}
+
+	public function get_config_factory_class() {
+		return __NAMESPACE__ . '\ConfigFactory';
 	}
 
 	public function get_settings_fields() {
-		$fields = array();
+		$fields = parent::get_settings_fields();
 
 		// Hash Key
 		$fields[] = array(
