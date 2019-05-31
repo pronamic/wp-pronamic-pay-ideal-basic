@@ -13,6 +13,15 @@ namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
  * @since   1.0.0
  */
 class Integration extends AbstractIntegration {
+	/**
+	 * Construct and initialize integration.
+	 */
+	public function __construct() {
+		$this->supports = array(
+			'webhook',
+		);
+	}
+
 	public function get_settings_fields() {
 		$fields = array();
 
