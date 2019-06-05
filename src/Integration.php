@@ -18,7 +18,23 @@ class Integration extends AbstractIntegration {
 	/**
 	 * Construct and initialize integration.
 	 */
-	public function __construct() {
+	public function __construct( $args = array() ) {
+		$args = wp_parse_args( $args, array(
+			'id'            => 'ideal-basic',
+			'name'          => 'iDEAL Basic',
+			'url'           => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
+			'product_url'   => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
+			'dashboard_url' => null,
+			'provider'      => null,
+		) );
+
+		$this->id            = $args['id'];
+		$this->name          = $args['name'];
+		$this->url           = $args['url'];
+		$this->product_url   = $args['product_url'];
+		$this->dashboard_url = $args['dashboard_url'];
+		$this->provider      = $args['provider'];
+
 		$this->supports = array(
 			'webhook',
 		);
@@ -29,10 +45,6 @@ class Integration extends AbstractIntegration {
 		if ( ! has_action( 'wp_loaded', $function ) ) {
 			add_action( 'wp_loaded', $function );
 		}
-	}
-
-	public function get_config_factory_class() {
-		return __NAMESPACE__ . '\ConfigFactory';
 	}
 
 	public function get_settings_fields() {
@@ -71,5 +83,18 @@ class Integration extends AbstractIntegration {
 
 		// Return fields.
 		return $fields;
+	}
+
+	public function get_config( $post_id ) {
+		$mode = get_post_meta( $post_id, '_pronamic_gateway_mode', true );
+
+		$config = new Config();
+
+		$config->merchant_id = get_post_meta( $post_id, '_pronamic_gateway_ideal_merchant_id', true );
+		$config->sub_id      = get_post_meta( $post_id, '_pronamic_gateway_ideal_sub_id', true );
+		$config->hash_key    = get_post_meta( $post_id, '_pronamic_gateway_ideal_hash_key', true );
+		$config->purchase_id = get_post_meta( $post_id, '_pronamic_gateway_ideal_purchase_id', true );
+
+		return $config;
 	}
 }
