@@ -20,12 +20,14 @@ class Integration extends AbstractIntegration {
 	 */
 	public function __construct( $args = array() ) {
 		$args = wp_parse_args( $args, array(
-			'id'            => 'ideal-basic',
-			'name'          => 'iDEAL Basic',
-			'url'           => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
-			'product_url'   => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
-			'dashboard_url' => null,
-			'provider'      => null,
+			'id'               => 'ideal-basic',
+			'name'             => 'iDEAL Basic',
+			'url'              => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
+			'product_url'      => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
+			'dashboard_url'    => null,
+			'provider'         => null,
+			'aquirer_url'      => null,
+			'aquirer_test_url' => null,
 		) );
 
 		$this->id            = $args['id'];
@@ -34,6 +36,9 @@ class Integration extends AbstractIntegration {
 		$this->product_url   = $args['product_url'];
 		$this->dashboard_url = $args['dashboard_url'];
 		$this->provider      = $args['provider'];
+
+		$this->aquirer_url      = $args['aquirer_url'];
+		$this->aquirer_test_url = $args['aquirer_test_url'];
 
 		$this->supports = array(
 			'webhook',
@@ -90,11 +95,27 @@ class Integration extends AbstractIntegration {
 
 		$config = new Config();
 
+		$config->url = $this->aquirer_url;
+
+		if ( 'test' === $mode && null !== $this->aquirer_test_url ) {
+			$config->url = $this->aquirer_test_url;		
+		}
+
 		$config->merchant_id = get_post_meta( $post_id, '_pronamic_gateway_ideal_merchant_id', true );
 		$config->sub_id      = get_post_meta( $post_id, '_pronamic_gateway_ideal_sub_id', true );
 		$config->hash_key    = get_post_meta( $post_id, '_pronamic_gateway_ideal_hash_key', true );
 		$config->purchase_id = get_post_meta( $post_id, '_pronamic_gateway_ideal_purchase_id', true );
 
 		return $config;
+	}
+
+	/**
+	 * Get gateway.
+	 *
+	 * @param int $post_id Post ID.
+	 * @return Gateway
+	 */
+	public function get_gateway( $post_id ) {
+		return new Gateway( $this->get_config( $post_id ) );
 	}
 }
