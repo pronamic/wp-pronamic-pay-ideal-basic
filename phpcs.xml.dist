@@ -37,6 +37,6 @@
 	</rule>
 
 	<rule ref="WordPress.DB.SlowDBQuery">
-		<exclude-pattern>/src/Settings.php</exclude-pattern>
+		<exclude-pattern>/src/Integration.php</exclude-pattern>
 	</rule>
 </ruleset>

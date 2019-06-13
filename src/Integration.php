@@ -19,16 +19,19 @@ class Integration extends AbstractIntegration {
 	 * Construct and initialize integration.
 	 */
 	public function __construct( $args = array() ) {
-		$args = wp_parse_args( $args, array(
-			'id'               => 'ideal-basic',
-			'name'             => 'iDEAL Basic',
-			'url'              => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
-			'product_url'      => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
-			'dashboard_url'    => null,
-			'provider'         => null,
-			'aquirer_url'      => null,
-			'aquirer_test_url' => null,
-		) );
+		$args = wp_parse_args(
+			$args,
+			array(
+				'id'               => 'ideal-basic',
+				'name'             => 'iDEAL Basic',
+				'url'              => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
+				'product_url'      => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
+				'dashboard_url'    => null,
+				'provider'         => null,
+				'aquirer_url'      => null,
+				'aquirer_test_url' => null,
+			)
+		);
 
 		$this->id            = $args['id'];
 		$this->name          = $args['name'];
@@ -98,7 +101,7 @@ class Integration extends AbstractIntegration {
 		$config->url = $this->aquirer_url;
 
 		if ( 'test' === $mode && null !== $this->aquirer_test_url ) {
-			$config->url = $this->aquirer_test_url;		
+			$config->url = $this->aquirer_test_url;
 		}
 
 		$config->merchant_id = get_post_meta( $post_id, '_pronamic_gateway_ideal_merchant_id', true );
