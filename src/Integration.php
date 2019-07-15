@@ -45,6 +45,7 @@ class Integration extends AbstractIntegration {
 
 		$this->supports = array(
 			'webhook',
+			'webhook_log',
 		);
 
 		// Actions.
