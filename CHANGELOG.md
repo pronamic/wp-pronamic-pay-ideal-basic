@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 - 
 
+## [2.0.2] - 2019-08-27
+- Updated packages.
+
 ## [2.0.1] - 2018-12-12
 - Simplified XML notifications status updates.
 - Updated deprecated function calls.
@@ -39,8 +42,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 - Improved support for user defined purchase ID's.
 
 ## [1.0.2] - 2015-03-03
-- Changed WordPress pay core library requirment from ~1.0.0 to >=1.0.0.
-- Changed WordPress pay iDEAL library requirment from ~1.0.0 to >=1.0.0.
+- Changed WordPress pay core library requirment from `~1.0.0` to `>=1.0.0`.
+- Changed WordPress pay iDEAL library requirment from `~1.0.0` to `>=1.0.0`.
 
 ## [1.0.1] - 2015-02-06
 - No longer create random transaction ID's.
@@ -50,7 +53,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0 - 2015-01-19
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.0.1...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.0.2...HEAD
+[2.0.2]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/wp-pay-gateways/ideal-basic/compare/1.1.6...2.0.0
 [1.1.6]: https://github.com/wp-pay-gateways/ideal-basic/compare/1.1.5...1.1.6

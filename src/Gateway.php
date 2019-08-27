@@ -10,7 +10,7 @@ use Pronamic\WordPress\Pay\Payments\Payment;
 /**
  * Title: iDEAL Basic gateway
  * Description:
- * Copyright: Copyright (c) 2005 - 2018
+ * Copyright: 2005-2019 Pronamic
  * Company: Pronamic
  *
  * @author  Remco Tolsma
@@ -35,6 +35,10 @@ class Gateway extends Core_Gateway {
 
 		$this->set_method( self::METHOD_HTML_FORM );
 
+		// Supported features.
+		$this->supports = array();
+
+		// Client.
 		$this->client = new Client();
 
 		$this->client->set_payment_server_url( $config->get_payment_server_url() );

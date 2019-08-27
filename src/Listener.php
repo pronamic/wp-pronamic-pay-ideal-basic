@@ -7,7 +7,7 @@ use Pronamic\WordPress\Pay\Plugin;
 /**
  * Title: iDEAL Basic listener
  * Description:
- * Copyright: Copyright (c) 2005 - 2018
+ * Copyright: 2005-2019 Pronamic
  * Company: Pronamic
  *
  * @author  Remco Tolsma
@@ -41,6 +41,9 @@ class Listener {
 
 			$payment->set_status( $notification->get_status() );
 			$payment->set_transaction_id( $notification->get_transaction_id() );
+
+			// Log webhook request.
+			do_action( 'pronamic_pay_webhook_log_payment', $payment );
 
 			// Update payment.
 			Plugin::update_payment( $payment );
