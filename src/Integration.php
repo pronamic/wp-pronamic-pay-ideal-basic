@@ -74,7 +74,8 @@ class Integration extends AbstractIntegration {
 		// XML Notification URL.
 		$fields[] = array(
 			'section'  => 'feedback',
-			'title'    => __( 'XML Notification URL', 'pronamic_ideal' ),
+			/* translators: Translate 'XML notification URL' the same as in the iDEAL Basic dashboard. */
+			'title'    => _x( 'XML Notification URL', 'iDEAL Basic dashboard', 'pronamic_ideal' ),
 			'type'     => 'text',
 			'classes'  => array( 'regular-text', 'code' ),
 			'value'    => add_query_arg(
@@ -87,7 +88,12 @@ class Integration extends AbstractIntegration {
 			'methods'  => array( 'ideal-basic' ),
 			'readonly' => true,
 			'size'     => 200,
-			'tooltip'  => __( 'Copy the XML notification URL to the payment provider dashboard to receive automatic transaction status updates.', 'pronamic_ideal' ),
+			/* translators: Translate 'XML notification URL' the same as in the iDEAL Basic dashboard. */
+			'tooltip'  => _x(
+				'Copy the XML notification URL to the payment provider dashboard to receive automatic transaction status updates.',
+				'iDEAL Basic dashboard',
+				'pronamic_ideal'
+			),
 		);
 
 		// Return fields.
