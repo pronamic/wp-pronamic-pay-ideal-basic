@@ -27,9 +27,9 @@ class Util {
 
 		$data = file_get_contents( 'php://input' );
 
-		$xml = Core_Util::simplexml_load_string( $data );
-
-		if ( is_wp_error( $xml ) ) {
+		try {
+			$xml = Core_Util::simplexml_load_string( $data );
+		} catch ( \Exception $e ) {
 			return;
 		}
 
