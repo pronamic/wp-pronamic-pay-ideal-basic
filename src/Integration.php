@@ -11,7 +11,7 @@ use Pronamic\WordPress\Pay\Gateways\IDeal\AbstractIntegration;
  * Company: Pronamic
  *
  * @author  Remco Tolsma
- * @version 2.0.3
+ * @version 2.0.4
  * @since   1.0.0
  */
 class Integration extends AbstractIntegration {
@@ -30,6 +30,7 @@ class Integration extends AbstractIntegration {
 				'provider'         => null,
 				'aquirer_url'      => null,
 				'aquirer_test_url' => null,
+				'deprecated'       => false,
 			)
 		);
 
@@ -39,6 +40,7 @@ class Integration extends AbstractIntegration {
 		$this->product_url   = $args['product_url'];
 		$this->dashboard_url = $args['dashboard_url'];
 		$this->provider      = $args['provider'];
+		$this->deprecated    = $args['deprecated'];
 
 		$this->aquirer_url      = $args['aquirer_url'];
 		$this->aquirer_test_url = $args['aquirer_test_url'];
