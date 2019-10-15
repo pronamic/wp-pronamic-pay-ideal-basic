@@ -26,6 +26,7 @@ class Integration extends AbstractIntegration {
 				'name'             => 'iDEAL Basic',
 				'url'              => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
 				'product_url'      => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
+				'manual_url'       => null,
 				'dashboard_url'    => null,
 				'provider'         => null,
 				'aquirer_url'      => null,
@@ -38,6 +39,7 @@ class Integration extends AbstractIntegration {
 		$this->name          = $args['name'];
 		$this->url           = $args['url'];
 		$this->product_url   = $args['product_url'];
+		$this->manual_url    = $args['manual_url'];
 		$this->dashboard_url = $args['dashboard_url'];
 		$this->provider      = $args['provider'];
 		$this->deprecated    = $args['deprecated'];
