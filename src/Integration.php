@@ -39,7 +39,6 @@ class Integration extends AbstractIntegration {
 		$this->name          = $args['name'];
 		$this->url           = $args['url'];
 		$this->product_url   = $args['product_url'];
-		$this->manual_url    = $args['manual_url'];
 		$this->dashboard_url = $args['dashboard_url'];
 		$this->provider      = $args['provider'];
 		$this->deprecated    = $args['deprecated'];
@@ -51,6 +50,8 @@ class Integration extends AbstractIntegration {
 			'webhook',
 			'webhook_log',
 		);
+
+		$this->set_manual_url( $args['manual_url'] );
 
 		// Actions.
 		$function = array( __NAMESPACE__ . '\Listener', 'listen' );
