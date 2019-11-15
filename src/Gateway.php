@@ -48,17 +48,6 @@ class Gateway extends Core_Gateway {
 	}
 
 	/**
-	 * Get output HTML
-	 *
-	 * @since 1.1.1
-	 *
-	 * @return array
-	 */
-	public function get_output_fields() {
-		return $this->client->get_fields();
-	}
-
-	/**
 	 * Get supported payment methods
 	 *
 	 * @see Pronamic_WP_Pay_Gateway::get_supported_payment_methods()
@@ -81,10 +70,21 @@ class Gateway extends Core_Gateway {
 		$purchase_id = $payment->format_string( $this->config->purchase_id );
 
 		$payment->set_meta( 'purchase_id', $purchase_id );
+	}
 
+	/**
+	 * Get output HTML
+	 *
+	 * @param Payment $payment Payment.
+	 *
+	 * @return array
+	 * @since   1.1.1
+	 * @version 2.0.5
+	 */
+	public function get_output_fields( Payment $payment ) {
 		// General.
 		$this->client->set_currency( $payment->get_total_amount()->get_currency()->get_alphabetic_code() );
-		$this->client->set_purchase_id( $purchase_id );
+		$this->client->set_purchase_id( $payment->get_meta( 'purchase_id' ) );
 		$this->client->set_description( $payment->get_description() );
 
 		if ( null !== $payment->get_customer() ) {
@@ -102,6 +102,8 @@ class Gateway extends Core_Gateway {
 		$this->client->set_cancel_url( add_query_arg( 'status', Statuses::CANCELLED, $payment->get_return_url() ) );
 		$this->client->set_success_url( add_query_arg( 'status', Statuses::SUCCESS, $payment->get_return_url() ) );
 		$this->client->set_error_url( add_query_arg( 'status', Statuses::FAILURE, $payment->get_return_url() ) );
+
+		return $this->client->get_fields();
 	}
 
 	/**
