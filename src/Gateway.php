@@ -84,7 +84,7 @@ class Gateway extends Core_Gateway {
 	public function get_output_fields( Payment $payment ) {
 		// General.
 		$this->client->set_currency( $payment->get_total_amount()->get_currency()->get_alphabetic_code() );
-		$this->client->set_purchase_id( $payment->get_meta( 'purchase_id' ) );
+		$this->client->set_purchase_id( (string) $payment->get_meta( 'purchase_id' ) );
 		$this->client->set_description( $payment->get_description() );
 
 		if ( null !== $payment->get_customer() ) {
