@@ -11,7 +11,7 @@ use Pronamic\WordPress\Pay\Gateways\IDeal\AbstractIntegration;
  * Company: Pronamic
  *
  * @author  Remco Tolsma
- * @version 2.0.4
+ * @version 2.0.5
  * @since   1.0.0
  */
 class Integration extends AbstractIntegration {
@@ -26,6 +26,7 @@ class Integration extends AbstractIntegration {
 				'name'             => 'iDEAL Basic',
 				'url'              => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
 				'product_url'      => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
+				'manual_url'       => null,
 				'dashboard_url'    => null,
 				'provider'         => null,
 				'aquirer_url'      => null,
@@ -49,6 +50,8 @@ class Integration extends AbstractIntegration {
 			'webhook',
 			'webhook_log',
 		);
+
+		$this->set_manual_url( $args['manual_url'] );
 
 		// Actions.
 		$function = array( __NAMESPACE__ . '\Listener', 'listen' );
