@@ -7,6 +7,10 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 - 
 
+## [2.0.5] - 2019-12-22
+- Added URL to manual in gateway settings.
+- Updated output fields to use payment.
+
 ## [2.0.4] - 2019-10-04
 - Fixed setting `deprecated` based on passed arguments.
 
@@ -59,7 +63,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0 - 2015-01-19
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.0.4...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.0.5...HEAD
+[2.0.5]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.0.4...2.0.5
 [2.0.4]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.0.3...2.0.4
 [2.0.3]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.0.1...2.0.2
