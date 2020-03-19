@@ -9,7 +9,7 @@ use Pronamic\WordPress\Money\Money;
 /**
  * Title: iDEAL Basic items
  * Description:
- * Copyright: 2005-2019 Pronamic
+ * Copyright: 2005-2020 Pronamic
  * Company: Pronamic
  *
  * @author  Remco Tolsma

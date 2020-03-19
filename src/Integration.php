@@ -2,21 +2,23 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
-use Pronamic\WordPress\Pay\Gateways\IDeal\AbstractIntegration;
+use Pronamic\WordPress\Pay\AbstractGatewayIntegration;
 
 /**
  * Title: Integration
  * Description:
- * Copyright: 2005-2019 Pronamic
+ * Copyright: 2005-2020 Pronamic
  * Company: Pronamic
  *
  * @author  Remco Tolsma
  * @version 2.0.5
  * @since   1.0.0
  */
-class Integration extends AbstractIntegration {
+class Integration extends AbstractGatewayIntegration {
 	/**
-	 * Construct and initialize integration.
+	 * Construct iDEAL Basic integration.
+	 *
+	 * @param array $args Arguments.
 	 */
 	public function __construct( $args = array() ) {
 		$args = wp_parse_args(
@@ -24,34 +26,26 @@ class Integration extends AbstractIntegration {
 			array(
 				'id'               => 'ideal-basic',
 				'name'             => 'iDEAL Basic',
-				'url'              => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
-				'product_url'      => __( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
+				'url'              => \__( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
+				'product_url'      => \__( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
 				'manual_url'       => null,
 				'dashboard_url'    => null,
 				'provider'         => null,
 				'aquirer_url'      => null,
 				'aquirer_test_url' => null,
 				'deprecated'       => false,
+				'supports'         => array(
+					'webhook',
+					'webhook_log',
+				),
 			)
 		);
 
-		$this->id            = $args['id'];
-		$this->name          = $args['name'];
-		$this->url           = $args['url'];
-		$this->product_url   = $args['product_url'];
-		$this->dashboard_url = $args['dashboard_url'];
-		$this->provider      = $args['provider'];
-		$this->deprecated    = $args['deprecated'];
+		parent::__construct( $args );
 
+		// Acquirer URL.
 		$this->aquirer_url      = $args['aquirer_url'];
 		$this->aquirer_test_url = $args['aquirer_test_url'];
-
-		$this->supports = array(
-			'webhook',
-			'webhook_log',
-		);
-
-		$this->set_manual_url( $args['manual_url'] );
 
 		// Actions.
 		$function = array( __NAMESPACE__ . '\Listener', 'listen' );
