@@ -2,7 +2,7 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
-use Pronamic\WordPress\Pay\AbstractGatewayIntegration;
+use Pronamic\WordPress\Pay\Gateways\IDeal\AbstractIntegration;
 
 /**
  * Title: Integration
@@ -11,10 +11,10 @@ use Pronamic\WordPress\Pay\AbstractGatewayIntegration;
  * Company: Pronamic
  *
  * @author  Remco Tolsma
- * @version 2.0.5
+ * @version 2.1.1
  * @since   1.0.0
  */
-class Integration extends AbstractGatewayIntegration {
+class Integration extends AbstractIntegration {
 	/**
 	 * Construct iDEAL Basic integration.
 	 *
