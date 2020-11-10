@@ -7,7 +7,7 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 - 
 
-## [2.1.2] - 2020-09-10
+## [2.1.2] - 2020-11-10
 - Fix setting acquirer URL.
 
 ## [2.1.1] - 2020-03-26
