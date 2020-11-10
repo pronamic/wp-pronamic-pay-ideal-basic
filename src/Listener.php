@@ -32,7 +32,7 @@ class Listener {
 		if ( null !== $payment ) {
 			// Add note.
 			$note = sprintf(
-				/* translators: %s: iDEAL Basic */
+				/* translators: %s: payment provider name */
 				__( 'Webhook requested by %s.', 'pronamic_ideal' ),
 				__( 'iDEAL Basic', 'pronamic_ideal' )
 			);
