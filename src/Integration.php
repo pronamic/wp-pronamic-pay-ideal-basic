@@ -24,17 +24,17 @@ class Integration extends AbstractIntegration {
 		$args = wp_parse_args(
 			$args,
 			array(
-				'id'               => 'ideal-basic',
-				'name'             => 'iDEAL Basic',
-				'url'              => \__( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
-				'product_url'      => \__( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
-				'manual_url'       => null,
-				'dashboard_url'    => null,
-				'provider'         => null,
-				'aquirer_url'      => null,
-				'aquirer_test_url' => null,
-				'deprecated'       => false,
-				'supports'         => array(
+				'id'                => 'ideal-basic',
+				'name'              => 'iDEAL Basic',
+				'url'               => \__( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
+				'product_url'       => \__( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
+				'manual_url'        => null,
+				'dashboard_url'     => null,
+				'provider'          => null,
+				'acquirer_url'      => null,
+				'acquirer_test_url' => null,
+				'deprecated'        => false,
+				'supports'          => array(
 					'webhook',
 					'webhook_log',
 				),
@@ -44,8 +44,8 @@ class Integration extends AbstractIntegration {
 		parent::__construct( $args );
 
 		// Acquirer URL.
-		$this->aquirer_url      = $args['aquirer_url'];
-		$this->aquirer_test_url = $args['aquirer_test_url'];
+		$this->acquirer_url      = $args['acquirer_url'];
+		$this->acquirer_test_url = $args['acquirer_test_url'];
 
 		// Actions.
 		$function = array( __NAMESPACE__ . '\Listener', 'listen' );
@@ -104,10 +104,10 @@ class Integration extends AbstractIntegration {
 
 		$config = new Config();
 
-		$config->url = $this->aquirer_url;
+		$config->url = $this->acquirer_url;
 
-		if ( 'test' === $mode && null !== $this->aquirer_test_url ) {
-			$config->url = $this->aquirer_test_url;
+		if ( 'test' === $mode && null !== $this->acquirer_test_url ) {
+			$config->url = $this->acquirer_test_url;
 		}
 
 		$config->merchant_id = get_post_meta( $post_id, '_pronamic_gateway_ideal_merchant_id', true );
