@@ -44,7 +44,7 @@ class Notification {
 	private $status;
 
 	/**
-	 * Constructs and intializes an notification object
+	 * Construct and initialize an notification object
 	 */
 	public function __construct() {
 

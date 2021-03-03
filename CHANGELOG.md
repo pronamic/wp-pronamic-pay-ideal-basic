@@ -40,7 +40,7 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 - Use the new $payment->format_string() function.
 
 ## [1.1.5] - 2016-06-08
-- Simplified the gateay payment start function.
+- Simplified the gateway payment start function.
 
 ## [1.1.4] - 2016-03-22
 - Updated gateway settings.
@@ -61,8 +61,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 - Improved support for user defined purchase ID's.
 
 ## [1.0.2] - 2015-03-03
-- Changed WordPress pay core library requirment from `~1.0.0` to `>=1.0.0`.
-- Changed WordPress pay iDEAL library requirment from `~1.0.0` to `>=1.0.0`.
+- Changed WordPress pay core library requirement from `~1.0.0` to `>=1.0.0`.
+- Changed WordPress pay iDEAL library requirement from `~1.0.0` to `>=1.0.0`.
 
 ## [1.0.1] - 2015-02-06
 - No longer create random transaction ID's.

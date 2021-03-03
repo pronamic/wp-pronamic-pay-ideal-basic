@@ -26,7 +26,7 @@ class Gateway extends Core_Gateway {
 	protected $client;
 
 	/**
-	 * Construct and intialize an gateway
+	 * Construct and initialize an gateway
 	 *
 	 * @param Config $config Config.
 	 */
