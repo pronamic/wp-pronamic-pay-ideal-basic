@@ -27,6 +27,11 @@ class Util {
 
 		$data = file_get_contents( 'php://input' );
 
+		// Check data.
+		if ( empty( $data ) ) {
+			return null;
+		}
+
 		$xml = Core_Util::simplexml_load_string( $data );
 
 		if ( is_wp_error( $xml ) ) {
