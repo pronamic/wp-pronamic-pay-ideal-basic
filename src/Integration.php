@@ -7,7 +7,7 @@ use Pronamic\WordPress\Pay\Gateways\IDeal\AbstractIntegration;
 /**
  * Title: Integration
  * Description:
- * Copyright: 2005-2020 Pronamic
+ * Copyright: 2005-2021 Pronamic
  * Company: Pronamic
  *
  * @author  Remco Tolsma
@@ -55,6 +55,11 @@ class Integration extends AbstractIntegration {
 		}
 	}
 
+	/**
+	 * Get settings fields.
+	 *
+	 * @return array<int, array<string, callable|int|string|bool|array<int|string,int|string>>>
+	 */
 	public function get_settings_fields() {
 		$fields = parent::get_settings_fields();
 

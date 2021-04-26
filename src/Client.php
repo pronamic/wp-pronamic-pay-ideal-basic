@@ -11,7 +11,7 @@ use Pronamic\WordPress\Pay\Plugin;
 /**
  * Title: iDEAL Basic client
  * Description:
- * Copyright: 2005-2020 Pronamic
+ * Copyright: 2005-2021 Pronamic
  * Company: Pronamic
  *
  * @author  Remco Tolsma
@@ -57,7 +57,7 @@ class Client {
 	private $payment_server_url;
 
 	/**
-	 * The mercahnt ID
+	 * The merchant ID
 	 *
 	 * @var string
 	 */
@@ -134,7 +134,7 @@ class Client {
 	private $expire_date_modifier;
 
 	/**
-	 * The forbidden charachters
+	 * The forbidden characters
 	 *
 	 * @var string
 	 */
@@ -374,7 +374,7 @@ class Client {
 	}
 
 	/**
-	 * Set the expire date formnat
+	 * Set the expire date format
 	 *
 	 * @param string $expire_date_format Expire date format.
 	 */
