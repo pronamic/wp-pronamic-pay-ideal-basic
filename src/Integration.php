@@ -55,6 +55,11 @@ class Integration extends AbstractIntegration {
 		}
 	}
 
+	/**
+	 * Get settings fields.
+	 *
+	 * @return array<int, array<string, callable|int|string|bool|array<int|string,int|string>>>
+	 */
 	public function get_settings_fields() {
 		$fields = parent::get_settings_fields();
 
