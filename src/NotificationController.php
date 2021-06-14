@@ -87,6 +87,7 @@ class NotificationController {
 			return new \WP_Error(
 				'ideal_basic_no_payment',
 				\sprintf(
+					/* translators: %s: Purchase ID. */
 					__( 'Could not find iDEAL Basic payment by purchase ID: %s.', 'pronamic_ideal' ),
 					$purchase_id
 				),
