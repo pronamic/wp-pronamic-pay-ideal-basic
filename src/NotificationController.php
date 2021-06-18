@@ -117,13 +117,13 @@ class NotificationController {
 
 	/**
 	 * Check if legacy notification URL requests.
-	 * 
+	 *
 	 * @return bool True if legacy notification request, false otherwise.
 	 */
 	private function is_legacy_request() {
 		/**
 		 * In version <= `2.1.3` we used: `?gateway=IDealBasic&xml_notification=true`.
-		 * 
+		 *
 		 * @link https://github.com/wp-pay-gateways/ideal-basic/blob/2.1.3/src/Integration.php#L85-L91
 		 * @link https://github.com/wp-pay-gateways/ideal-basic/blob/2.1.3/src/Listener.php#L24-L27
 		 */
@@ -133,7 +133,7 @@ class NotificationController {
 
 		/**
 		 * In version <= `1.1.3` we used a typo: `?gateway=ideal_basic&xml_notification=true`.
-		 * 
+		 *
 		 * @link https://github.com/wp-pay-gateways/ideal-basic/blob/1.1.3/src/Settings.php#L51
 		 * @link https://github.com/wp-pay-gateways/ideal-basic/commit/94bf9d8e011fb77700bb86fbcacd7a3f359fd496
 		 * @link https://github.com/wp-pay-gateways/ideal-basic/commit/e4c0653015b16cb8c3e5a0a4099cee2d2c19ff8d#diff-eb1710f64250974d6d1550d421a31054e6079592ae3a8428cd9530bc086bdd94L51
