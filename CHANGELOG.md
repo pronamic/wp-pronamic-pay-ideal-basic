@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 - 
 
+## [2.2.0] - 2021-06-18
+- Switched to REST API for notification URL.
+
 ## [2.1.3] - 2021-04-26
 - Fixed fatal error on handling invalid notification.
 
@@ -75,7 +78,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0 - 2015-01-19
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.1.3...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.2.0...HEAD
+[2.2.0]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.1.3...2.2.0
 [2.1.3]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.1.2...2.1.3
 [2.1.2]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.1.1...2.1.2
 [2.1.1]: https://github.com/wp-pay-gateways/ideal-basic/compare/2.1.0...2.1.1
