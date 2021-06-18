@@ -16,6 +16,13 @@ use Pronamic\WordPress\Pay\Gateways\IDeal\AbstractIntegration;
  */
 class Integration extends AbstractIntegration {
 	/**
+	 * REST route namespace.
+	 *
+	 * @var string
+	 */
+	const REST_ROUTE_NAMESPACE = 'pronamic-pay/ideal-basic/v1';
+
+	/**
 	 * Construct iDEAL Basic integration.
 	 *
 	 * @param array $args Arguments.
@@ -46,13 +53,23 @@ class Integration extends AbstractIntegration {
 		// Acquirer URL.
 		$this->acquirer_url      = $args['acquirer_url'];
 		$this->acquirer_test_url = $args['acquirer_test_url'];
+	}
 
-		// Actions.
-		$function = array( __NAMESPACE__ . '\Listener', 'listen' );
-
-		if ( ! has_action( 'wp_loaded', $function ) ) {
-			add_action( 'wp_loaded', $function );
+	/**
+	 * Setup gateway integration.
+	 *
+	 * @return void
+	 */
+	public function setup() {
+		// Check if dependencies are met and integration is active.
+		if ( ! $this->is_active() ) {
+			return;
 		}
+
+		// Notification controller.
+		$notification_controller = new NotificationController();
+
+		$notification_controller->setup();
 	}
 
 	/**
@@ -82,13 +99,7 @@ class Integration extends AbstractIntegration {
 			'title'    => _x( 'XML Notification URL', 'iDEAL Basic dashboard', 'pronamic_ideal' ),
 			'type'     => 'text',
 			'classes'  => array( 'regular-text', 'code' ),
-			'value'    => add_query_arg(
-				array(
-					'gateway'          => 'IDealBasic',
-					'xml_notification' => 'true',
-				),
-				site_url( '/' )
-			),
+			'value'    => \rest_url( self::REST_ROUTE_NAMESPACE . '/notification' ),
 			'methods'  => array( 'ideal-basic' ),
 			'readonly' => true,
 			'size'     => 200,

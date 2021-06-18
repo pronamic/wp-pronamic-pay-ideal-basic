@@ -17,7 +17,7 @@
 ## Simulate XML Notification
 
 ```
-curl --request POST http://pay.test/?xml_notification \
+curl --request POST http://pay.local/wp-json/pronamic-pay/ideal-basic/v1/notification \
 	--data '<?xml version="1.0" encoding="UTF-8"?>
 <Notification xmlns="http://www.idealdesk.com/Message" version="1.1.0">
 	<createDateTimeStamp>20131022120742</createDateTimeStamp>
