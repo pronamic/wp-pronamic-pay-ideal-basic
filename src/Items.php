@@ -20,12 +20,14 @@ class Items implements IteratorAggregate {
 	/**
 	 * The items
 	 *
-	 * @var array
+	 * @var Item[]
 	 */
 	private $items;
 
 	/**
 	 * Constructs and initialize a iDEAL basic object
+	 *
+	 * @return void
 	 */
 	public function __construct() {
 		$this->items = array();
@@ -35,6 +37,7 @@ class Items implements IteratorAggregate {
 	 * Get iterator
 	 *
 	 * @see IteratorAggregate::getIterator()
+	 * @return ArrayIterator
 	 */
 	// @codingStandardsIgnoreStart
 	// Function name "getIterator" is in camel caps format, try 'get_iterator'
@@ -47,6 +50,7 @@ class Items implements IteratorAggregate {
 	 * Add item
 	 *
 	 * @param Item $item Item.
+	 * @return void
 	 */
 	public function add_item( Item $item ) {
 		$this->items[] = $item;
@@ -54,6 +58,8 @@ class Items implements IteratorAggregate {
 
 	/**
 	 * Calculate the total amount of all items
+	 *
+	 * @return Money
 	 */
 	public function get_amount() {
 		$amount = 0;
