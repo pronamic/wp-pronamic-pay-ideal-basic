@@ -534,7 +534,7 @@ class Client {
 		$string[] = $this->get_sub_id();
 
 		// Total amount of transaction.
-		$string[] = $this->get_amount()->get_minor_units()->to_int();
+		$string[] = $this->get_amount()->get_minor_units()->format( 0, '', '' );
 
 		// The online shop's unique order number, also known as purchase id.
 		$string[] = $this->get_purchase_id();
@@ -560,7 +560,7 @@ class Client {
 			$string[] = $item->get_quantity();
 
 			// Price of article <n> in whole eurocents.
-			$string[] = $item->get_price()->get_minor_units()->to_int();
+			$string[] = $item->get_price()->get_minor_units()->format( 0, '', '' );
 		}
 
 		$concat_string = implode( '', $string );
@@ -596,7 +596,7 @@ class Client {
 		$fields['merchantID'] = $this->get_merchant_id();
 		$fields['subID']      = $this->get_sub_id();
 
-		$fields['amount']      = $this->get_amount()->get_minor_units()->to_int();
+		$fields['amount']      = $this->get_amount()->get_minor_units()->format( 0, '', '' );
 		$fields['purchaseID']  = $this->get_purchase_id();
 		$fields['language']    = $this->get_language();
 		$fields['currency']    = $this->get_currency();
@@ -610,7 +610,7 @@ class Client {
 			$fields[ 'itemNumber' . $serial_number ]      = $item->get_number();
 			$fields[ 'itemDescription' . $serial_number ] = $item->get_description();
 			$fields[ 'itemQuantity' . $serial_number ]    = $item->get_quantity();
-			$fields[ 'itemPrice' . $serial_number ]       = $item->get_price()->get_minor_units()->to_int();
+			$fields[ 'itemPrice' . $serial_number ]       = $item->get_price()->get_minor_units()->format( 0, '', '' );
 
 			$serial_number ++;
 		}
