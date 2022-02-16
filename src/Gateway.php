@@ -26,6 +26,13 @@ class Gateway extends Core_Gateway {
 	protected $client;
 
 	/**
+	 * Mode.
+	 *
+	 * @var string
+	 */
+	public $mode = 'live';
+
+	/**
 	 * Construct and initialize an gateway
 	 *
 	 * @param Config $config Config.
@@ -120,5 +127,14 @@ class Gateway extends Core_Gateway {
 
 		// Update payment status.
 		$payment->set_status( $status );
+	}
+
+	/**
+	 * Get mode.
+	 * 
+	 * @return string
+	 */
+	public function get_mode() {
+		return $this->mode;
 	}
 }
