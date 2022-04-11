@@ -19,11 +19,25 @@ use Pronamic\WordPress\Pay\Payments\Payment;
  */
 class Gateway extends Core_Gateway {
 	/**
+	 * Config
+	 *
+	 * @var Config
+	 */
+	protected $config;
+
+	/**
 	 * Client.
 	 *
 	 * @var Client
 	 */
 	protected $client;
+
+	/**
+	 * Mode.
+	 *
+	 * @var string
+	 */
+	public $mode = 'live';
 
 	/**
 	 * Construct and initialize an gateway
@@ -32,6 +46,8 @@ class Gateway extends Core_Gateway {
 	 */
 	public function __construct( Config $config ) {
 		parent::__construct( $config );
+
+		$this->config = $config;
 
 		$this->set_method( self::METHOD_HTML_FORM );
 
@@ -120,5 +136,14 @@ class Gateway extends Core_Gateway {
 
 		// Update payment status.
 		$payment->set_status( $status );
+	}
+
+	/**
+	 * Get mode.
+	 * 
+	 * @return string
+	 */
+	public function get_mode() {
+		return $this->mode;
 	}
 }

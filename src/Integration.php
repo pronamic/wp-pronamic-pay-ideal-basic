@@ -33,13 +33,13 @@ class Integration extends AbstractIntegration {
 			array(
 				'id'                => 'ideal-basic',
 				'name'              => 'iDEAL Basic',
+				'mode'              => 'live',
 				'url'               => \__( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
 				'product_url'       => \__( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
 				'manual_url'        => null,
 				'dashboard_url'     => null,
 				'provider'          => null,
 				'acquirer_url'      => null,
-				'acquirer_test_url' => null,
 				'deprecated'        => false,
 				'supports'          => array(
 					'webhook',
@@ -52,7 +52,8 @@ class Integration extends AbstractIntegration {
 
 		// Acquirer URL.
 		$this->acquirer_url      = $args['acquirer_url'];
-		$this->acquirer_test_url = $args['acquirer_test_url'];
+
+		$this->mode = $args['mode'];
 	}
 
 	/**
@@ -116,15 +117,9 @@ class Integration extends AbstractIntegration {
 	}
 
 	public function get_config( $post_id ) {
-		$mode = get_post_meta( $post_id, '_pronamic_gateway_mode', true );
-
 		$config = new Config();
 
 		$config->url = $this->acquirer_url;
-
-		if ( 'test' === $mode && null !== $this->acquirer_test_url ) {
-			$config->url = $this->acquirer_test_url;
-		}
 
 		$config->merchant_id = get_post_meta( $post_id, '_pronamic_gateway_ideal_merchant_id', true );
 		$config->sub_id      = get_post_meta( $post_id, '_pronamic_gateway_ideal_sub_id', true );
@@ -141,6 +136,10 @@ class Integration extends AbstractIntegration {
 	 * @return Gateway
 	 */
 	public function get_gateway( $post_id ) {
-		return new Gateway( $this->get_config( $post_id ) );
+		$gateway = new Gateway( $this->get_config( $post_id ) );
+
+		$gateway->mode = $this->mode;
+
+		return $gateway;
 	}
 }
