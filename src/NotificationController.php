@@ -28,9 +28,9 @@ class NotificationController {
 	 * @return void
 	 */
 	public function setup() {
-		\add_action( 'rest_api_init', array( $this, 'rest_api_init' ) );
+		\add_action( 'rest_api_init', [ $this, 'rest_api_init' ] );
 
-		\add_action( 'wp_loaded', array( $this, 'wp_loaded' ) );
+		\add_action( 'wp_loaded', [ $this, 'wp_loaded' ] );
 	}
 
 	/**
@@ -44,11 +44,11 @@ class NotificationController {
 		\register_rest_route(
 			Integration::REST_ROUTE_NAMESPACE,
 			'/notification',
-			array(
+			[
 				'methods'             => 'POST',
-				'callback'            => array( $this, 'rest_api_notification' ),
+				'callback'            => [ $this, 'rest_api_notification' ],
 				'permission_callback' => '__return_true',
-			)
+			]
 		);
 	}
 
@@ -66,7 +66,7 @@ class NotificationController {
 			return new \WP_Error(
 				'ideal_basic_empty_notification',
 				__( 'The iDEAL Basic notification is empty.', 'pronamic_ideal' ),
-				array( 'status' => 400 )
+				[ 'status' => 400 ]
 			);
 		}
 
@@ -91,7 +91,7 @@ class NotificationController {
 					__( 'Could not find iDEAL Basic payment by purchase ID: %s.', 'pronamic_ideal' ),
 					$purchase_id
 				),
-				array( 'status' => 404 )
+				[ 'status' => 404 ]
 			);
 		}
 

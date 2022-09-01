@@ -174,7 +174,7 @@ class Client {
 	public function __construct() {
 		$this->items = new Items();
 
-		$this->forbidden_characters = array();
+		$this->forbidden_characters = [];
 
 		$this->set_payment_type( self::PAYMENT_TYPE_IDEAL );
 		$this->set_expire_date_format( self::DATE_EXPIRE_FORMAT );
@@ -522,7 +522,7 @@ class Client {
 	 * Create hash string
 	 */
 	public function create_hash_string() {
-		$string = array();
+		$string = [];
 
 		// SHA1 hashcode, used only with the hashcode approach (Chapter 4).
 		$string[] = $this->get_hash_key();
@@ -591,7 +591,7 @@ class Client {
 	 * @return array
 	 */
 	public function get_fields() {
-		$fields = array();
+		$fields = [];
 
 		$fields['merchantID'] = $this->get_merchant_id();
 		$fields['subID']      = $this->get_sub_id();

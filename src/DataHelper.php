@@ -28,21 +28,21 @@ class DataHelper {
 	 *
 	 * @var array
 	 */
-	private static $characters_an = array( 'A-Z', 'a-z', '0-9', ' ' );
+	private static $characters_an = [ 'A-Z', 'a-z', '0-9', ' ' ];
 
 	/**
 	 * Strictly alphanumerical (letters and numbers only)
 	 *
 	 * @var array
 	 */
-	private static $characters_ans = array( 'A-Z', 'a-z', '0-9' );
+	private static $characters_ans = [ 'A-Z', 'a-z', '0-9' ];
 
 	/**
 	 * Numerical
 	 *
 	 * @var array
 	 */
-	private static $characters_n = array( '0-9' );
+	private static $characters_n = [ '0-9' ];
 
 	/**
 	 * Filter the specified characters from the string

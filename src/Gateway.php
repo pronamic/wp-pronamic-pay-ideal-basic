@@ -53,7 +53,7 @@ class Gateway extends Core_Gateway {
 		$this->set_method( self::METHOD_HTML_FORM );
 
 		// Supported features.
-		$this->supports = array();
+		$this->supports = [];
 
 		// Client.
 		$this->client = new Client();
@@ -64,7 +64,7 @@ class Gateway extends Core_Gateway {
 		$this->client->set_hash_key( $config->hash_key );
 
 		// Methods.
-		$payment_method_ideal =  new PaymentMethod( PaymentMethods::IDEAL );
+		$payment_method_ideal = new PaymentMethod( PaymentMethods::IDEAL );
 		$payment_method_ideal->set_status( 'active' );
 
 		$this->register_payment_method( $payment_method_ideal );
