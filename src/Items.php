@@ -30,7 +30,7 @@ class Items implements IteratorAggregate {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->items = array();
+		$this->items = [];
 	}
 
 	/**

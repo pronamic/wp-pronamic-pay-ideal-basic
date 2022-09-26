@@ -3,6 +3,7 @@
 namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 
 use Pronamic\WordPress\Pay\Core\Gateway as Core_Gateway;
+use Pronamic\WordPress\Pay\Core\PaymentMethod;
 use Pronamic\WordPress\Pay\Core\PaymentMethods;
 use Pronamic\WordPress\Pay\Gateways\IDeal\Statuses;
 use Pronamic\WordPress\Pay\Payments\Payment;
@@ -52,7 +53,7 @@ class Gateway extends Core_Gateway {
 		$this->set_method( self::METHOD_HTML_FORM );
 
 		// Supported features.
-		$this->supports = array();
+		$this->supports = [];
 
 		// Client.
 		$this->client = new Client();
@@ -61,17 +62,12 @@ class Gateway extends Core_Gateway {
 		$this->client->set_merchant_id( $config->merchant_id );
 		$this->client->set_sub_id( $config->sub_id );
 		$this->client->set_hash_key( $config->hash_key );
-	}
 
-	/**
-	 * Get supported payment methods
-	 *
-	 * @see Core_Gateway::get_supported_payment_methods()
-	 */
-	public function get_supported_payment_methods() {
-		return array(
-			PaymentMethods::IDEAL,
-		);
+		// Methods.
+		$payment_method_ideal = new PaymentMethod( PaymentMethods::IDEAL );
+		$payment_method_ideal->set_status( 'active' );
+
+		$this->register_payment_method( $payment_method_ideal );
 	}
 
 	/**
@@ -80,6 +76,30 @@ class Gateway extends Core_Gateway {
 	 * @param Payment $payment Payment.
 	 */
 	public function start( Payment $payment ) {
+		/**
+		 * If the payment method of the payment is unknown (`null`), we will turn it into
+		 * an iDEAL payment.
+		 */
+		$payment_method = $payment->get_payment_method();
+
+		if ( null === $payment_method ) {
+			$payment->set_payment_method( PaymentMethods::IDEAL );
+		}
+
+		/**
+		 * This gateway can only process payments for the payment method iDEAL.
+		 */
+		$payment_method = $payment->get_payment_method();
+
+		if ( PaymentMethods::IDEAL !== $payment_method ) {
+			throw new \Exception(
+				\sprintf(
+					'The iDEAL Basic gateway cannot process `%s` payments, only iDEAL payments.',
+					$payment_method
+				)
+			);
+		}
+
 		$payment->set_action_url( $this->client->get_payment_server_url() );
 
 		// Purchase ID.

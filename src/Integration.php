@@ -27,31 +27,31 @@ class Integration extends AbstractIntegration {
 	 *
 	 * @param array $args Arguments.
 	 */
-	public function __construct( $args = array() ) {
+	public function __construct( $args = [] ) {
 		$args = wp_parse_args(
 			$args,
-			array(
-				'id'                => 'ideal-basic',
-				'name'              => 'iDEAL Basic',
-				'mode'              => 'live',
-				'url'               => \__( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
-				'product_url'       => \__( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
-				'manual_url'        => null,
-				'dashboard_url'     => null,
-				'provider'          => null,
-				'acquirer_url'      => null,
-				'deprecated'        => false,
-				'supports'          => array(
+			[
+				'id'            => 'ideal-basic',
+				'name'          => 'iDEAL Basic',
+				'mode'          => 'live',
+				'url'           => \__( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
+				'product_url'   => \__( 'https://www.ideal.nl/en/', 'pronamic_ideal' ),
+				'manual_url'    => null,
+				'dashboard_url' => null,
+				'provider'      => null,
+				'acquirer_url'  => null,
+				'deprecated'    => false,
+				'supports'      => [
 					'webhook',
 					'webhook_log',
-				),
-			)
+				],
+			]
 		);
 
 		parent::__construct( $args );
 
 		// Acquirer URL.
-		$this->acquirer_url      = $args['acquirer_url'];
+		$this->acquirer_url = $args['acquirer_url'];
 
 		$this->mode = $args['mode'];
 	}
@@ -82,26 +82,26 @@ class Integration extends AbstractIntegration {
 		$fields = parent::get_settings_fields();
 
 		// Hash Key
-		$fields[] = array(
+		$fields[] = [
 			'section'  => 'general',
 			'filter'   => FILTER_SANITIZE_STRING,
 			'meta_key' => '_pronamic_gateway_ideal_hash_key',
 			'title'    => __( 'Hash Key', 'pronamic_ideal' ),
 			'type'     => 'text',
-			'classes'  => array( 'regular-text', 'code' ),
+			'classes'  => [ 'regular-text', 'code' ],
 			'tooltip'  => __( 'Hash key (also known as: key or secret key) as mentioned in the payment provider dashboard.', 'pronamic_ideal' ),
-			'methods'  => array( 'ideal-basic' ),
-		);
+			'methods'  => [ 'ideal-basic' ],
+		];
 
 		// XML Notification URL.
-		$fields[] = array(
+		$fields[] = [
 			'section'  => 'feedback',
 			/* translators: Translate 'XML notification URL' the same as in the iDEAL Basic dashboard. */
 			'title'    => _x( 'XML Notification URL', 'iDEAL Basic dashboard', 'pronamic_ideal' ),
 			'type'     => 'text',
-			'classes'  => array( 'regular-text', 'code' ),
+			'classes'  => [ 'regular-text', 'code' ],
 			'value'    => \rest_url( self::REST_ROUTE_NAMESPACE . '/notification' ),
-			'methods'  => array( 'ideal-basic' ),
+			'methods'  => [ 'ideal-basic' ],
 			'readonly' => true,
 			'size'     => 200,
 			/* translators: Translate 'XML notification URL' the same as in the iDEAL Basic dashboard. */
@@ -110,7 +110,7 @@ class Integration extends AbstractIntegration {
 				'iDEAL Basic dashboard',
 				'pronamic_ideal'
 			),
-		);
+		];
 
 		// Return fields.
 		return $fields;
