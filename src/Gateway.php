@@ -148,13 +148,18 @@ class Gateway extends Core_Gateway {
 	 * @param Payment $payment Payment.
 	 */
 	public function update_status( Payment $payment ) {
-		if ( ! filter_has_var( INPUT_GET, 'status' ) ) {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- No nonce on payment return URL.
+		$status = \array_key_exists( 'status', $_GET ) ? \sanitize_text_field( \wp_unslash( $_GET['status'] ) ) : null;
+
+		if ( ! Statuses::is_valid( $status ) ) {
 			return;
 		}
 
-		$status = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_STRING );
+		if ( ! \array_key_exists( 'key', $_GET ) || $_GET['key'] !== $payment->get_key() ) {
+			return;
+		}
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
-		// Update payment status.
 		$payment->set_status( $status );
 	}
 
