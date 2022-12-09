@@ -135,9 +135,9 @@ class Gateway extends Core_Gateway {
 		$this->client->set_items( $items );
 
 		// URLs.
-		$this->client->set_cancel_url( add_query_arg( 'status', Statuses::CANCELLED, $payment->get_return_url() ) );
-		$this->client->set_success_url( add_query_arg( 'status', Statuses::SUCCESS, $payment->get_return_url() ) );
-		$this->client->set_error_url( add_query_arg( 'status', Statuses::FAILURE, $payment->get_return_url() ) );
+		$this->client->set_cancel_url( add_query_arg( 'hash', \wp_hash( $payment->get_id() . Statuses::CANCELLED ), $payment->get_return_url() ) );
+		$this->client->set_success_url( add_query_arg( 'hash', \wp_hash( $payment->get_id() . Statuses::SUCCESS ), $payment->get_return_url() ) );
+		$this->client->set_error_url( add_query_arg( 'hash', \wp_hash( $payment->get_id() . Statuses::FAILURE ), $payment->get_return_url() ) );
 
 		return $this->client->get_fields();
 	}
@@ -148,19 +148,24 @@ class Gateway extends Core_Gateway {
 	 * @param Payment $payment Payment.
 	 */
 	public function update_status( Payment $payment ) {
-		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- No nonce on payment return URL.
-		$status = \array_key_exists( 'status', $_GET ) ? \sanitize_text_field( \wp_unslash( $_GET['status'] ) ) : null;
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- No nonce on payment return URL.
+		$hash = \array_key_exists( 'hash', $_GET ) ? \sanitize_text_field( \wp_unslash( $_GET['hash'] ) ) : null;
 
-		if ( ! Statuses::is_valid( $status ) ) {
+		if ( null === $hash ) {
 			return;
 		}
 
-		if ( ! \array_key_exists( 'key', $_GET ) || $_GET['key'] !== $payment->get_key() ) {
+		$statuses = [
+			\wp_hash( $payment->get_id() . Statuses::CANCELLED ) => Statuses::CANCELLED,
+			\wp_hash( $payment->get_id() . Statuses::SUCCESS )   => Statuses::SUCCESS,
+			\wp_hash( $payment->get_id() . Statuses::FAILURE )   => Statuses::FAILURE,
+		];
+
+		if ( ! \array_key_exists( $hash, $statuses ) ) {
 			return;
 		}
-		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
-		$payment->set_status( $status );
+		$payment->set_status( $statuses[ $hash ] );
 	}
 
 	/**
