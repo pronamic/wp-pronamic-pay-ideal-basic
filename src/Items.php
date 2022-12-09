@@ -41,7 +41,7 @@ class Items implements IteratorAggregate {
 	 */
 	// @codingStandardsIgnoreStart
 	// Function name "getIterator" is in camel caps format, try 'get_iterator'
-	public function getIterator() {
+	public function getIterator(): ArrayIterator {
 		// @codingStandardsIgnoreEnd
 		return new ArrayIterator( $this->items );
 	}
