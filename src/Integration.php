@@ -84,7 +84,6 @@ class Integration extends AbstractIntegration {
 		// Hash Key
 		$fields[] = [
 			'section'  => 'general',
-			'filter'   => FILTER_SANITIZE_STRING,
 			'meta_key' => '_pronamic_gateway_ideal_hash_key',
 			'title'    => __( 'Hash Key', 'pronamic_ideal' ),
 			'type'     => 'text',
