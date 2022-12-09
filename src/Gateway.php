@@ -135,9 +135,35 @@ class Gateway extends Core_Gateway {
 		$this->client->set_items( $items );
 
 		// URLs.
-		$this->client->set_cancel_url( add_query_arg( 'hash', \wp_hash( $payment->get_id() . Statuses::CANCELLED ), $payment->get_return_url() ) );
-		$this->client->set_success_url( add_query_arg( 'hash', \wp_hash( $payment->get_id() . Statuses::SUCCESS ), $payment->get_return_url() ) );
-		$this->client->set_error_url( add_query_arg( 'hash', \wp_hash( $payment->get_id() . Statuses::FAILURE ), $payment->get_return_url() ) );
+		$this->client->set_cancel_url(
+			add_query_arg(
+				[
+					'status' => Statuses::CANCELLED,
+					'hash'   => \wp_hash( $payment->get_id() . Statuses::CANCELLED ),
+				],
+				$payment->get_return_url()
+			)
+		);
+
+		$this->client->set_success_url(
+			add_query_arg(
+				[
+					'status' => Statuses::SUCCESS,
+					'hash'   => \wp_hash( $payment->get_id() . Statuses::SUCCESS ),
+				],
+				$payment->get_return_url()
+			)
+		);
+
+		$this->client->set_error_url(
+			add_query_arg(
+				[
+					'status' => Statuses::FAILURE,
+					'hash'   => \wp_hash( $payment->get_id() . Statuses::FAILURE ),
+				],
+				$payment->get_return_url()
+			)
+		);
 
 		return $this->client->get_fields();
 	}
@@ -155,17 +181,14 @@ class Gateway extends Core_Gateway {
 			return;
 		}
 
-		$statuses = [
-			\wp_hash( $payment->get_id() . Statuses::CANCELLED ) => Statuses::CANCELLED,
-			\wp_hash( $payment->get_id() . Statuses::SUCCESS )   => Statuses::SUCCESS,
-			\wp_hash( $payment->get_id() . Statuses::FAILURE )   => Statuses::FAILURE,
-		];
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- No nonce on payment return URL.
+		$status = \array_key_exists( 'status', $_GET ) ? \sanitize_text_field( \wp_unslash( $_GET['status'] ) ) : null;
 
-		if ( ! \array_key_exists( $hash, $statuses ) ) {
+		if ( \wp_hash( $payment->get_id() . $status ) !== $hash ) {
 			return;
 		}
 
-		$payment->set_status( $statuses[ $hash ] );
+		$payment->set_status( $status );
 	}
 
 	/**
