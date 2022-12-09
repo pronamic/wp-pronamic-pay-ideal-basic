@@ -31,21 +31,10 @@ class NotificationParser {
 			$notification = new Notification();
 		}
 
-		if ( $xml->createDateTimeStamp ) {
-			$notification->set_date( new DateTime( Security::filter( $xml->createDateTimeStamp ) ) );
-		}
-
-		if ( $xml->transactionID ) {
-			$notification->set_transaction_id( Security::filter( $xml->transactionID ) );
-		}
-
-		if ( $xml->purchaseID ) {
-			$notification->set_purchase_id( Security::filter( $xml->purchaseID ) );
-		}
-
-		if ( $xml->status ) {
-			$notification->set_status( Security::filter( $xml->status ) );
-		}
+		$notification->set_date( new DateTime( (string) $xml->createDateTimeStamp ) );
+		$notification->set_transaction_id( (string) $xml->transactionID );
+		$notification->set_purchase_id( (string) $xml->purchaseID );
+		$notification->set_status( (string) $xml->status );
 
 		return $notification;
 	}
