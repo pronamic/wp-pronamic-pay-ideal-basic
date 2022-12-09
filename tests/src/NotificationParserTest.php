@@ -7,7 +7,7 @@ use Pronamic\WordPress\Pay\Gateways\IDeal\Statuses;
 
 class TestNotificationParser extends \WP_UnitTestCase {
 	public function test_init() {
-		$filename = dirname( dirname( __FILE__ ) ) . '/Mock/notification.xml';
+		$filename = dirname( __DIR__ ) . '/Mock/notification.xml';
 
 		$simplexml = simplexml_load_file( $filename );
 

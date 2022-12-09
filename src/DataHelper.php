@@ -47,9 +47,9 @@ class DataHelper {
 	/**
 	 * Filter the specified characters from the string
 	 *
-	 * @param array $characters
+	 * @param array  $characters
 	 * @param string $string
-	 * @param int $max
+	 * @param int    $max
 	 *
 	 * @return string
 	 */

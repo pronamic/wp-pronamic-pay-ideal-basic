@@ -21,7 +21,7 @@ class NotificationParser {
 	 * Parse
 	 *
 	 * @param SimpleXMLElement $xml
-	 * @param Notification $notification
+	 * @param Notification     $notification
 	 *
 	 * @return Notification
 	 */

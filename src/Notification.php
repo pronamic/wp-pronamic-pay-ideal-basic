@@ -47,7 +47,6 @@ class Notification {
 	 * Construct and initialize an notification object
 	 */
 	public function __construct() {
-
 	}
 
 	/**
