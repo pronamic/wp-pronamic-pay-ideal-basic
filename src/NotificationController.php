@@ -70,13 +70,20 @@ class NotificationController {
 			);
 		}
 
-		$xml = Core_Util::simplexml_load_string( $body );
+		$simplexml = \simplexml_load_string( $body );
 
-		if ( \is_wp_error( $xml ) ) {
-			return $xml;
+		if ( false === $simplexml ) {
+			return new \WP_Error(
+				'ideal_basic_simplexml_failure',
+				\__( 'The PHP SimpleXML extension could not interpret the XML.', 'pronamic_ideal' ),
+				[
+					'status' => 404,
+					'xml'    => $body,
+				]
+			);
 		}
 
-		$notification = NotificationParser::parse( $xml );
+		$notification = NotificationParser::parse( $simplexml );
 
 		// Get payment for purchase ID.
 		$purchase_id = $notification->get_purchase_id();
