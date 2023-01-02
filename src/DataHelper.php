@@ -5,7 +5,7 @@ namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 /**
  * Title: iDEAL Basic data helper class
  * Description:
- * Copyright: 2005-2022 Pronamic
+ * Copyright: 2005-2023 Pronamic
  * Company: Pronamic
  *
  * @author  Remco Tolsma
