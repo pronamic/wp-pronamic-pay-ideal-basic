@@ -105,6 +105,10 @@ class Gateway extends Core_Gateway {
 		// Purchase ID.
 		$purchase_id = $payment->format_string( $this->config->purchase_id );
 
+		if ( '' === $purchase_id ) {
+			$purchase_id = $payment->get_id();
+		}
+
 		$payment->set_meta( 'purchase_id', $purchase_id );
 	}
 
