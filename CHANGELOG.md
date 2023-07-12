@@ -7,6 +7,16 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 - 
 
+## [4.3.4] - 2023-07-12
+
+### Commits
+
+- Updated for removed payment ID fallback in formatted payment string (pronamic/wp-pronamic-pay-adyen#23). ([b8d9f82](https://github.com/pronamic/wp-pronamic-pay-ideal-basic/commit/b8d9f824ab0eb30edb91e2142c6caaff1724241e))
+
+Full set of changes: [`4.3.3...4.3.4`][4.3.4]
+
+[4.3.4]: https://github.com/pronamic/wp-pronamic-pay-ideal-basic/compare/v4.3.3...v4.3.4
+
 ## [4.3.3] - 2023-06-01
 
 ### Commits
