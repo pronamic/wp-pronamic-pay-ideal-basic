@@ -357,7 +357,7 @@ class Client {
 	 */
 	public function get_expire_date( $create_new = false ) {
 		if ( null === $this->expire_date || $create_new ) {
-			$this->expire_date = new DateTime( null, new DateTimeZone( Plugin::TIMEZONE ) );
+			$this->expire_date = new DateTime( 'now', new DateTimeZone( Plugin::TIMEZONE ) );
 			$this->expire_date->modify( $this->expire_date_modifier );
 		}
 
