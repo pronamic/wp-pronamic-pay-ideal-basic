@@ -7,6 +7,16 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 - 
 
+## [4.3.5] - 2023-09-11
+
+### Commits
+
+- Fixed DateTime::__construct() deprecated warning #2 ([e1b3c90](https://github.com/pronamic/wp-pronamic-pay-ideal-basic/commit/e1b3c903856bfd454c4d052729d70ebcb82f3f5d))
+
+Full set of changes: [`4.3.4...4.3.5`][4.3.5]
+
+[4.3.5]: https://github.com/pronamic/wp-pronamic-pay-ideal-basic/compare/v4.3.4...v4.3.5
+
 ## [4.3.4] - 2023-07-12
 
 ### Commits
