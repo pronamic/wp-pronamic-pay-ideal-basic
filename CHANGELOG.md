@@ -7,6 +7,16 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 - 
 
+## [4.3.6] - 2024-03-26
+
+### Commits
+
+- ncu -u ([3c22148](https://github.com/pronamic/wp-pronamic-pay-ideal-basic/commit/3c22148324745593486cae876d62d1a231760b48))
+
+Full set of changes: [`4.3.5...4.3.6`][4.3.6]
+
+[4.3.6]: https://github.com/pronamic/wp-pronamic-pay-ideal-basic/compare/v4.3.5...v4.3.6
+
 ## [4.3.5] - 2023-09-11
 
 ### Commits
