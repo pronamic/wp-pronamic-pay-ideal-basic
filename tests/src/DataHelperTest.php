@@ -5,7 +5,7 @@ namespace Pronamic\WordPress\Pay\Gateways\IDealBasic;
 /**
  * Title: iDEAL Basic data helper tests
  * Description:
- * Copyright: 2005-2023 Pronamic
+ * Copyright: 2005-2024 Pronamic
  * Company: Pronamic
  *
  * @author  Remco Tolsma
