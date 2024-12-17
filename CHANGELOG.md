@@ -7,6 +7,17 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 - 
 
+## [4.3.7] - 2024-12-17
+
+### Commits
+
+- Allow automattic/jetpack-autoloader Composer plugin. ([97550ba](https://github.com/pronamic/wp-pronamic-pay-ideal-basic/commit/97550ba9680b23ad15788b50890400a64d98a2ec))
+- Happy 2024. ([bf19944](https://github.com/pronamic/wp-pronamic-pay-ideal-basic/commit/bf19944aedb2650ce3d408ead97968560962803d))
+
+Full set of changes: [`4.3.6...4.3.7`][4.3.7]
+
+[4.3.7]: https://github.com/pronamic/wp-pronamic-pay-ideal-basic/compare/v4.3.6...v4.3.7
+
 ## [4.3.6] - 2024-03-26
 
 ### Commits
